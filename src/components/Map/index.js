@@ -44,6 +44,8 @@ export default function App() {
   });
   const [markers, setMarkers] = React.useState([]);
   const [selected, setSelected] = React.useState(null);
+  console.log('selected', selected)
+  console.log('markers', markers)
 
   const onMapClick = React.useCallback((e) => {
     setMarkers((current) => [
