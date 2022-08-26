@@ -1,8 +1,5 @@
-# All Hail the mighty TwigKing. Leader of the TwigElites 
-![TwigKing](https://ibb.co/99ckx8Y)
-![alt text for screen readers]([/path/to/image.png ](https://ibb.co/99ckx8Y)"Text to show on mouseover").
-<img src="https://ibb.co/99ckx8Y" alt="MarineGEO circle logo" style="height: 100px; width:100px;"/>
-[![Alt text](https://ibb.co/99ckx8Y)](https://digitalocean.com)
+
+[![Our Leader](https://i.ibb.co/tMQT0mC/trigking.png)](Our Glorious leader)
 
 # Getting Started with Create React App
 
