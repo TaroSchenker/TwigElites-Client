@@ -1,4 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Reggae+One&family=Rhodium+Libre&family=Shadows+Into+Light&family=Short+Stack&display=swap');
+
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
+
+
+/* Font classes */
+.caveat {
+  font-family: 'Caveat Brush', cursive;
+}
+.reggae {
+  font-family: 'Reggae One', cursive;
+}
+.rhodium {
+  font-family: 'Rhodium Libre', serif;
+}
+.shadows {
+  font-family: 'Shadows Into Light', cursive;
+}
+.short {
+  font-family: 'Short Stack', cursive;
+}
+
+.packet {
+  height: 25.5rem;
+  width: 19.5rem;
+  background: url(../public/static/media/packet.png) no-repeat center center fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  /* background-size: contain; */
+}
+
+.overlay {
+  background-color: rgba(0, 0, 0, 0);
+  height: 23rem;
+  width: 16rem;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  align-items: center;
+  padding: 1rem 0;
+  /* gap: 1px; */
+}
+
+.fm-header {
+  font-size: 1.75rem;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #DB2821;
+  border: none;
+  border-radius: 50%;
+  box-shadow: inset 0 0 2px 2px hsla(2,74%,49%,.2),
+              inset 0 0 2px 4px hsla(2,74%,49%,.2),
+              inset 0 0 2px 6px hsla(2,74%,49%,.2),
+              inset 0 0 1px 8px hsla(2,74%,49%,.5),
+              inset 0 -4px 2px 4px hsla(2,74%,49%,.5),
+              inset 0 1px 1px 8px hsla(2,74%,100%,.25),
+              inset 0 -30px 30px hsla(2,74%,49%,.2),
+              0 -4px 8px 4px hsla(2,74%,49%,.5),
+              0 10px 10px hsla(2,74%,49%,.25),
+              0 0 2px 2px hsla(2,74%,49%,.2);
+  color: #ffffff;
+  height: 4rem;
+  width: 80%;
+  margin: 1rem 0;
+}
+
+/* Any button thats important */
+.special-btn {
+  background: #DB2821;
+  border: none;
+  border-radius: 50%;
+  box-shadow: inset 0 0 2px 2px hsla(2,74%,49%,.2),
+              inset 0 0 2px 4px hsla(2,74%,49%,.2),
+              inset 0 0 2px 6px hsla(2,74%,49%,.2),
+              inset 0 0 1px 8px hsla(2,74%,49%,.5),
+              inset 0 -4px 2px 4px hsla(2,74%,49%,.5),
+              inset 0 1px 1px 8px hsla(2,74%,100%,.25),
+              inset 0 -30px 30px hsla(2,74%,49%,.2),
+              0 -4px 8px 4px hsla(2,74%,49%,.5),
+              0 10px 10px hsla(2,74%,49%,.25),
+              0 0 2px 2px hsla(2,74%,49%,.2);
+  color: #ffffff;
+  cursor: pointer;
+  height: 2.5rem;
+  padding: 3px 1px 0 0;
+  text-shadow: 0 1px 1px hsla(0,0%,100%,.25),
+               0 -1px 1px hsla(0,0%,0%,.75);
+  width: 3.75rem;
+  font-size: 1rem;
+}
+
+.special-btn:hover,
+.special-btn:focus {
+    color: #ffffff;
+    text-shadow: 0 0 20px hsla(240,75%,75%,.5),
+                 0 1px 1px hsla(0,0%,100%,.25),
+                 0 -1px 1px hsla(0,0%,0%,.75);
+}
+
+.special-btn {
+  background: #DB2821;
+  border: none;
+  border-radius: 50%;
+  box-shadow: inset 0 0 2px 2px hsla(2,74%,49%,.2),
+              inset 0 0 2px 4px hsla(2,74%,49%,.2),
+              inset 0 0 2px 6px hsla(2,74%,49%,.2),
+              inset 0 0 1px 8px hsla(2,74%,49%,.5),
+              inset 0 -4px 2px 4px hsla(2,74%,49%,.5),
+              inset 0 1px 1px 8px hsla(2,74%,100%,.25),
+              inset 0 -30px 30px hsla(2,74%,49%,.2),
+              0 -4px 8px 4px hsla(2,74%,49%,.5),
+              0 10px 10px hsla(2,74%,49%,.25),
+              0 0 2px 2px hsla(2,74%,49%,.2);
+  color: #303030;
+  cursor: pointer;
+  height: 2.5rem;
+  padding: 0;
+  text-shadow: 0 1px 1px hsla(0,0%,100%,.25),
+               0 -1px 1px hsla(0,0%,0%,.75);
+  width: 3.75rem;
+}
+.special-btn:hover,
+.special-btn:focus {
+  color: #ffffff;
+  text-shadow: 0 0 20px hsla(240,75%,75%,.5),
+               0 1px 1px hsla(0,0%,100%,.25),
+               0 -1px 1px hsla(0,0%,0%,.75);
+}
+.special-btn:active {
+  box-shadow: inset 0 0 2px 2px hsla(2,74%,49%,.2),
+              inset 0 0 2px 4px hsla(2,74%,49%,.2),
+              inset 0 0 2px 6px hsla(2,74%,49%,.2),
+              inset 0 0 1px 7px hsla(2,74%,49%,.5),
+              inset 0 5px 15px 7px hsla(2,74%,49%,.15),
+              inset 0 -4px 2px 3px hsla(2,74%,49%,.5),
+              inset 0 1px 1px 7px hsla(2,74%,100%,.25),
+              inset 0 -30px 30px hsla(2,74%,49%,.1),
+              inset 0 30px 30px hsla(2,74%,49%,.2),
+              0 -4px 8px 4px hsla(2,74%,49%,.5),
+              0 5px 10px hsla(2,74%,49%,.25),
+              0 0 2px 2px hsla(0,0%,0%,.2),
+              0 0 2px 4px hsla(0,0%,0%,.2);
+}
+
+input[type="text"], input[type="password"] {
+  background-color: #0289BA;
+  color: #fff;
+  text-align: center;
+  border-radius: 0.5em;
+  border:none;
+  outline:none;
+  transition: all 0.1s ease-out;
+  position: relative;
+  width: 10rem;
+  height: 2rem;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.6)
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+  box-shadow: 0 2px 3px rgb(61, 61, 61);
+  border-bottom: 0.25em solid #0f5177;
+  top:-2px;
+}
+=======
+
+/* Map Styles */
+.map{
+  background-color: black;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.location-icon{
+  font-size: 2rem;
+  color: red;
+}
+
+.loader { 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.loader h1 {
+  margin-top: -100px ;
+}
+
+.location-info{
+  position: absolute;
+  top: 50px;
+  right: 50px;
+  width: 400px;
+  min-height: 200px;
+  padding: 20px;
+  background-color: rgba(0,0,0,0.6);
+  border-radius: 10px;
+  font-size: 18px;
+  color: antiquewhite;
+}
+
+.location-info ul{
+  list-style-type: none;
+  padding: 0;
+}
+
+.location-info li{
+  list-style-type: none;
+  padding: 5px 0;
+}
+
+
