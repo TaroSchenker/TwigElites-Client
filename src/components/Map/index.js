@@ -24,7 +24,7 @@ import mapStyles from "./mapStyles";
 const libraries = ["places"];
 const mapContainerStyle = {
   position: "relative",
-  height: "40em",
+  height: "45em",
   width: "100%",
 };
 const options = {
@@ -70,12 +70,7 @@ export default function App() {
   if (!isLoaded) return "Loading...";
 
   return (
-    <div>
-      <h1 className="map-title">
-        Bears
-      
-      </h1>
-
+    <div className='map-container'>
       <Locate panTo={panTo} />
       <Search panTo={panTo} />
 
