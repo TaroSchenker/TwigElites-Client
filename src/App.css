@@ -24,17 +24,17 @@
 }
 
 .packet {
-  height: 26rem;
-  width: 18rem;
+  height: 25.5rem;
+  width: 19.5rem;
   background: url(../public/static/media/packet.png) no-repeat center center fixed;
   display: flex;
   justify-content: center;
   align-items: center; 
-  /* background-size: cover; */
+  /* background-size: contain; */
 }
 
 .overlay {
-  background-color: #000000;
+  background-color: rgba(0, 0, 0, 0);
   height: 23rem;
   width: 16rem;
   display: flex;
@@ -159,6 +159,10 @@ input[type="text"], input[type="password"] {
   position: relative;
   width: 10rem;
   height: 2rem;
+}
+
+input::placeholder {
+  color: rgba(255, 255, 255, 0.6)
 }
 
 input[type="text"]:focus, input[type="password"]:focus {
