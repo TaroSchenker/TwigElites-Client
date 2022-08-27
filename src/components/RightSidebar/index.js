@@ -17,7 +17,7 @@ const RightSidebar = () => {
     <Container>
       {markers.map((marker) => (
         <Row
-            className="border border-dark"
+            className="border border-dark my-1"
             key={marker.placeId}>
       
           <ResultBox key={marker.placeId} address={marker.address} user={marker.user} time={marker.time}/>

@@ -7,6 +7,7 @@ const Home = () => {
   const [eventData, setEventData] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  // this fetch is fetching from a nasa API. it is just letft in as a  placeholder, can be ammended for our own requests.
   useEffect(() => {
     const fetchEvents = async () => {
       console.log("i fetch events");
@@ -22,12 +23,7 @@ const Home = () => {
 
   return (
     <Container fluid="lg">
-      <Row>
-        <Col s={12} className=" bg-warning">
-          nav bar here
-        </Col>
-      </Row>
-      <Row className="" style={{ height: "90vh" }}>
+      <Row className="mt-3" style={{ height: "90vh" }}>
         <Col s={12}  className="bg-light">
           {!loading ? <Sidebar /> : <h1 className="loader"> loading</h1>}
         </Col>

@@ -110,8 +110,8 @@ export default function App() {
             icon={{
               url: `/twiglets-logo-png-transparent.png`,
               origin: new window.google.maps.Point(0, 0),
-              anchor: new window.google.maps.Point(45, 45),
-              scaledSize: new window.google.maps.Size(90, 90),
+              anchor: new window.google.maps.Point(25, 25),
+              scaledSize: new window.google.maps.Size(50, 50),
             }}
           />
         ))}
