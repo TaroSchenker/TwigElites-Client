@@ -11,15 +11,15 @@ const Signup = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    const options = {
-      username: username,
-      email: email,
-      password: password,
+    const body = {
+      username,
+      email,
+      password,
     };
     try {
       const { data } = await axios.post(
         "https://test-twiglets.herokuapp.com/auth/register",
-        options
+        body
       );
       setMessageForUser(data);
       console.log(messageForUser);
