@@ -18,7 +18,7 @@ const Signin = () => {
     };
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/auth/login",
+        "https://test-twiglets.herokuapp.com/auth/login",
         body
       );
       // saving token in sessionStorage - when user logs out this token needs to be removed
@@ -29,7 +29,7 @@ const Signin = () => {
       console.error("Oops, there's been an error: ", err);
     }
   };
-console.log(token);
+  console.log(token);
   return (
     <div className="packet">
       <form className="sign-up overlay">
