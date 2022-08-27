@@ -23,6 +23,9 @@ const Sidebar = () => {
     setTwigletLocationToAdd,
   ] = useContext(MapDataContext);
 
+/* ------ ------------------------------------------------------------------
+  !handles the submit in column one ! 
+  ----------------------------------------------------------------*/
   const handleFormSubmit = (e) => {
     e.preventDefault();
     console.log("handling submit", twigletLocationToAdd);
@@ -40,6 +43,7 @@ const Sidebar = () => {
       },
     ]);
   };
+
   return (
     <Container>
       <Row>
@@ -111,7 +115,9 @@ const Sidebar = () => {
 
 export default Sidebar;
 
-/* ---------------- --*/
+/* ------ ------------------------------------------------------------------
+  !search bar function & handling
+  ----------------------------------------------------------------*/
 
 function Search({ setTwigletLocationToAdd }) {
   const {

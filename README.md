@@ -1,3 +1,7 @@
+# Development notes
+
+ 1. handle submit for the button in Col 1 is in Sidebar component. 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
