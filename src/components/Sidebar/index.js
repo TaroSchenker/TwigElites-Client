@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Container, Col, Row, Card } from "react-bootstrap";
+import { Container, Col, Row, Card, Form, Button } from "react-bootstrap";
 import { MapDataContext } from "../../MapDataContext";
 import usePlacesAutocomplete, {
   getGeocode,
@@ -25,7 +25,7 @@ const Sidebar = () => {
 
   const handleFormSubmit = (e) => {
     e.preventDefault()
-    console.log(e.target)
+    console.log('handling submit', twigletLocationToAdd)
     setMarkers((current) => [
       ...current,
       {
@@ -33,7 +33,8 @@ const Sidebar = () => {
         lat: twigletLocationToAdd.lat,
         lng:twigletLocationToAdd.lng,
         time: new Date(),
-        // placeId: e.placeId
+        placeId: e.placeId,
+        user: 'Mr Big Twig'
       },
     ]);
   }
@@ -52,22 +53,27 @@ const Sidebar = () => {
         </Col>
       </Row>
       <Row>
-       {twigletLocationToAdd && 
-        <form onSubmit={(e) => handleFormSubmit(e)}>
-        <h3> Add A Twiglet Location Form</h3>
-          <label>
-            
-            <textarea type="text" name="name" value={twigletLocationToAdd.formatted_address}/>
-          </label>
-          <input type="submit" value="Submit" />
+      <Col className="mt-3">
+          <form onSubmit={(e) => handleFormSubmit(e)}>
+          {twigletLocationToAdd != '' ? 
+           <Form.Group className="mb-3" style={{width: '300px'}}>
+        <Form.Label>Location Address</Form.Label>
+        <Form.Control value={twigletLocationToAdd.address_components[0].long_name} placeholder="Use the above autocomplete" disabled />
+        <Form.Control value={twigletLocationToAdd.address_components[1].long_name} placeholder="Use the above autocomplete" disabled />
+        <Form.Control value={twigletLocationToAdd.address_components[2].long_name} placeholder="Use the above autocomplete" disabled />
+        <Form.Control value={twigletLocationToAdd.address_components[3].long_name} placeholder="Use the above autocomplete" disabled />
+        <Form.Control value={twigletLocationToAdd.address_components[4].long_name} placeholder="Use the above autocomplete" disabled />
+      </Form.Group> : <p> waiting for search</p>}
+      <Button type="submit">Submit</Button>
         </form>
-       }
+       
+      </Col>
         {/* {console.log("twigletLocationToAdd", twigletLocationToAdd)} */}
         {/* {twigletLocationToAdd.place_id}
         {twigletLocationToAdd.formatted_address}
         {twigletLocationToAdd.placeId} */}
-        {twigletLocationToAdd.lat}
-        {twigletLocationToAdd.lng}
+        {/* {twigletLocationToAdd.lat}
+        {twigletLocationToAdd.lng} */}
       </Row>
     </Container>
   );
@@ -103,7 +109,7 @@ function Search({ setTwigletLocationToAdd }) {
     try {
       const results = await getGeocode({ address });
       // console.log('results', results[0].formatted_address)
-      // console.log("results", results[0]);
+      console.log("results", results[0].address_components);
       const { lat, lng } = await getLatLng(results[0]);
       setTwigletLocationToAdd({ 
         ...results[0], 
@@ -118,6 +124,7 @@ function Search({ setTwigletLocationToAdd }) {
 
   return (
     <div className="sidebar-search">
+    {console.log('.....ready???',ready)}
       <Combobox onSelect={handleSelect}>
         <ComboboxInput
           value={value}

@@ -94,7 +94,7 @@ export default function App() {
       <GoogleMap
         id="map"
         mapContainerStyle={mapContainerStyle}
-        zoom={8}
+        zoom={10}
         center={center}
         options={options}
         onLoad={onMapLoad}
