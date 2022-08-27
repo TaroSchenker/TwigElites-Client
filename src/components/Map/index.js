@@ -1,4 +1,7 @@
-import React from "react";
+import React, { useContext, useState, useRef, useCallback } from "react";
+import { Button } from "react-bootstrap";
+import { MapDataContext } from "../../MapDataContext";
+import { Icon } from "@iconify/react";
 import {
   GoogleMap,
   useLoadScript,
@@ -24,7 +27,7 @@ import mapStyles from "./mapStyles";
 const libraries = ["places"];
 const mapContainerStyle = {
   position: "relative",
-  height: "45em",
+  height: "35em",
   width: "100%",
 };
 const options = {
@@ -42,28 +45,40 @@ export default function App() {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
-  const [markers, setMarkers] = React.useState([]);
-  const [selected, setSelected] = React.useState(null);
-  console.log('selected', selected)
-  console.log('markers', markers)
+  // const [markers, setMarkers] = useState([]);
+  // const [selected, setSelected] = useState(null);
 
-  const onMapClick = React.useCallback((e) => {
+  const [
+    markers,
+    setMarkers,
+    selected,
+    setSelected,
+    twigletLocationToAdd,
+    setTwigletLocationToAdd,
+  ] = useContext(MapDataContext);
+
+  console.log("selected", selected);
+  console.log("markers", markers);
+
+  const onMapClick = useCallback((e) => {
+    console.log("this is tmy target", e);
     setMarkers((current) => [
       ...current,
       {
         lat: e.latLng.lat(),
         lng: e.latLng.lng(),
         time: new Date(),
+        placeId: e.placeId,
       },
     ]);
   }, []);
 
-  const mapRef = React.useRef();
-  const onMapLoad = React.useCallback((map) => {
+  const mapRef = useRef();
+  const onMapLoad = useCallback((map) => {
     mapRef.current = map;
   }, []);
 
-  const panTo = React.useCallback(({ lat, lng }) => {
+  const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(14);
   }, []);
@@ -72,7 +87,7 @@ export default function App() {
   if (!isLoaded) return "Loading...";
 
   return (
-    <div className='map-container'>
+    <div className="map-container">
       <Locate panTo={panTo} />
       <Search panTo={panTo} />
 
@@ -82,7 +97,6 @@ export default function App() {
         zoom={8}
         center={center}
         options={options}
-        onClick={onMapClick}
         onLoad={onMapLoad}
       >
         {markers.map((marker) => (
@@ -90,6 +104,7 @@ export default function App() {
             key={`${marker.lat}-${marker.lng}`}
             position={{ lat: marker.lat, lng: marker.lng }}
             onClick={() => {
+              console.log("marker value", marker);
               setSelected(marker);
             }}
             icon={{
@@ -109,10 +124,14 @@ export default function App() {
             }}
           >
             <div>
-              <h2>
-                Alert
-              </h2>
-              <p>Found Originals! {formatRelative(selected.time, new Date())}</p>
+              {/* <h2>
+                {selected.lng}
+              </h2> */}
+              <p>
+                Found Originals! {formatRelative(selected.time, new Date())}
+              </p>
+              <p>Address:{selected.address}</p>
+              <Button>Remove Twiglets</Button>
             </div>
           </InfoWindow>
         ) : null}
@@ -136,12 +155,13 @@ function Locate({ panTo }) {
           () => null
         );
       }}
-    >Find my location
-      {/* <img src="/compass.svg" alt="compass" /> */}
+    >
+      <Icon icon="carbon:location-current" height="40" />
     </button>
   );
 }
 
+// the search bar at the top of the map.
 function Search({ panTo }) {
   const {
     ready,
@@ -152,7 +172,7 @@ function Search({ panTo }) {
   } = usePlacesAutocomplete({
     requestOptions: {
       location: { lat: () => 51.5072, lng: () => -0.1276 },
-      radius: 100 * 1000,  
+      radius: 100 * 1000,
     },
   });
 
@@ -164,10 +184,13 @@ function Search({ panTo }) {
 
   const handleSelect = async (address) => {
     setValue(address, false);
+
     clearSuggestions();
 
     try {
       const results = await getGeocode({ address });
+      // console.log('results', results[0].formatted_address)
+      console.log("results", results[0]);
       const { lat, lng } = await getLatLng(results[0]);
       panTo({ lat, lng });
     } catch (error) {
