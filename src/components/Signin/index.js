@@ -1,5 +1,4 @@
 import React, { useState, useContext } from "react";
-import { UserContext } from "../../context/UserContext";
 import axios from "axios";
 import { Container, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -8,8 +7,8 @@ const Signin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [messageForUser, setMessageForUser] = useState("");
-  const [setToken, token, userId, setUserId] = useContext(UserContext);
 
+  const token = sessionStorage.getItem("token");
   const handleLogin = async (e) => {
     // e.preventDefault();
     const body = {
@@ -18,13 +17,13 @@ const Signin = () => {
     };
     try {
       const { data } = await axios.post(
-        "https://test-twiglets.herokuapp.com/auth/login",
+        "http://localhost:5000/auth/login",
         body
       );
       // saving token in sessionStorage - when user logs out this token needs to be removed
       setMessageForUser(data);
-      setToken(data.access_token);
-      setUserId(data.user_details.id);
+
+      sessionStorage.setItem("token", data.access_token.token);
     } catch (err) {
       console.error("Oops, there's been an error: ", err);
     }
@@ -52,8 +51,11 @@ const Signin = () => {
         />
         <br />
         <Link
-          onClick={(e) => (!token ? e.preventDefault() : null)}
-          to="/add-location"
+          onClick={(e) =>
+            !sessionStorage.getItem("token") ? e.preventDefault() : null
+          }
+          // to={token ? "/add-location" : null}
+          to={token ? "/" : "/registry"}
         >
           <input
             className="special-btn caveat"

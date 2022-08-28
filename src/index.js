@@ -3,15 +3,12 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
 import MapDataProvider from "./MapDataContext";
-import UserContextProvider from "./context/UserContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <MapDataProvider>
     <BrowserRouter>
-      <UserContextProvider>
-        <App />
-      </UserContextProvider>
+      <App />
     </BrowserRouter>
   </MapDataProvider>
 );

@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { Container, Col, Row, Card, Form, Button } from "react-bootstrap";
 import { MapDataContext } from "../../MapDataContext";
-import { UserContext } from "../../context/UserContext";
 
 import usePlacesAutocomplete, {
   getGeocode,
@@ -30,9 +29,7 @@ const Sidebar = () => {
   !handles the submit in column one ! 
   ----------------------------------------------------------------*/
 
-  const [setToken, token, userId, setUserId] = useContext(UserContext);
-
-  setUserId(2); //? this is now being set manually, discuss tomorrow how to render this page after user has logged in to have access to userId in context
+  // setUserId(2); //? this is now being set manually, discuss tomorrow how to render this page after user has logged in to have access to userId in context
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     console.log("handling submit", twigletLocationToAdd);
@@ -46,27 +43,30 @@ const Sidebar = () => {
         lng: twigletLocationToAdd.lng,
         time: new Date(),
         placeId: e.placeId,
-        user: userId,
+        user: 2, // need to see how to grab this, could work this out from server ideally
       },
     ]);
 
     //! I need for your data to match this fake data as this is the way we receive it on the server
     const fake_data = {
-      longitude: 1055,
-      latitude: 89,
-      shop_name: "fake shop",
-      address: "fake address",
-      found_by_user: userId,
-      date_found: new Date(),
+      longitude: 105,
+      latitude: 893,
+      shop_name: "fake shop2",
+      address: "fake address2",
     };
 
     try {
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      };
+
       const { data } = await axios.post(
-        "https://test-twiglets.herokuapp.com/twiglets",
-        markers
+        "http://localhost:5000/twiglets",
+        fake_data,
+        { headers: headers }
       );
 
-      console.log(data);
     } catch (err) {
       console.error("Oops, there's been an error: ", err);
     }
@@ -121,11 +121,10 @@ const Sidebar = () => {
               <p> </p>
             )}
             <div>
-              {twigletLocationToAdd != "" ? (
-                <Button type="submit">Submit</Button>
-              ) : (
-                <p></p>
-              )}
+              {/* {twigletLocationToAdd != "" ? ( */}
+              <Button type="submit">Submit</Button>
+              {/* // ) : ( // <p></p> */}
+              {/* // )} */}
             </div>
           </form>
         </Col>
