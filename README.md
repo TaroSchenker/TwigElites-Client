@@ -1,5 +1,5 @@
-
 [![Our Leader](https://i.ibb.co/tMQT0mC/trigking.png)](Our Glorious leader)
+
 
 # Getting Started with Create React App
 
