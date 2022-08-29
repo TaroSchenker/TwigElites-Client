@@ -5,7 +5,7 @@ import ResultBox from "../ResultBox";
 import axios from "axios";
 
 const RightSidebar = () => {
-  const [allTwiglets, setAllTwiglets] = useState([]);
+  // const [allTwiglets, setAllTwiglets] = useState([]);
 
   useEffect(() => {
     const fetch_all_twiglets = async () => {
@@ -24,14 +24,17 @@ const RightSidebar = () => {
     selected,
     setSelected,
     twigletLocationToAdd,
-    setTwigletLocationToAdd,
+    setTwigletLocationToAdd, allTwiglets, setAllTwiglets
   ] = useContext(MapDataContext);
-  console.log("right side bar", markers);
+  // console.log("right side bar", markers);
 
 
-  console.log("ALL twiglets", allTwiglets);
+  // console.log("ALL twiglets", allTwiglets);
   return (
     <Container>
+    <Button onClick={()=> {
+      
+    }}> update list </Button>
       {/* {markers.map((marker) => (
         <Row className="border border-dark my-1" key={marker.placeId}>
           <ResultBox
