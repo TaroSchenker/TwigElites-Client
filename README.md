@@ -1,6 +1,5 @@
-# Development notes
+[![Our Leader](https://i.ibb.co/tMQT0mC/trigking.png)](Our Glorious leader)
 
- 1. handle submit for the button in Col 1 is in Sidebar component. 
 
 # Getting Started with Create React App
 
