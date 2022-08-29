@@ -42,29 +42,32 @@ const Sidebar = () => {
         lat: twigletLocationToAdd.lat,
         lng: twigletLocationToAdd.lng,
         time: new Date(),
-        placeId: e.placeId,
-        user: 2, // need to see how to grab this, could work this out from server ideally
+        placeId: twigletLocationToAdd.place_id,
+        // user: 2, // need to see how to grab this, could work this out from server ideally
       },
     ]);
 
     //! I need for your data to match this fake data as this is the way we receive it on the server
     const fake_data = {
-      longitude: 105,
-      latitude: 893,
-      shop_name: "fake shop2",
-      address: "fake address2",
+      longitude: twigletLocationToAdd.lat,
+      latitude: twigletLocationToAdd.lng,
+      shop_name: 'twigletLocationToAdd.place_id',
+      shop_id: twigletLocationToAdd.place_id,
+      address: twigletLocationToAdd.formatted_address,
     };
 
     try {
-      const headers = {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-      };
+
+    console.log('fake_data',fake_data)
+      // const headers = {
+      //   "Content-Type": "application/json",
+      //   Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      // };
 
       const { data } = await axios.post(
         "https://test-twiglets.herokuapp.com/twiglets",
         fake_data,
-        { headers: headers }
+        // { headers: headers }
       );
 
     } catch (err) {
@@ -171,13 +174,18 @@ function Search({ setTwigletLocationToAdd }) {
     try {
       const results = await getGeocode({ address });
       // console.log('results', results[0].formatted_address)
-      console.log("results", results[0].address_components);
+      console.log("results", results[0]);
       const { lat, lng } = await getLatLng(results[0]);
       setTwigletLocationToAdd({
         ...results[0],
         lat,
         lng,
       });
+      // setTwigletLocationToAdd({
+      //   ...results[0],
+      //   lat,
+      //   lng,
+      // });
     } catch (error) {
       console.log("😱 Error: ", error);
     }
