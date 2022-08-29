@@ -44,6 +44,8 @@ const Sidebar = () => {
         time: new Date(),
         placeId: twigletLocationToAdd.place_id,
         // user: 2, // need to see how to grab this, could work this out from server ideally
+
+
       },
     ]);
 
@@ -80,13 +82,13 @@ const Sidebar = () => {
           <Search setTwigletLocationToAdd={setTwigletLocationToAdd} />
         </Col>
       </Row>
-      <Row>
+      {/* <Row>
         <Col s={12} md={3} className="mx-2 bg-success">
           {markers.map((i) => (
             <div> {i.placeId}</div>
           ))}
         </Col>
-      </Row>
+      </Row> */}
       <Row>
         <Col className="mt-3">
           <form onSubmit={(e) => handleFormSubmit(e)}>

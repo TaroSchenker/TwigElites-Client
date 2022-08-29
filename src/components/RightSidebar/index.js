@@ -28,6 +28,7 @@ const RightSidebar = () => {
   ] = useContext(MapDataContext);
   console.log("right side bar", markers);
 
+
   console.log("ALL twiglets", allTwiglets);
   return (
     <Container>
@@ -49,6 +50,7 @@ const RightSidebar = () => {
             user={twiglet.found_by_user}
             time={twiglet.date_last_confirmed}
           />
+
         </Row>
       ))}
     </Container>

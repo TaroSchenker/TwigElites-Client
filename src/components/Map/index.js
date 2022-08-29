@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef, useCallback } from "react";
+import React, { useContext, useState, useRef, useCallback, useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { MapDataContext } from "../../MapDataContext";
 import { Icon } from "@iconify/react";
@@ -86,6 +86,12 @@ export default function App() {
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
 
+
+//   useEffect(() => {
+// // on page load locate the users current position 
+
+
+//   }, [])
   return (
     <div className="map-container">
       <Locate panTo={panTo} />
@@ -106,6 +112,7 @@ export default function App() {
             onClick={() => {
               console.log("marker value", marker);
               setSelected(marker);
+              
             }}
             icon={{
               url: `/twiglets-logo-png-transparent.png`,
