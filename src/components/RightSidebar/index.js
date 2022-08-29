@@ -6,7 +6,7 @@ import axios from "axios";
 
 
 const RightSidebar = ({menu}) => {
-  const [allTwiglets, setAllTwiglets] = useState([]);
+  // const [allTwiglets, setAllTwiglets] = useState([]);
   const [isMenu, setIsMenu] = useState(menu[0]);
 
   const handleClick = (e) => {
