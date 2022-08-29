@@ -1,12 +1,24 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Container, Col, Row } from "react-bootstrap";
 import { Map, RightSidebar, Sidebarnew } from "../../components";
 import Sidebar from "../../components/Sidebar";
+import { MapDataContext } from "../../MapDataContext";
+import axios from "axios";
 
 
 const Home = () => {
   const [eventData, setEventData] = useState([]);
-  const [loading, setLoading] = useState(false);
+
+  const [
+    markers,
+    setMarkers,
+    selected,
+    setSelected,
+    twigletLocationToAdd,
+    setTwigletLocationToAdd,
+    allTwiglets,
+    setAllTwiglets, loading, setLoading
+  ] = useContext(MapDataContext);
 
   // this fetch is fetching from a nasa API. it is just letft in as a  placeholder, can be ammended for our own requests.
   useEffect(() => {
@@ -16,11 +28,27 @@ const Home = () => {
       const res = await fetch("https://eonet.gsfc.nasa.gov/api/v2.1/events");
       const { events } = await res.json();
       setEventData(events);
-      setLoading(false);
+      // setLoading(false);
     };
+
+    const fetch_all_twiglets = async () => {
+      setLoading(true);
+      const { data } = await axios.get(
+        "http://test-twiglets.herokuapp.com/twiglets"
+      );
+      setAllTwiglets([...data]);
+      setMarkers([...data]);
+      
+    
+      setLoading(false);
+      // return data;
+    };
+
+
+    fetch_all_twiglets();
     fetchEvents();
-    // console.log(eventData)
   }, []);
+
 
   let sightings = [1, 2, 3, 4, 5];
 
@@ -60,6 +88,7 @@ const Home = () => {
             {!loading ? <RightSidebar menu={menu2}/> : <h1 className="loader"> loading</h1>}
             </Col>
           </Row>
+
         </Col>
       </Row>
     </Container>
