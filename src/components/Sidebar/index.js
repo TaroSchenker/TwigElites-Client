@@ -23,25 +23,29 @@ const Sidebar = () => {
     setSelected,
     twigletLocationToAdd,
     setTwigletLocationToAdd,
+    allTwiglets,
+    setAllTwiglets,
   ] = useContext(MapDataContext);
 
   /* ------ ------------------------------------------------------------------
   !handles the submit in column one ! 
   ----------------------------------------------------------------*/
 
-  // setUserId(2); //? this is now being set manually, discuss tomorrow how to render this page after user has logged in to have access to userId in context
+  // setUserId(2); //! this is now being set manually, discuss tomorrow how to render this page after user has logged in to have access to userId in context
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     console.log("handling submit", twigletLocationToAdd);
     if (true) {
     }
+    console.log("current value of markers before submit is", markers);
     setMarkers((current) => [
       ...current,
       {
         address: twigletLocationToAdd.formatted_address,
         latitude: twigletLocationToAdd.lat,
         longitude: twigletLocationToAdd.lng,
-        time: new Date(),
+        // time: new Date(),
         shop_id: twigletLocationToAdd.place_id,
         shop_name: "twigletLocationToAdd.place_id",
       },
@@ -49,8 +53,8 @@ const Sidebar = () => {
 
     //! I need for your data to match this fake data as this is the way we receive it on the server
     const fake_data = {
-      longitude: twigletLocationToAdd.lat,
-      latitude: twigletLocationToAdd.lng,
+       latitude :twigletLocationToAdd.lat,
+      longitude: twigletLocationToAdd.lng,
       shop_name: "twigletLocationToAdd.place_id",
       shop_id: twigletLocationToAdd.place_id,
       address: twigletLocationToAdd.formatted_address,
@@ -80,13 +84,6 @@ const Sidebar = () => {
           <Search setTwigletLocationToAdd={setTwigletLocationToAdd} />
         </Col>
       </Row>
-      {/* <Row>
-        <Col s={12} md={3} className="mx-2 bg-success">
-          {markers.map((i) => (
-            <div> {i.placeId}</div>
-          ))}
-        </Col>
-      </Row> */}
       <Row>
         <Col className="mt-3">
           <form onSubmit={(e) => handleFormSubmit(e)}>
@@ -123,19 +120,10 @@ const Sidebar = () => {
               <p> </p>
             )}
             <div>
-              {/* {twigletLocationToAdd != "" ? ( */}
               <Button type="submit">Submit</Button>
-              {/* // ) : ( // <p></p> */}
-              {/* // )} */}
             </div>
           </form>
         </Col>
-        {/* {console.log("twigletLocationToAdd", twigletLocationToAdd)} */}
-        {/* {twigletLocationToAdd.place_id}
-        {twigletLocationToAdd.formatted_address}
-        {twigletLocationToAdd.placeId} */}
-        {/* {twigletLocationToAdd.lat}
-        {twigletLocationToAdd.lng} */}
       </Row>
     </Container>
   );

@@ -32,6 +32,9 @@ const RightSidebar = () => {
   // console.log("ALL twiglets", allTwiglets);
   return (
     <Container>
+    <Button onClick={()=> {
+      
+    }}> update list </Button>
       {/* {markers.map((marker) => (
         <Row className="border border-dark my-1" key={marker.placeId}>
           <ResultBox

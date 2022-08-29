@@ -54,7 +54,7 @@ export default function App() {
     selected,
     setSelected,
     twigletLocationToAdd,
-    setTwigletLocationToAdd, allTwiglets, setAllTwiglets
+    setTwigletLocationToAdd, allTwiglets, setAllTwiglets, loading, setLoading
   ] = useContext(MapDataContext);
 
   console.log("selected", selected);
@@ -115,23 +115,44 @@ export default function App() {
         options={options}
         onLoad={onMapLoad}
       >
-        {/* {markers.map((marker) => (
+        {/* <Marker
+            key={`'uiuio`}
+            position={{ lat: 51.5072, lng: -0.1276  }}
+            onClick={() => {
+              // console.log("marker value", marker);
+              // setSelected(marker);            
+            }}
+         
+
+
+            icon={{
+              url: `/twiglets-logo-png-transparent.png`,
+              origin: new window.google.maps.Point(0, 0),
+              anchor: new window.google.maps.Point(25, 25),
+              scaledSize: new window.google.maps.Size(50, 50),
+            }}
+          /> */}
+
+        {!loading &&
+         markers.map((marker) => (
+        
           <Marker
-            key={`${marker.lat}-${marker.lng}`}
-            position={{ lat: marker.lat, lng: marker.lng }}
+            key={`${marker.longitude}-${marker.latitude}`}
+            position={{ lat: marker.latitude, lng: marker.longitude }}
             onClick={() => {
               console.log("marker value", marker);
-              setSelected(marker);
-              
-            }} */}
-            {allTwiglets.map((twiglet) => (      
-          <Marker
-            key={`${twiglet.latitude}-${twiglet.longitude}`}
-            position={{ lat: twiglet.latitude, lng: twiglet.longitude }}
-            onClick={() => {
-              console.log("twiglet value", twiglet);
-              // setSelected(twiglet);
+              setSelected(marker);            
             }}
+         
+          //   {/* {allTwiglets.map((twiglet) => (      
+          // <Marker
+          //   key={`${twiglet.latitude}-${twiglet.longitude}`}
+          //   position={{ lat: twiglet.latitude, lng: twiglet.longitude }}
+          //   onClick={() => {
+          //     console.log("twiglet value", twiglet);
+          //     // setSelected(twiglet);
+          //   }} */}
+
             icon={{
               url: `/twiglets-logo-png-transparent.png`,
               origin: new window.google.maps.Point(0, 0),
@@ -139,11 +160,14 @@ export default function App() {
               scaledSize: new window.google.maps.Size(50, 50),
             }}
           />
+      
         ))}
+        }
+       
 
         {selected ? (
           <InfoWindow
-            position={{ lat: selected.lat, lng: selected.lng }}
+            position={{ lat: selected.latitude, lng: selected.longitude }}
             onCloseClick={() => {
               setSelected(null);
             }}
@@ -153,7 +177,7 @@ export default function App() {
                 {selected.lng}
               </h2> */}
               <p>
-                Found Originals! {formatRelative(selected.time, new Date())}
+                {/* Found Originals! {formatRelative(selected.time, new Date())} */}
               </p>
               <p>Address:{selected.address}</p>
               <Button>Remove Twiglets</Button>
