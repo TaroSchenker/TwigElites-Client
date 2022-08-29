@@ -13,6 +13,8 @@ const RightSidebar = () => {
     setTwigletLocationToAdd,
   ] = useContext(MapDataContext);
   console.log("right side bar", markers);
+
+
   return (
     <Container>
       {markers.map((marker) => (
@@ -21,6 +23,11 @@ const RightSidebar = () => {
             key={marker.placeId}>
       
           <ResultBox key={marker.placeId} address={marker.address} user={marker.user} time={marker.time}/>
+          <div>
+            <Button onClick={ () => { setSelected(marker)}} variant="secondary" size="sm"> Goto Location</Button>
+          <Button variant="secondary" size="sm"> Remove location</Button>
+          </div>
+        
         </Row>
       ))}
     </Container>

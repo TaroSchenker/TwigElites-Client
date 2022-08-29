@@ -38,7 +38,7 @@ const Sidebar = () => {
         lat: twigletLocationToAdd.lat,
         lng: twigletLocationToAdd.lng,
         time: new Date(),
-        placeId: e.placeId,
+        placeId: twigletLocationToAdd.place_id,
         user: "Mr Big Twig",
       },
     ]);
@@ -51,13 +51,13 @@ const Sidebar = () => {
           <Search setTwigletLocationToAdd={setTwigletLocationToAdd} />
         </Col>
       </Row>
-      <Row>
+      {/* <Row>
         <Col s={12} md={3} className="mx-2 bg-success">
           {markers.map((i) => (
             <div> {i.placeId}</div>
           ))}
         </Col>
-      </Row>
+      </Row> */}
       <Row>
         <Col className="mt-3">
           <form onSubmit={(e) => handleFormSubmit(e)}>
@@ -145,7 +145,7 @@ function Search({ setTwigletLocationToAdd }) {
     try {
       const results = await getGeocode({ address });
       // console.log('results', results[0].formatted_address)
-      console.log("results", results[0].address_components);
+      console.log("results", results[0]);
       const { lat, lng } = await getLatLng(results[0]);
       setTwigletLocationToAdd({
         ...results[0],
