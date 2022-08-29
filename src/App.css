@@ -6,6 +6,29 @@
   box-sizing: border-box;
 }
 
+header {
+  height: 5rem;
+  background-color: #0289BA;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mascot {
+  height: 5rem;
+}
+
+.main {
+  height: calc(100vh - 4rem);
+}
+
+.container {
+  max-width: none;
+}
+
+.wide {
+  width: 100vw;
+}
 
 /* Font classes */
 .caveat {
@@ -22,6 +45,33 @@
 }
 .short {
   font-family: 'Short Stack', cursive;
+}
+
+
+/* background colors */
+.bg-dark-blue {
+  background-color: #04141D;
+}
+
+.bg-red {
+  background-color: #DB2821;
+}
+
+.bg-blue {
+  background-color: #0289BA;
+}
+
+/* text colors */
+.txt-dark {
+  color: #04141D;
+}
+
+.txt-red {
+  color: #DB2821;
+}
+
+.txt-blue {
+  color: #0289BA;
 }
 
 .packet {
@@ -170,6 +220,94 @@ input[type="text"]:focus, input[type="password"]:focus {
   box-shadow: 0 2px 3px rgb(61, 61, 61);
   border-bottom: 0.25em solid #0f5177;
   top:-2px;
+}
+
+/* styling the main page */
+.sidebar {
+  /* background-color: #DB2821; */
+  width: 10rem;
+  height: 90%;
+}
+
+.link, .link:visited {
+  color: white;
+  text-decoration: none;
+  display: block;
+  width: 100%;
+}
+
+.list .item .link:hover {
+  background-color: #006a84;
+}
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.item {
+  float: left;
+  height: 40px;
+  line-height: 40px;
+  /* text-align: center; */
+  background: rgba( 0, 0, 0, 0);
+  color: white;
+  font-size: 1em;
+  display: block;
+  width: 100%;
+}
+
+.sub {
+  display: none;
+}
+
+.s-link {
+  border-bottom: 1px solid #ffffff;
+}
+
+.base:hover .sub {
+  display: block;
+}
+
+.box {
+  background-color: rgba(2, 137, 186, 1);
+  width: 10rem;
+  height: 5.9rem;
+  margin: 15px 0;
+  pointer-events: none;
+  font-size: 0.6rem;
+}
+
+.box-btn {
+  border: none;
+  background-color: #DB2821;
+  width: 5rem;
+  height: 3rem;
+  /* margin: 10rem 0; */
+  font-size: 1rem;
+  border-radius: 15px;
+  color:#ffffff;
+  position: relative;
+  top: 0;
+}
+
+.box-btn:hover {
+  background-color: #ffffff;
+  color: #DB2821;
+}
+
+.slider {
+  /* background-color: rgba( 255, 255, 255, 0.5); */
+  /* height: calc(100% - 40px); */
+  height: 100%;
+  width: 100%;
+  padding-top: 40px;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center; */
 }
 
 /* Map Styles */

@@ -15,7 +15,7 @@ import {
   ComboboxOption,
 } from "@reach/combobox";
 
-const Sidebar = () => {
+const Sidebar = ({handleClose}) => {
   const [
     markers,
     setMarkers,
@@ -120,7 +120,12 @@ const Sidebar = () => {
               <p> </p>
             )}
             <div>
-              <Button type="submit">Submit</Button>
+
+              {/* {twigletLocationToAdd != "" ? ( */}
+              <Button type="submit" onClick={handleClose}>Submit</Button>
+              {/* // ) : ( // <p></p> */}
+              {/* // )} */}
+
             </div>
           </form>
         </Col>
@@ -180,6 +185,7 @@ function Search({ setTwigletLocationToAdd }) {
 
   return (
     <div className="sidebar-search">
+
       <div className="p-3 text-center border border-dark">
         <p className="my-1">Submit your twiglet location:</p>
         {/* {console.log(".....ready???", ready)} */}
