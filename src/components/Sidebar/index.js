@@ -1,6 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Container, Col, Row, Card, Form, Button } from "react-bootstrap";
 import { MapDataContext } from "../../MapDataContext";
+import axios from "axios";
 
 import usePlacesAutocomplete, {
   getGeocode,
@@ -13,7 +14,6 @@ import {
   ComboboxList,
   ComboboxOption,
 } from "@reach/combobox";
-import axios from "axios";
 
 const Sidebar = () => {
   const [
@@ -51,14 +51,13 @@ const Sidebar = () => {
     const fake_data = {
       longitude: twigletLocationToAdd.lat,
       latitude: twigletLocationToAdd.lng,
-      shop_name: 'twigletLocationToAdd.place_id',
+      shop_name: "twigletLocationToAdd.place_id",
       shop_id: twigletLocationToAdd.place_id,
       address: twigletLocationToAdd.formatted_address,
     };
 
     try {
-
-    console.log('fake_data',fake_data)
+      console.log("fake_data", fake_data);
       // const headers = {
       //   "Content-Type": "application/json",
       //   Authorization: `Bearer ${sessionStorage.getItem("token")}`,
@@ -66,14 +65,14 @@ const Sidebar = () => {
 
       const { data } = await axios.post(
         "https://test-twiglets.herokuapp.com/twiglets",
-        fake_data,
+        fake_data
         // { headers: headers }
       );
-
     } catch (err) {
       console.error("Oops, there's been an error: ", err);
     }
   };
+
   return (
     <Container>
       <Row>
