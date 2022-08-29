@@ -39,13 +39,11 @@ const Sidebar = () => {
       ...current,
       {
         address: twigletLocationToAdd.formatted_address,
-        lat: twigletLocationToAdd.lat,
-        lng: twigletLocationToAdd.lng,
+        latitude: twigletLocationToAdd.lat,
+        longitude: twigletLocationToAdd.lng,
         time: new Date(),
-        placeId: twigletLocationToAdd.place_id,
-        // user: 2, // need to see how to grab this, could work this out from server ideally
-
-
+        shop_id: twigletLocationToAdd.place_id,
+        shop_name: "twigletLocationToAdd.place_id",
       },
     ]);
 
@@ -59,7 +57,7 @@ const Sidebar = () => {
     };
 
     try {
-      console.log("fake_data", fake_data);
+      // console.log("fake_data", fake_data);
       // const headers = {
       //   "Content-Type": "application/json",
       //   Authorization: `Bearer ${sessionStorage.getItem("token")}`,
@@ -196,7 +194,7 @@ function Search({ setTwigletLocationToAdd }) {
     <div className="sidebar-search">
       <div className="p-3 text-center border border-dark">
         <p className="my-1">Submit your twiglet location:</p>
-        {console.log(".....ready???", ready)}
+        {/* {console.log(".....ready???", ready)} */}
         <Combobox onSelect={handleSelect}>
           <ComboboxInput
             value={value}

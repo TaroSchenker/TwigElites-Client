@@ -6,6 +6,7 @@ export default function MapDataProvider(props) {
   const [markers, setMarkers] = useState([]);
   const [selected, setSelected] = useState(null);
   const [twigletLocationToAdd, setTwigletLocationToAdd] = useState([]);
+  const [allTwiglets, setAllTwiglets] = useState([]);
   return (
     <MapDataContext.Provider
       value={[
@@ -15,6 +16,8 @@ export default function MapDataProvider(props) {
         setSelected,
         twigletLocationToAdd,
         setTwigletLocationToAdd,
+        allTwiglets, 
+        setAllTwiglets
       ]}
     >
       {props.children}

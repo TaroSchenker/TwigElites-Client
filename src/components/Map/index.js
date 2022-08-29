@@ -54,24 +54,24 @@ export default function App() {
     selected,
     setSelected,
     twigletLocationToAdd,
-    setTwigletLocationToAdd,
+    setTwigletLocationToAdd, allTwiglets, setAllTwiglets
   ] = useContext(MapDataContext);
 
   console.log("selected", selected);
   console.log("markers", markers);
 
-  const onMapClick = useCallback((e) => {
-    console.log("this is tmy target", e);
-    setMarkers((current) => [
-      ...current,
-      {
-        lat: e.latLng.lat(),
-        lng: e.latLng.lng(),
-        time: new Date(),
-        placeId: e.placeId,
-      },
-    ]);
-  }, []);
+  // const onMapClick = useCallback((e) => {
+  //   console.log("this is tmy target", e);
+  //   setMarkers((current) => [
+  //     ...current,
+  //     {
+  //       lat: e.latLng.lat(),
+  //       lng: e.latLng.lng(),
+  //       time: new Date(),
+  //       placeId: e.placeId,
+  //     },
+  //   ]);
+  // }, []);
 
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
@@ -86,12 +86,22 @@ export default function App() {
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
 
+  // setMarkers((current) => [
+  //     ...current,
+  //     {
+  //       address: twigletLocationToAdd.formatted_address,
+  //       lat: twigletLocationToAdd.lat,
+  //       lng: twigletLocationToAdd.lng,
+  //       time: new Date(),
+  //       placeId: twigletLocationToAdd.place_id,
+  //       // user: 2, // need to see how to grab this, could work this out from server ideally
 
-//   useEffect(() => {
-// // on page load locate the users current position 
+
+  //     },
+  //   ]);
 
 
-//   }, [])
+
   return (
     <div className="map-container">
       <Locate panTo={panTo} />
@@ -105,7 +115,7 @@ export default function App() {
         options={options}
         onLoad={onMapLoad}
       >
-        {markers.map((marker) => (
+        {/* {markers.map((marker) => (
           <Marker
             key={`${marker.lat}-${marker.lng}`}
             position={{ lat: marker.lat, lng: marker.lng }}
@@ -113,6 +123,14 @@ export default function App() {
               console.log("marker value", marker);
               setSelected(marker);
               
+            }} */}
+            {allTwiglets.map((twiglet) => (      
+          <Marker
+            key={`${twiglet.latitude}-${twiglet.longitude}`}
+            position={{ lat: twiglet.latitude, lng: twiglet.longitude }}
+            onClick={() => {
+              console.log("twiglet value", twiglet);
+              // setSelected(twiglet);
             }}
             icon={{
               url: `/twiglets-logo-png-transparent.png`,
@@ -197,7 +215,7 @@ function Search({ panTo }) {
     try {
       const results = await getGeocode({ address });
       // console.log('results', results[0].formatted_address)
-      console.log("results", results[0]);
+      // console.log("results", results[0]);
       const { lat, lng } = await getLatLng(results[0]);
       panTo({ lat, lng });
     } catch (error) {
