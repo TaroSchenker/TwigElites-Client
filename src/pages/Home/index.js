@@ -1,24 +1,35 @@
 import React from "react";
 import { Container, Col, Row } from "react-bootstrap";
 import Sidebar from "../../components/Sidebar";
+import Header from "../../layout/Header"
 
 const Home = () => {
+  let sightings = [1, 2, 3, 4, 5];
+
+  let menu1 = ["Top5", "oldest", "My Recent"]
+
+  let menu2 = ["Top5", "Closest", "Verified", "Recent", "Oldest"]
+
   return (
-    <Container>
+    <Container fluid>
       <Row>
-        <Col s={12} className=" bg-warning">
-        nav bar here
+        <Col className="bg-warning p-0">
+          <Header />
         </Col>
       </Row>
-      <Row className="mt-4" style={{ height: "80vh" }}>
-        <Col s={12} md={3} className="mx-2 bg-primary">
-        <Sidebar />
-        </Col>
-        <Col s={12} md={5} className="mx-2 bg-info">
-          Map
-        </Col>
-        <Col s={12} md={3} className="mx-2 bg-danger">
-        <Sidebar />
+      <Row>
+        <Col className="bg-dark-blue main p-0">
+          <Row className="w-100 main m-0">
+            <Col lg={3} className="d-flex justify-content-center align-items-center">
+            <Sidebar sightings={sightings} menu={menu1}/>
+            </Col>
+            <Col lg={6} className="bg-info">
+              Map
+            </Col>
+            <Col ls={3} className="d-flex justify-content-center align-items-center">
+            <Sidebar sightings={sightings} menu={menu2}/>
+            </Col>
+          </Row>
         </Col>
       </Row>
     </Container>
