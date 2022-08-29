@@ -1,6 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Container, Col, Row, Card, Form, Button } from "react-bootstrap";
 import { MapDataContext } from "../../MapDataContext";
+import axios from "axios";
+
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
@@ -23,10 +25,12 @@ const Sidebar = () => {
     setTwigletLocationToAdd,
   ] = useContext(MapDataContext);
 
-/* ------ ------------------------------------------------------------------
+  /* ------ ------------------------------------------------------------------
   !handles the submit in column one ! 
   ----------------------------------------------------------------*/
-  const handleFormSubmit = (e) => {
+
+  // setUserId(2); //? this is now being set manually, discuss tomorrow how to render this page after user has logged in to have access to userId in context
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     console.log("handling submit", twigletLocationToAdd);
     if (true) {
@@ -39,9 +43,36 @@ const Sidebar = () => {
         lng: twigletLocationToAdd.lng,
         time: new Date(),
         placeId: twigletLocationToAdd.place_id,
-        user: "Mr Big Twig",
+        // user: 2, // need to see how to grab this, could work this out from server ideally
+
+
       },
     ]);
+
+    //! I need for your data to match this fake data as this is the way we receive it on the server
+    const fake_data = {
+      longitude: twigletLocationToAdd.lat,
+      latitude: twigletLocationToAdd.lng,
+      shop_name: "twigletLocationToAdd.place_id",
+      shop_id: twigletLocationToAdd.place_id,
+      address: twigletLocationToAdd.formatted_address,
+    };
+
+    try {
+      console.log("fake_data", fake_data);
+      // const headers = {
+      //   "Content-Type": "application/json",
+      //   Authorization: `Bearer ${sessionStorage.getItem("token")}`,
+      // };
+
+      const { data } = await axios.post(
+        "https://test-twiglets.herokuapp.com/twiglets",
+        fake_data
+        // { headers: headers }
+      );
+    } catch (err) {
+      console.error("Oops, there's been an error: ", err);
+    }
   };
 
   return (
@@ -89,17 +120,16 @@ const Sidebar = () => {
                   placeholder="Use the above autocomplete"
                   disabled
                 />
-                
               </Form.Group>
-              
             ) : (
               <p> </p>
-              
             )}
             <div>
-            {twigletLocationToAdd != "" ?  <Button type="submit">Submit</Button> : <p></p>}
+              {/* {twigletLocationToAdd != "" ? ( */}
+              <Button type="submit">Submit</Button>
+              {/* // ) : ( // <p></p> */}
+              {/* // )} */}
             </div>
-          
           </form>
         </Col>
         {/* {console.log("twigletLocationToAdd", twigletLocationToAdd)} */}
@@ -152,6 +182,11 @@ function Search({ setTwigletLocationToAdd }) {
         lat,
         lng,
       });
+      // setTwigletLocationToAdd({
+      //   ...results[0],
+      //   lat,
+      //   lng,
+      // });
     } catch (error) {
       console.log("😱 Error: ", error);
     }
@@ -169,10 +204,10 @@ function Search({ setTwigletLocationToAdd }) {
             disabled={!ready}
             placeholder="Search your location"
             style={{
-                  margin: 0,
-                  width: '100%',
-                  color: "#454545",
-                }}
+              margin: 0,
+              width: "100%",
+              color: "#454545",
+            }}
           />
           <ComboboxPopover>
             <ComboboxList>
