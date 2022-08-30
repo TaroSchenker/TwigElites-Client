@@ -22,14 +22,14 @@ const Home = () => {
 
   // this fetch is fetching from a nasa API. it is just letft in as a  placeholder, can be ammended for our own requests.
   useEffect(() => {
-    const fetchEvents = async () => {
-      console.log("i fetch events");
-      setLoading(true);
-      const res = await fetch("https://eonet.gsfc.nasa.gov/api/v2.1/events");
-      const { events } = await res.json();
-      setEventData(events);
-      // setLoading(false);
-    };
+    // const fetchEvents = async () => {
+    //   console.log("i fetch events");
+    //   setLoading(true);
+    //   const res = await fetch("https://eonet.gsfc.nasa.gov/api/v2.1/events");
+    //   const { events } = await res.json();
+    //   setEventData(events);
+    //   // setLoading(false);
+    // };
 
     const fetch_all_twiglets = async () => {
       setLoading(true);
@@ -38,7 +38,11 @@ const Home = () => {
       );
       setAllTwiglets([...data]);
       setMarkers([...data]);
-      
+      console.log("this is the data")
+      console.log("this is the data")
+      console.log(...data)
+      console.log("this is the data")
+      console.log("this is the data")
     
       setLoading(false);
       // return data;
@@ -46,8 +50,14 @@ const Home = () => {
 
 
     fetch_all_twiglets();
-    fetchEvents();
+    // fetchEvents();
   }, []);
+
+  console.log("These are the markers")
+  console.log("These are the markers")
+  console.log(markers);
+  console.log("These are the markers")
+  console.log("These are the markers")
 
 
   let sightings = [1, 2, 3, 4, 5];

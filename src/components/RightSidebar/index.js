@@ -2,11 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { MapDataContext } from "../../MapDataContext";
 import { Container, Col, Row, Card, Form, Button } from "react-bootstrap";
 import ResultBox from "../ResultBox";
+import Pagination from "../Pagination";
 import axios from "axios";
 
 
 const RightSidebar = ({menu}) => {
   // const [allTwiglets, setAllTwiglets] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const[twigletsPerPage, setTwigletsPerPage] = useState(5);
   const [isMenu, setIsMenu] = useState(menu[0]);
 
   const handleClick = (e) => {
@@ -39,10 +42,36 @@ const RightSidebar = ({menu}) => {
 
 
   // console.log("ALL twiglets", allTwiglets);
+  // setting up pagination
+  const indexOfLastTwiglet = currentPage * twigletsPerPage;
+  const indexOfFirstTwiglet = indexOfLastTwiglet - twigletsPerPage;
+  const currentTwiglets = allTwiglets.slice(indexOfFirstTwiglet, indexOfLastTwiglet)
+  const totalPages = Math.ceil(allTwiglets.length / twigletsPerPage)
+
+  // change page
+
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const inc = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    } else {
+      setCurrentPage(1);
+    }
+    
+  }
+  const dec = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    } else {
+      setCurrentPage(totalPages);
+    }
+  }
+
   return (
 
     <div className="sidebar">
       <ul className="list">
+        <Pagination twigletsPerPage={twigletsPerPage} totalTwiglets={allTwiglets.length} paginate={paginate} inc={inc} dec={dec} currentPage={currentPage}/>
         <li className="base item"><a className="s-link link" href="#"><i class="fa-solid fa-circle-chevron-down px-3"></i> {isMenu}</a>
           <ul className="list">
             {menu.map((item) => <li className="sub item text-center"><a className="link" href="#" onClick={e => handleClick(e)}>{item}</a></li>)}
@@ -65,7 +94,7 @@ const RightSidebar = ({menu}) => {
           />
         </Row>
       ))} */}
-        {allTwiglets.map((twiglet) => (
+        {currentTwiglets.map((twiglet) => (
           <div key={twiglet.id}>
             <ResultBox
               key={twiglet.shop_id}
