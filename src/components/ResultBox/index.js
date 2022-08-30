@@ -15,14 +15,14 @@ const ResultBox = ({ address, user, time, twiglet_id, votes, twiglet }) => {
   };
   const addTwigletVote = async () => {
     const { data } = await axios.patch(
-      `https://test-twiglets.herokuapp.com/twiglets/${twiglet_id}/`);
+      `http://test-twiglets.herokuapp.com/twiglets/${twiglet_id}/`);
       setDisable(true)
       console.log(data)
   };
 
   const deleteTwiglet = async () => {
     const { data } = await axios.delete(
-      `https://test-twiglets.herokuapp.com/twiglets/${twiglet_id}/`);
+      `http://test-twiglets.herokuapp.com/twiglets/${twiglet_id}/`);
       console.log(data)
       removeDeletedItem(twiglet_id)
   };

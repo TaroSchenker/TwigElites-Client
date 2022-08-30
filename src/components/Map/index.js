@@ -59,7 +59,7 @@ export default function App() {
   const addTwigletVote = async () => {
     console.log('twiggy patch in map', selectedId);
     const { data } = await axios.patch(
-      `https://test-twiglets.herokuapp.com/twiglets/${selectedId}/`);
+      `http://test-twiglets.herokuapp.com/twiglets/${selectedId}/`);
         console.log(data)
   
   };
@@ -76,7 +76,7 @@ export default function App() {
   const deleteTwiglet = async () => {
     console.log('looking to delete!', selectedId)
     const { data } = await axios.delete(
-      `https://test-twiglets.herokuapp.com/twiglets/${selectedId}/`);
+      `http://test-twiglets.herokuapp.com/twiglets/${selectedId}/`);
     
       removeDeletedItem(selectedId)
       console.log(data, 'all twigs', allTwiglets)
