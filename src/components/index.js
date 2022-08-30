@@ -3,4 +3,5 @@ export {default as LocationInfo} from './LocationInfo';
 export {default as LocationMarker} from './LocationMarker';
 export {default as RightSidebar} from './RightSidebar';
 export {default as ResultBox} from './ResultBox';
+export {default as Sidebarnew} from './Sidebarnew';
 

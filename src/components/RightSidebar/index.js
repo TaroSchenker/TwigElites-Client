@@ -4,8 +4,17 @@ import { Container, Col, Row, Card, Form, Button } from "react-bootstrap";
 import ResultBox from "../ResultBox";
 import axios from "axios";
 
-const RightSidebar = () => {
-  const [allTwiglets, setAllTwiglets] = useState([]);
+
+const RightSidebar = ({menu}) => {
+  // const [allTwiglets, setAllTwiglets] = useState([]);
+  const [isMenu, setIsMenu] = useState(menu[0]);
+
+  const handleClick = (e) => {
+    e.preventDefault();
+    console.log(e.target.textContent);
+    setIsMenu(e.target.textContent)
+  };
+
 
   useEffect(() => {
     const fetch_all_twiglets = async () => {
@@ -24,15 +33,29 @@ const RightSidebar = () => {
     selected,
     setSelected,
     twigletLocationToAdd,
-    setTwigletLocationToAdd,
+    setTwigletLocationToAdd, allTwiglets, setAllTwiglets
   ] = useContext(MapDataContext);
-  console.log("right side bar", markers);
+  // console.log("right side bar", markers);
 
 
-  console.log("ALL twiglets", allTwiglets);
+  // console.log("ALL twiglets", allTwiglets);
   return (
-    <Container>
-      {/* {markers.map((marker) => (
+
+    <div className="sidebar">
+      <ul className="list">
+        <li className="base item"><a className="s-link link" href="#"><i class="fa-solid fa-circle-chevron-down px-3"></i> {isMenu}</a>
+          <ul className="list">
+            {menu.map((item) => <li className="sub item text-center"><a className="link" href="#" onClick={e => handleClick(e)}>{item}</a></li>)}
+            {/* <li className="sub item"><a className="link" href="#">Top 5</a></li>
+            <li className="sub item"><a className="link" href="#">Closest</a></li> */}
+          </ul>
+        </li>
+      </ul>
+
+
+
+      <div className="slider">
+            {/* {markers.map((marker) => (
         <Row className="border border-dark my-1" key={marker.placeId}>
           <ResultBox
             key={marker.placeId}
@@ -42,18 +65,21 @@ const RightSidebar = () => {
           />
         </Row>
       ))} */}
-      {allTwiglets.map((twiglet) => (
-        <Row className="border border-dark my-1" key={twiglet.id}>
-          <ResultBox
-            key={twiglet.shop_id}
-            address={twiglet.address}
-            user={twiglet.found_by_user}
-            time={twiglet.date_last_confirmed}
-          />
+        {allTwiglets.map((twiglet) => (
+          <div key={twiglet.id}>
+            <ResultBox
+              key={twiglet.shop_id}
+              address={twiglet.address}
+              user={twiglet.found_by_user}
+              time={twiglet.date_last_confirmed}  
+              marker={twiglet}      
+            />
+        
 
-        </Row>
-      ))}
-    </Container>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };
 

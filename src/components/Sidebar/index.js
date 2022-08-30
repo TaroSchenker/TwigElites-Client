@@ -15,7 +15,7 @@ import {
   ComboboxOption,
 } from "@reach/combobox";
 
-const Sidebar = () => {
+const Sidebar = ({handleClose}) => {
   const [
     markers,
     setMarkers,
@@ -23,43 +23,45 @@ const Sidebar = () => {
     setSelected,
     twigletLocationToAdd,
     setTwigletLocationToAdd,
+    allTwiglets,
+    setAllTwiglets,
   ] = useContext(MapDataContext);
 
   /* ------ ------------------------------------------------------------------
   !handles the submit in column one ! 
   ----------------------------------------------------------------*/
 
-  // setUserId(2); //? this is now being set manually, discuss tomorrow how to render this page after user has logged in to have access to userId in context
+  // setUserId(2); //! this is now being set manually, discuss tomorrow how to render this page after user has logged in to have access to userId in context
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     console.log("handling submit", twigletLocationToAdd);
     if (true) {
     }
-    setMarkers((current) => [
+    console.log("current value of markers before submit is", markers);
+    setAllTwiglets((current) => [
       ...current,
       {
         address: twigletLocationToAdd.formatted_address,
-        lat: twigletLocationToAdd.lat,
-        lng: twigletLocationToAdd.lng,
-        time: new Date(),
-        placeId: twigletLocationToAdd.place_id,
-        // user: 2, // need to see how to grab this, could work this out from server ideally
-
-
+        latitude: twigletLocationToAdd.lat,
+        longitude: twigletLocationToAdd.lng,
+        // time: new Date(),
+        shop_id: twigletLocationToAdd.place_id,
+        shop_name: "twigletLocationToAdd.place_id",
       },
     ]);
 
     //! I need for your data to match this fake data as this is the way we receive it on the server
     const fake_data = {
-      longitude: twigletLocationToAdd.lat,
-      latitude: twigletLocationToAdd.lng,
+       latitude :twigletLocationToAdd.lat,
+      longitude: twigletLocationToAdd.lng,
       shop_name: "twigletLocationToAdd.place_id",
       shop_id: twigletLocationToAdd.place_id,
       address: twigletLocationToAdd.formatted_address,
     };
 
     try {
-      console.log("fake_data", fake_data);
+      // console.log("fake_data", fake_data);
       // const headers = {
       //   "Content-Type": "application/json",
       //   Authorization: `Bearer ${sessionStorage.getItem("token")}`,
@@ -82,13 +84,6 @@ const Sidebar = () => {
           <Search setTwigletLocationToAdd={setTwigletLocationToAdd} />
         </Col>
       </Row>
-      {/* <Row>
-        <Col s={12} md={3} className="mx-2 bg-success">
-          {markers.map((i) => (
-            <div> {i.placeId}</div>
-          ))}
-        </Col>
-      </Row> */}
       <Row>
         <Col className="mt-3">
           <form onSubmit={(e) => handleFormSubmit(e)}>
@@ -125,19 +120,15 @@ const Sidebar = () => {
               <p> </p>
             )}
             <div>
+
               {/* {twigletLocationToAdd != "" ? ( */}
-              <Button type="submit">Submit</Button>
+              <Button type="submit" onClick={handleClose}>Submit</Button>
               {/* // ) : ( // <p></p> */}
               {/* // )} */}
+
             </div>
           </form>
         </Col>
-        {/* {console.log("twigletLocationToAdd", twigletLocationToAdd)} */}
-        {/* {twigletLocationToAdd.place_id}
-        {twigletLocationToAdd.formatted_address}
-        {twigletLocationToAdd.placeId} */}
-        {/* {twigletLocationToAdd.lat}
-        {twigletLocationToAdd.lng} */}
       </Row>
     </Container>
   );
@@ -194,9 +185,10 @@ function Search({ setTwigletLocationToAdd }) {
 
   return (
     <div className="sidebar-search">
+
       <div className="p-3 text-center border border-dark">
         <p className="my-1">Submit your twiglet location:</p>
-        {console.log(".....ready???", ready)}
+        {/* {console.log(".....ready???", ready)} */}
         <Combobox onSelect={handleSelect}>
           <ComboboxInput
             value={value}

@@ -1,4 +1,10 @@
-import React, { useContext, useState, useRef, useCallback, useEffect } from "react";
+import React, {
+  useContext,
+  useState,
+  useRef,
+  useCallback,
+  useEffect,
+} from "react";
 import { Button } from "react-bootstrap";
 import { MapDataContext } from "../../MapDataContext";
 import { Icon } from "@iconify/react";
@@ -55,23 +61,27 @@ export default function App() {
     setSelected,
     twigletLocationToAdd,
     setTwigletLocationToAdd,
+    allTwiglets,
+    setAllTwiglets,
+    loading,
+    setLoading,
   ] = useContext(MapDataContext);
 
   console.log("selected", selected);
   console.log("markers", markers);
 
-  const onMapClick = useCallback((e) => {
-    console.log("this is tmy target", e);
-    setMarkers((current) => [
-      ...current,
-      {
-        lat: e.latLng.lat(),
-        lng: e.latLng.lng(),
-        time: new Date(),
-        placeId: e.placeId,
-      },
-    ]);
-  }, []);
+  // const onMapClick = useCallback((e) => {
+  //   console.log("this is tmy target", e);
+  //   setMarkers((current) => [
+  //     ...current,
+  //     {
+  //       lat: e.latLng.lat(),
+  //       lng: e.latLng.lng(),
+  //       time: new Date(),
+  //       placeId: e.placeId,
+  //     },
+  //   ]);
+  // }, []);
 
   const mapRef = useRef();
   const onMapLoad = useCallback((map) => {
@@ -86,14 +96,21 @@ export default function App() {
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
 
+  // setMarkers((current) => [
+  //     ...current,
+  //     {
+  //       address: twigletLocationToAdd.formatted_address,
+  //       lat: twigletLocationToAdd.lat,
+  //       lng: twigletLocationToAdd.lng,
+  //       time: new Date(),
+  //       placeId: twigletLocationToAdd.place_id,
+  //       // user: 2, // need to see how to grab this, could work this out from server ideally
 
-//   useEffect(() => {
-// // on page load locate the users current position 
+  //     },
+  //   ]);
 
-
-//   }, [])
   return (
-    <div className="map-container">
+    <div className="map-container mt-4">
       <Locate panTo={panTo} />
       <Search panTo={panTo} />
 
@@ -105,27 +122,57 @@ export default function App() {
         options={options}
         onLoad={onMapLoad}
       >
-        {markers.map((marker) => (
-          <Marker
-            key={`${marker.lat}-${marker.lng}`}
-            position={{ lat: marker.lat, lng: marker.lng }}
+        {/* <Marker
+            key={`'uiuio`}
+            position={{ lat: 51.5072, lng: -0.1276  }}
             onClick={() => {
-              console.log("marker value", marker);
-              setSelected(marker);
-              
+              // console.log("marker value", marker);
+              // setSelected(marker);            
             }}
+         
+
+
             icon={{
               url: `/twiglets-logo-png-transparent.png`,
               origin: new window.google.maps.Point(0, 0),
               anchor: new window.google.maps.Point(25, 25),
               scaledSize: new window.google.maps.Size(50, 50),
             }}
-          />
-        ))}
+          /> */}
+        {!loading &&
+          allTwiglets.map((marker) => (
+            <Marker
+              key={`${marker.longitude}-${marker.latitude}`}
+              position={{ lat: marker.latitude, lng: marker.longitude }}
+              onClick={() => {
+                console.log("marker value", marker);
+                panTo({
+              lat: marker.latitude,
+              lng: marker.longitude,
+            });
+                setSelected(marker);
+              }}
+              //   {/* {allTwiglets.map((twiglet) => (
+              // <Marker
+              //   key={`${twiglet.latitude}-${twiglet.longitude}`}
+              //   position={{ lat: twiglet.latitude, lng: twiglet.longitude }}
+              //   onClick={() => {
+              //     console.log("twiglet value", twiglet);
+              //     // setSelected(twiglet);
+              //   }} */}
 
+              icon={{
+                url: `/twiglets-logo-png-transparent.png`,
+                origin: new window.google.maps.Point(0, 0),
+                anchor: new window.google.maps.Point(25, 25),
+                scaledSize: new window.google.maps.Size(50, 50),
+              }}
+            />
+          ))}
+        }
         {selected ? (
           <InfoWindow
-            position={{ lat: selected.lat, lng: selected.lng }}
+            position={{ lat: selected.latitude, lng: selected.longitude }}
             onCloseClick={() => {
               setSelected(null);
             }}
@@ -135,7 +182,7 @@ export default function App() {
                 {selected.lng}
               </h2> */}
               <p>
-                Found Originals! {formatRelative(selected.time, new Date())}
+                {/* Found Originals! {formatRelative(selected.time, new Date())} */}
               </p>
               <p>Address:{selected.address}</p>
               <Button>Remove Twiglets</Button>
@@ -197,7 +244,7 @@ function Search({ panTo }) {
     try {
       const results = await getGeocode({ address });
       // console.log('results', results[0].formatted_address)
-      console.log("results", results[0]);
+      // console.log("results", results[0]);
       const { lat, lng } = await getLatLng(results[0]);
       panTo({ lat, lng });
     } catch (error) {
