@@ -22,31 +22,18 @@ const Home = () => {
 
   // this fetch is fetching from a nasa API. it is just letft in as a  placeholder, can be ammended for our own requests.
   useEffect(() => {
-    // const fetchEvents = async () => {
-    //   console.log("i fetch events");
-    //   setLoading(true);
-    //   const res = await fetch("https://eonet.gsfc.nasa.gov/api/v2.1/events");
-    //   const { events } = await res.json();
-    //   setEventData(events);
-    //   // setLoading(false);
-    // };
-
+ setLoading(false);
     const fetch_all_twiglets = async () => {
       setLoading(true);
       const { data } = await axios.get(
-        "http://test-twiglets.herokuapp.com/twiglets"
+        "https://test-twiglets.herokuapp.com/twiglets"
       );
       setAllTwiglets([...data]);
       setMarkers([...data]);
-
-    
       setLoading(false);
       // return data;
     };
-
-
     fetch_all_twiglets();
-    // fetchEvents();
   }, []);
 
   console.log("These are the markers")
