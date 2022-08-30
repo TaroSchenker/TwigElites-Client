@@ -10,6 +10,12 @@ const ResultBox = ({ address, user, time, twiglet_id, votes, twiglet }) => {
       `http://test-twiglets.herokuapp.com/twiglets/${twiglet_id}/`);
       console.log(data)
   };
+
+  const deleteTwiglet = async () => {
+    const { data } = await axios.delete(
+      `http://test-twiglets.herokuapp.com/twiglets/${twiglet_id}/`);
+      console.log(data)
+  };
   const [
     markers,
     setMarkers,
@@ -20,7 +26,7 @@ const ResultBox = ({ address, user, time, twiglet_id, votes, twiglet }) => {
     allTwiglets,
     setAllTwiglets,
     loading,
-    setLoading,
+    setLoading,gotoTwiglet, setGotoTwiglet
   ] = useContext(MapDataContext);
   return (
     <div className="box">
@@ -36,7 +42,11 @@ const ResultBox = ({ address, user, time, twiglet_id, votes, twiglet }) => {
         {" "}
         <strong>Date found:</strong> {time}
         <p>Votes: {votes}</p>
-        <Button onClick={addTwigletVote} >Upvote</Button>
+        <Button onClick={addTwigletVote} >Up Vote</Button>
+        <Button onClick={deleteTwiglet} >Delete</Button>
+        <Button onClick={() => setGotoTwiglet(twiglet)} >Goto</Button>
+        
+        
       </p>
     </div>
   );
