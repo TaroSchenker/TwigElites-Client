@@ -46,6 +46,7 @@ const center = {
   lng: -0.1276,
 };
 
+
 export default function App() {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -53,6 +54,7 @@ export default function App() {
   });
   // const [markers, setMarkers] = useState([]);
   // const [selected, setSelected] = useState(null);
+
 
   const [
     markers,
@@ -64,12 +66,12 @@ export default function App() {
     allTwiglets,
     setAllTwiglets,
     loading,
-    setLoading,
+    setLoading, gotoTwiglet, setGotoTwiglet
   ] = useContext(MapDataContext);
 
-  console.log("selected", selected);
-  console.log("markers", markers);
-
+  // console.log("selected", selected);
+  // console.log("markers", markers);
+console.log('goto twiglet time', gotoTwiglet)
   // const onMapClick = useCallback((e) => {
   //   console.log("this is tmy target", e);
   //   setMarkers((current) => [
@@ -90,11 +92,17 @@ export default function App() {
 
   const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(14);
+    mapRef.current.setZoom(13);
   }, []);
 
+  useEffect(() => {
+  setSelected(gotoTwiglet)
+    console.log('i wanna pan to the twiglet!')
+  }, [gotoTwiglet])
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
+
+
 
   // setMarkers((current) => [
   //     ...current,
@@ -147,9 +155,9 @@ export default function App() {
               onClick={() => {
                 console.log("marker value", marker);
                 panTo({
-              lat: marker.latitude,
-              lng: marker.longitude,
-            });
+                  lat: marker.latitude,
+                  lng: marker.longitude,
+                });
                 setSelected(marker);
               }}
               //   {/* {allTwiglets.map((twiglet) => (
@@ -195,6 +203,9 @@ export default function App() {
 }
 
 function Locate({ panTo }) {
+
+
+  
   return (
     <button
       className="locate"
@@ -238,7 +249,6 @@ function Search({ panTo }) {
 
   const handleSelect = async (address) => {
     setValue(address, false);
-
     clearSuggestions();
 
     try {
