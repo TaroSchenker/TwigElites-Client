@@ -16,16 +16,16 @@ const RightSidebar = ({menu}) => {
   };
 
 
-  useEffect(() => {
-    const fetch_all_twiglets = async () => {
-      const { data } = await axios.get(
-        "http://test-twiglets.herokuapp.com/twiglets"
-      );
-      setAllTwiglets([...data]);
-      return data;
-    };
-    fetch_all_twiglets();
-  }, []);
+  // useEffect(() => {
+  //   const fetch_all_twiglets = async () => {
+  //     const { data } = await axios.get(
+  //       "http://test-twiglets.herokuapp.com/twiglets"
+  //     );
+  //     setAllTwiglets([...data]);
+  //     return data;
+  //   };
+  //   fetch_all_twiglets();
+  // }, []);
 
   const [
     markers,
@@ -72,7 +72,9 @@ const RightSidebar = ({menu}) => {
               address={twiglet.address}
               user={twiglet.found_by_user}
               time={twiglet.date_last_confirmed}  
-              marker={twiglet}      
+              marker={twiglet}
+              votes={twiglet.votes}   
+              id={twiglet.id} 
             />
         
 
