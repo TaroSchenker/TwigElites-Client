@@ -34,7 +34,7 @@ const Home = () => {
     const fetch_all_twiglets = async () => {
       setLoading(true);
       const { data } = await axios.get(
-        "http://test-twiglets.herokuapp.com/twiglets"
+        "https://test-twiglets.herokuapp.com/twiglets"
       );
       setAllTwiglets([...data]);
       setMarkers([...data]);
