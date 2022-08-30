@@ -38,11 +38,11 @@ const Sidebar = ({handleClose}) => {
     console.log("handling submit", twigletLocationToAdd);
     if (true) {
     }
-    console.log("current value of markers before submit is", markers);
+    // console.log("current value of markers before submit is", markers);
     setAllTwiglets((current) => [
       ...current,
       {
-        address: twigletLocationToAdd.formatted_address,
+        address: twigletLocationToAdd.address,
         latitude: twigletLocationToAdd.lat,
         longitude: twigletLocationToAdd.lng,
         // time: new Date(),
@@ -68,7 +68,7 @@ const Sidebar = ({handleClose}) => {
       // };
 
       const { data } = await axios.post(
-        "https://test-twiglets.herokuapp.com/twiglets",
+        "http://test-twiglets.herokuapp.com/twiglets",
         fake_data
         // { headers: headers }
       );
@@ -164,11 +164,14 @@ function Search({ setTwigletLocationToAdd }) {
     clearSuggestions();
     try {
       const results = await getGeocode({ address });
-      // console.log('results', results[0].formatted_address)
+      // const place_info =  await getGeocode({ description });
+      console.log('results', results[0].formatted_address)
+      // console.log('placeinfo', place_info)
       console.log("results", results[0]);
       const { lat, lng } = await getLatLng(results[0]);
       setTwigletLocationToAdd({
         ...results[0],
+        address,
         lat,
         lng,
       });
