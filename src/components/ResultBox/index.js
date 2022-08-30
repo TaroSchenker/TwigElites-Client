@@ -4,13 +4,23 @@ import { Button } from "react-bootstrap";
 import { MapDataContext } from "../../MapDataContext";
 import axios from "axios";
 
-const ResultBox = ({ address, user, time, id, votes }) => {
+const ResultBox = ({ address, user, time, twiglet_id, votes, twiglet }) => {
   const addTwigletVote = async () => {
-    const { data } = await axios.patch(
-      `http://test-twiglets.herokuapp.com/twiglets/${id}`
-    );
-    console.log('adding vote', data)
-
+    // console.log(' voting', )
+    // const { data } = await axios.patch(
+    //   `http://test-twiglets.herokuapp.com/twiglets/${twiglet_id}`);
+    // console.log('adding vote', data)
+    fetch(`http://test-twiglets.herokuapp.com/twiglets/${twiglet_id}`, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        title: 'foo',
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => console.log(json));
 
   };
   const [

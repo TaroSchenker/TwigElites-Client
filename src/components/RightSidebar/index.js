@@ -72,9 +72,9 @@ const RightSidebar = ({menu}) => {
               address={twiglet.address}
               user={twiglet.found_by_user}
               time={twiglet.date_last_confirmed}  
-              marker={twiglet}
+              twiglet={twiglet}
               votes={twiglet.votes}   
-              id={twiglet.id} 
+              twiglet_id={twiglet.twiglet_id} 
             />
         
 
