@@ -146,6 +146,10 @@ export default function App() {
               position={{ lat: marker.latitude, lng: marker.longitude }}
               onClick={() => {
                 console.log("marker value", marker);
+                panTo({
+              lat: marker.latitude,
+              lng: marker.longitude,
+            });
                 setSelected(marker);
               }}
               //   {/* {allTwiglets.map((twiglet) => (
