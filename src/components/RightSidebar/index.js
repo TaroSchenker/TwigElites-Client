@@ -74,7 +74,7 @@ const RightSidebar = ({menu}) => {
               time={twiglet.date_last_confirmed}  
               marker={twiglet}
               votes={twiglet.votes}   
-              id={twiglet.id} 
+              id={twiglet.twiglet_id} 
             />
         
 

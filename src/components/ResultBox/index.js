@@ -7,7 +7,7 @@ import axios from "axios";
 const ResultBox = ({ address, user, time, id, votes }) => {
   const addTwigletVote = async () => {
     const { data } = await axios.patch(
-      `http://test-twiglets.herokuapp.com/twiglets/${id}`
+      `http://test-twiglets.herokuapp.com/twiglets/${id}/`
     );
     console.log('adding vote', data)
 
