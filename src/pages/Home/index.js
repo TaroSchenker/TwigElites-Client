@@ -38,11 +38,7 @@ const Home = () => {
       );
       setAllTwiglets([...data]);
       setMarkers([...data]);
-      console.log("this is the data")
-      console.log("this is the data")
-      console.log(...data)
-      console.log("this is the data")
-      console.log("this is the data")
+
     
       setLoading(false);
       // return data;
