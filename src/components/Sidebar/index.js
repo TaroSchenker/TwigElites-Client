@@ -90,6 +90,11 @@ const Sidebar = ({handleClose}) => {
               <Form.Group className="mb-3" style={{ width: "300px" }}>
                 <Form.Label>Location Address</Form.Label>
                 <Form.Control
+                  value={twigletLocationToAdd.address}
+                  placeholder="Use the above autocomplete"
+                  disabled
+                />
+                <Form.Control
                   value={twigletLocationToAdd.address_components[0].long_name}
                   placeholder="Use the above autocomplete"
                   disabled
