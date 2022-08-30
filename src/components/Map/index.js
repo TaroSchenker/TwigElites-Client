@@ -48,6 +48,7 @@ const center = {
 
 export default function App() {
   const [selectedId, setSelectedId] = useState(0)
+  const [disable, setDisable] = useState(false);
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
@@ -55,17 +56,31 @@ export default function App() {
   // const [markers, setMarkers] = useState([]);
   // const [selected, setSelected] = useState(null);
 
-  const addTwigletVote = async (twiglet_id) => {
-    console.log('twiggy patch in map', twiglet_id);
+  const addTwigletVote = async () => {
+    console.log('twiggy patch in map', selectedId);
     const { data } = await axios.patch(
-      `http://test-twiglets.herokuapp.com/twiglets/${twiglet_id}/`);
-      console.log(data)
+      `http://test-twiglets.herokuapp.com/twiglets/${selectedId}/`);
+        console.log(data)
+  
   };
 
-  const deleteTwiglet = async (twiglet_id) => {
+  //funtion to remove the twiglet from the local array once it has been deleted from the database.
+  const removeDeletedItem = (id) => {
+    setAllTwiglets(current =>
+      current.filter(twiglet => {
+        return twiglet.twiglet_id !== id;
+      }),
+    );
+  };
+
+  const deleteTwiglet = async () => {
+    console.log('looking to delete!', selectedId)
     const { data } = await axios.delete(
-      `http://test-twiglets.herokuapp.com/twiglets/${twiglet_id}/`);
-      console.log(data)
+      `http://test-twiglets.herokuapp.com/twiglets/${selectedId}/`);
+    
+      removeDeletedItem(selectedId)
+      console.log(data, 'all twigs', allTwiglets)
+      
   };
   const [
     markers,
@@ -112,6 +127,7 @@ export default function App() {
     setSelected(gotoTwiglet);
     console.log("i wanna pan to the twiglet!");
   }, [gotoTwiglet]);
+
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
 
@@ -148,6 +164,7 @@ export default function App() {
               position={{ lat: marker.latitude, lng: marker.longitude }}
               onClick={() => {
                 console.log("marker value", marker);
+                setSelectedId(marker.twiglet_id);
                 panTo({
                   lat: marker.latitude,
                   lng: marker.longitude,
@@ -181,9 +198,8 @@ export default function App() {
                 {/* Found Originals! {formatRelative(selected.time, new Date())} */}
               </p>
               <p>Address:{selected.address}</p>
-              <Button onClick={() => addTwigletVote(setSelectedId)}>Up Vote</Button>
-              <Button onClick={() =>deleteTwiglet(setSelectedId)}>Delete</Button>
-              <Button>Remove Twiglets</Button>
+              <Button disabled={disable} onClick={addTwigletVote}>Up Vote</Button>
+              <Button onClick={deleteTwiglet}>Remove Twiglets</Button>
             </div>
           </InfoWindow>
         ) : null}
