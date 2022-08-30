@@ -68,7 +68,7 @@ const Sidebar = ({handleClose}) => {
       // };
 
       const { data } = await axios.post(
-        "https://test-twiglets.herokuapp.com/twiglets",
+        "http://test-twiglets.herokuapp.com/twiglets",
         fake_data
         // { headers: headers }
       );
