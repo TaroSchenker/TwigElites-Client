@@ -38,7 +38,11 @@ const Home = () => {
       );
       setAllTwiglets([...data]);
       setMarkers([...data]);
-      
+      console.log("this is the data")
+      console.log("this is the data")
+      console.log(...data)
+      console.log("this is the data")
+      console.log("this is the data")
     
       setLoading(false);
       // return data;
@@ -48,6 +52,12 @@ const Home = () => {
     fetch_all_twiglets();
     // fetchEvents();
   }, []);
+
+  console.log("These are the markers")
+  console.log("These are the markers")
+  console.log(markers);
+  console.log("These are the markers")
+  console.log("These are the markers")
 
 
   let sightings = [1, 2, 3, 4, 5];
@@ -76,14 +86,14 @@ const Home = () => {
       <Row>
         <Col className="bg-dark-blue main p-0">
           <Row className="w-100 main m-0">
-            <Col lg={3} className="d-flex justify-content-center align-items-center">
+            <Col lg={3} className="justify-content-center align-items-center">
             {/* <Sidebarnew sightings={sightings} menu={menu1}/> */}
             {!loading ? <Sidebar /> : <h1 className="loader"> loading</h1>}
             </Col>
             <Col lg={6} className="pt-5 p-0">
               {!loading ? <Map /> : <h1 className="loader"> loading</h1>}
             </Col>
-            <Col lg={3} className="d-flex justify-content-center align-items-center">
+            <Col lg={3} className=" justify-content-center align-items-center">
             {/* <Sidebarnew sightings={sightings} menu={menu2}/> */}
             {!loading ? <RightSidebar menu={menu2}/> : <h1 className="loader"> loading</h1>}
             </Col>

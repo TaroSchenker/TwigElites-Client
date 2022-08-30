@@ -1,9 +1,28 @@
-import React, { useContext} from "react";
+import React, { useContext, useState} from "react";
 import { formatRelative } from "date-fns";
 import { Button } from "react-bootstrap";
 import { MapDataContext } from "../../MapDataContext";
+import axios from "axios";
 
-const ResultBox = ({ address, user, time }) => {
+const ResultBox = ({ address, user, time, twiglet_id, votes, twiglet }) => {
+  const addTwigletVote = async () => {
+    // console.log(' voting', )
+    // const { data } = await axios.patch(
+    //   `http://test-twiglets.herokuapp.com/twiglets/${twiglet_id}`);
+    // console.log('adding vote', data)
+    fetch(`http://test-twiglets.herokuapp.com/twiglets/${twiglet_id}`, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        title: 'foo',
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+      .then((response) => response.json())
+      .then((json) => console.log(json));
+
+  };
   const [
     markers,
     setMarkers,
@@ -29,7 +48,8 @@ const ResultBox = ({ address, user, time }) => {
       <p className="my-0 text-white">
         {" "}
         <strong>Date found:</strong> {time}
-        <Button >Goto</Button>
+        <p>Votes: {votes}</p>
+        <Button onClick={addTwigletVote} >Upvote</Button>
       </p>
     </div>
   );
