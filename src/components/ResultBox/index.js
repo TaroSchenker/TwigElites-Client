@@ -6,17 +6,25 @@ import axios from "axios";
 
 const ResultBox = ({ address, user, time, twiglet_id, votes, twiglet }) => {
   const [disable, setDisable] = React.useState(false);
+  const removeDeletedItem = (id) => {
+    setAllTwiglets(current =>
+      current.filter(twiglet => {
+        return twiglet.twiglet_id !== id;
+      }),
+    );
+  };
   const addTwigletVote = async () => {
     const { data } = await axios.patch(
-      `http://test-twiglets.herokuapp.com/twiglets/${twiglet_id}/`);
+      `https://test-twiglets.herokuapp.com/twiglets/${twiglet_id}/`);
       setDisable(true)
       console.log(data)
   };
 
   const deleteTwiglet = async () => {
     const { data } = await axios.delete(
-      `http://test-twiglets.herokuapp.com/twiglets/${twiglet_id}/`);
+      `https://test-twiglets.herokuapp.com/twiglets/${twiglet_id}/`);
       console.log(data)
+      removeDeletedItem(twiglet_id)
   };
   const [
     markers,
