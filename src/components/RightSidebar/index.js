@@ -53,7 +53,9 @@ const RightSidebar = ({menu}) => {
       </ul>
 
 
-      {/* {markers.map((marker) => (
+
+      <div className="slider">
+            {/* {markers.map((marker) => (
         <Row className="border border-dark my-1" key={marker.placeId}>
           <ResultBox
             key={marker.placeId}
@@ -63,15 +65,16 @@ const RightSidebar = ({menu}) => {
           />
         </Row>
       ))} */}
-      <div className="slider">
         {allTwiglets.map((twiglet) => (
           <div key={twiglet.id}>
             <ResultBox
               key={twiglet.shop_id}
               address={twiglet.address}
               user={twiglet.found_by_user}
-              time={twiglet.date_last_confirmed}
+              time={twiglet.date_last_confirmed}  
+              marker={twiglet}      
             />
+        
 
           </div>
         ))}

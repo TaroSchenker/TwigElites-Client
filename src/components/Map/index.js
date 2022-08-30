@@ -140,7 +140,7 @@ export default function App() {
             }}
           /> */}
         {!loading &&
-          markers.map((marker) => (
+          allTwiglets.map((marker) => (
             <Marker
               key={`${marker.longitude}-${marker.latitude}`}
               position={{ lat: marker.latitude, lng: marker.longitude }}
