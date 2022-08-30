@@ -57,7 +57,7 @@ const Sidebar = ({handleClose}) => {
       longitude: twigletLocationToAdd.lng,
       shop_name: "twigletLocationToAdd.place_id",
       shop_id: twigletLocationToAdd.place_id,
-      address: twigletLocationToAdd.formatted_address,
+      address: twigletLocationToAdd.address,
     };
 
     try {
