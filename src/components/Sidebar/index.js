@@ -39,7 +39,7 @@ const Sidebar = ({handleClose}) => {
     if (true) {
     }
     console.log("current value of markers before submit is", markers);
-    setMarkers((current) => [
+    setAllTwiglets((current) => [
       ...current,
       {
         address: twigletLocationToAdd.formatted_address,
