@@ -5,9 +5,11 @@ import { MapDataContext } from "../../MapDataContext";
 import axios from "axios";
 
 const ResultBox = ({ address, user, time, twiglet_id, votes, twiglet }) => {
+  const [disable, setDisable] = React.useState(false);
   const addTwigletVote = async () => {
     const { data } = await axios.patch(
       `http://test-twiglets.herokuapp.com/twiglets/${twiglet_id}/`);
+      setDisable(true)
       console.log(data)
   };
 
@@ -42,7 +44,7 @@ const ResultBox = ({ address, user, time, twiglet_id, votes, twiglet }) => {
         {" "}
         <strong>Date found:</strong> {time}
         <p>Votes: {votes}</p>
-        <Button onClick={addTwigletVote} >Up Vote</Button>
+        <Button  disabled={disable} onClick={addTwigletVote} >Up Vote</Button>
         <Button onClick={deleteTwiglet} >Delete</Button>
         <Button onClick={() => setGotoTwiglet(twiglet)} >Goto</Button>
         

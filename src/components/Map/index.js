@@ -26,7 +26,7 @@ import {
   ComboboxOption,
 } from "@reach/combobox";
 import { formatRelative } from "date-fns";
-
+import axios from "axios";
 import "@reach/combobox/styles.css";
 import mapStyles from "./mapStyles";
 
@@ -46,8 +46,9 @@ const center = {
   lng: -0.1276,
 };
 
-
 export default function App() {
+  const [selectedId, setSelectedId] = useState(0)
+  const [disable, setDisable] = useState(false);
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
@@ -55,7 +56,32 @@ export default function App() {
   // const [markers, setMarkers] = useState([]);
   // const [selected, setSelected] = useState(null);
 
+  const addTwigletVote = async () => {
+    console.log('twiggy patch in map', selectedId);
+    const { data } = await axios.patch(
+      `http://test-twiglets.herokuapp.com/twiglets/${selectedId}/`);
+        console.log(data)
+  
+  };
 
+  //funtion to remove the twiglet from the local array once it has been deleted from the database.
+  const removeDeletedItem = (id) => {
+    setAllTwiglets(current =>
+      current.filter(twiglet => {
+        return twiglet.twiglet_id !== id;
+      }),
+    );
+  };
+
+  const deleteTwiglet = async () => {
+    console.log('looking to delete!', selectedId)
+    const { data } = await axios.delete(
+      `http://test-twiglets.herokuapp.com/twiglets/${selectedId}/`);
+    
+      removeDeletedItem(selectedId)
+      console.log(data, 'all twigs', allTwiglets)
+      
+  };
   const [
     markers,
     setMarkers,
@@ -66,12 +92,14 @@ export default function App() {
     allTwiglets,
     setAllTwiglets,
     loading,
-    setLoading, gotoTwiglet, setGotoTwiglet
+    setLoading,
+    gotoTwiglet,
+    setGotoTwiglet,
   ] = useContext(MapDataContext);
 
   // console.log("selected", selected);
   // console.log("markers", markers);
-console.log('goto twiglet time', gotoTwiglet)
+
   // const onMapClick = useCallback((e) => {
   //   console.log("this is tmy target", e);
   //   setMarkers((current) => [
@@ -96,13 +124,12 @@ console.log('goto twiglet time', gotoTwiglet)
   }, []);
 
   useEffect(() => {
-  setSelected(gotoTwiglet)
-    console.log('i wanna pan to the twiglet!')
-  }, [gotoTwiglet])
+    setSelected(gotoTwiglet);
+    console.log("i wanna pan to the twiglet!");
+  }, [gotoTwiglet]);
+
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
-
-
 
   // setMarkers((current) => [
   //     ...current,
@@ -130,23 +157,6 @@ console.log('goto twiglet time', gotoTwiglet)
         options={options}
         onLoad={onMapLoad}
       >
-        {/* <Marker
-            key={`'uiuio`}
-            position={{ lat: 51.5072, lng: -0.1276  }}
-            onClick={() => {
-              // console.log("marker value", marker);
-              // setSelected(marker);            
-            }}
-         
-
-
-            icon={{
-              url: `/twiglets-logo-png-transparent.png`,
-              origin: new window.google.maps.Point(0, 0),
-              anchor: new window.google.maps.Point(25, 25),
-              scaledSize: new window.google.maps.Size(50, 50),
-            }}
-          /> */}
         {!loading &&
           allTwiglets.map((marker) => (
             <Marker
@@ -154,21 +164,14 @@ console.log('goto twiglet time', gotoTwiglet)
               position={{ lat: marker.latitude, lng: marker.longitude }}
               onClick={() => {
                 console.log("marker value", marker);
+                setSelectedId(marker.twiglet_id);
                 panTo({
                   lat: marker.latitude,
                   lng: marker.longitude,
                 });
-                setSelected(marker);
+                setSelected(marker); 
+            
               }}
-              //   {/* {allTwiglets.map((twiglet) => (
-              // <Marker
-              //   key={`${twiglet.latitude}-${twiglet.longitude}`}
-              //   position={{ lat: twiglet.latitude, lng: twiglet.longitude }}
-              //   onClick={() => {
-              //     console.log("twiglet value", twiglet);
-              //     // setSelected(twiglet);
-              //   }} */}
-
               icon={{
                 url: `/twiglets-logo-png-transparent.png`,
                 origin: new window.google.maps.Point(0, 0),
@@ -176,9 +179,11 @@ console.log('goto twiglet time', gotoTwiglet)
                 scaledSize: new window.google.maps.Size(50, 50),
               }}
             />
+             
           ))}
         }
         {selected ? (
+         
           <InfoWindow
             position={{ lat: selected.latitude, lng: selected.longitude }}
             onCloseClick={() => {
@@ -193,7 +198,8 @@ console.log('goto twiglet time', gotoTwiglet)
                 {/* Found Originals! {formatRelative(selected.time, new Date())} */}
               </p>
               <p>Address:{selected.address}</p>
-              <Button>Remove Twiglets</Button>
+              <Button disabled={disable} onClick={addTwigletVote}>Up Vote</Button>
+              <Button onClick={deleteTwiglet}>Remove Twiglets</Button>
             </div>
           </InfoWindow>
         ) : null}
@@ -203,9 +209,6 @@ console.log('goto twiglet time', gotoTwiglet)
 }
 
 function Locate({ panTo }) {
-
-
-  
   return (
     <button
       className="locate"
