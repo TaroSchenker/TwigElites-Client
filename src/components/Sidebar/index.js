@@ -76,7 +76,6 @@ const Sidebar = ({handleClose}) => {
       console.error("Oops, there's been an error: ", err);
     }
   };
-
   return (
     <Container>
       <Row>
