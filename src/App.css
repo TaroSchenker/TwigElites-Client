@@ -532,6 +532,17 @@ input[type="text"]:focus, input[type="password"]:focus {
   /* padding-left: 10px; */
 }
 
+.mod {
+  border: 1px solid #ffffff;
+  border-radius: 15px;
+}
+
+.modal-content  {
+  -webkit-border-radius: 0px !important;
+  -moz-border-radius: 0px !important;
+  border-radius: 15px !important; 
+}
+
 .search input {
   padding: 0.5rem;
   font-size: 1.2rem;

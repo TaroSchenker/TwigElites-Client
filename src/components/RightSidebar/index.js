@@ -72,39 +72,51 @@ const RightSidebar = ({ menu }) => {
   };
 
   const sorted = (sort) => {
-    console.log("function is running");
-    switch (sort) {
-      case "toprated":
-        function compare( a, b ) {
-          if ( a.votes < b.votes ){
-            return 1;
-          }
-          if ( a.votes > b.votes ){
-            return -1;
-          }
-          return 0;
-        }
+    console.log("Must uncomment function to run!");
+    // switch (sort) {
+    //   case "toprated":
+    //     function compare( a, b ) {
+    //       if ( a.votes < b.votes ){
+    //         return 1;
+    //       }
+    //       if ( a.votes > b.votes ){
+    //         return -1;
+    //       }
+    //       return 0;
+    //     }
         
-        let sorted = allTwiglets.sort( compare );
-        setAllTwiglets(sorted);
-        break;
-      case "recent":
-        console.log("recent")
-        break;
-      case "mytwiglets":
-        console.log("mine")
-        const fetch_my_twiglets = async () => {
-          const { data } = await axios.get(
-            "https://test-twiglets.herokuapp.com/twiglets/user/1"
-          );
-          setAllTwiglets([...data]);
-          // return data;
-        };
-        fetch_my_twiglets();
-        break
-    }
-    console.log(allTwiglets)
-    setUpdate(!update);
+    //     let sortedByVotes = allTwiglets.sort( compare );
+    //     setAllTwiglets(sortedByVotes);
+    //     break;
+    //   case "recent":
+    //     console.log(allTwiglets[0].date_found)
+    //     function modify( a, b ) {
+    //       if ( a.date_found < b.date_found ){
+    //         return 1;
+    //       }
+    //       if ( a.date_found > b.date_found ){
+    //         return -1;
+    //       }
+    //       return 0;
+    //     }
+        
+    //     let sortedByTime = allTwiglets.sort( modify );
+    //     setAllTwiglets(sortedByTime);
+    //     break;
+    //   case "mytwiglets":
+    //     console.log("mine")
+    //     const fetch_my_twiglets = async () => {
+    //       const { data } = await axios.get(
+    //         "https://test-twiglets.herokuapp.com/twiglets/user/1"
+    //       );
+    //       setAllTwiglets([...data]);
+    //       // return data;
+    //     };
+    //     fetch_my_twiglets();
+    //     break
+    // }
+    // console.log(allTwiglets)
+    // setUpdate(!update);
   }
 
   return (
