@@ -29,8 +29,12 @@ const ResultBox = ({ address, user, time }) => {
       <p className="my-0 text-white">
         {" "}
         <strong>Date found:</strong> {time}
-        <Button >Goto</Button>
       </p>
+      <div className="d-flex justify-content-around mt-1">
+        <button className="box-btn m-1"><i class="fa-solid fa-location-crosshairs"></i></button>
+        <button className="box-btn m-1"><i class="fa-solid fa-trash"></i></button>
+        <button className="box-btn m-1"><i class="fa-solid fa-thumbs-up"></i></button>
+      </div>
     </div>
   );
 };

@@ -9,7 +9,7 @@ import axios from "axios";
 const RightSidebar = ({menu}) => {
   // const [allTwiglets, setAllTwiglets] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const[twigletsPerPage, setTwigletsPerPage] = useState(5);
+  const[twigletsPerPage, setTwigletsPerPage] = useState(4);
   const [isMenu, setIsMenu] = useState(menu[0]);
 
   const handleClick = (e) => {
@@ -66,6 +66,10 @@ const RightSidebar = ({menu}) => {
       setCurrentPage(totalPages);
     }
   }
+  // window height
+  window.onresize = function(event) {
+    console.log("x: " + window.innerWidth+"      y: " + window.innerHeight);
+  }
 
   return (
 
@@ -95,7 +99,7 @@ const RightSidebar = ({menu}) => {
         </Row>
       ))} */}
         {currentTwiglets.map((twiglet) => (
-          <div key={twiglet.id}>
+          <div className="d-flex justify-content-center" key={twiglet.id}>
             <ResultBox
               key={twiglet.shop_id}
               address={twiglet.address}

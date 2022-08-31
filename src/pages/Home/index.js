@@ -90,7 +90,7 @@ const Home = () => {
             {/* <Sidebarnew sightings={sightings} menu={menu1}/> */}
             {!loading ? <Sidebar /> : <h1 className="loader"> loading</h1>}
             </Col>
-            <Col lg={6} className="pt-5 p-0">
+            <Col lg={6} className="p-0 d-flex justify-content-center align-items-center">
               {!loading ? <Map /> : <h1 className="loader"> loading</h1>}
             </Col>
             <Col lg={3} className="d-flex justify-content-center align-items-center">
