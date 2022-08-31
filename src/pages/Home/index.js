@@ -125,13 +125,6 @@ const MainDisplay = () =>{
               {/* {!loading ? <Map /> : <h1 className="loader"> loading</h1>}  */}
               {/* <Game /> */}
             </Col>
-
-            <Col lg={3} md={12} className="d-flex justify-content-center align-items-center">
-
-
-              {!loading ? <Map /> : <h1 className="loader"> loading</h1>}
-              {/* <Game /> */}
-            </Col>
             <Col lg={3} className=" d-flex justify-content-center align-items-center">
 
             {/* <Sidebarnew sightings={sightings} menu={menu2}/> */}
