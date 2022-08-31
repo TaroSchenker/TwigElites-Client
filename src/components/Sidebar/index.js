@@ -87,13 +87,13 @@ const Sidebar = ({ handleClose }) => {
   };
   return (
     <div className="l-sidebar">
-      <Container className="p-0">
-        <Row>
+      <Container className="p-0 d-flex flex-column h-100 justify-content-between pb-3">
+        <Row className="">
           <Col className="p-0">
             <Search setTwigletLocationToAdd={setTwigletLocationToAdd} initialLocation={initialLocation} />
           </Col>
         </Row>
-        <Row>
+        <Row className="h-100 d-flex flex-column">
           <Col className="p-0 d-flex justify-content-center">
             <form onSubmit={(e) => handleFormSubmit(e)}>
                 {twigletLocationToAdd != "" ? (
@@ -161,32 +161,32 @@ const Sidebar = ({ handleClose }) => {
               </div>
             </form>
           </Col>
-        </Row>
-        <Row className="mt-5">
-          <Button
+          <div className="mt-5 d-flex justify-content-evenly controls">
+          <button className="draw"
             onClick={() => {
 
               setMainState(1);
             }}
           >
-            Twiglocator map
-          </Button>
-          <Button
+            <span><i class="fa-solid fa-globe"></i></span>
+          </button>
+          <button className="draw"
             onClick={() => {
 
               setMainState(2);
             }}
           >
-           Play a game!
-          </Button>
-          <Button
+           <span><i class="fa-solid fa-gamepad"></i></span>
+          </button>
+          <button className="draw"
             onClick={() => {
    
               setMainState(3);
             }}
           >
-           Talk to other Twiglets
-          </Button>
+           <span><i class="fa-solid fa-comment"></i></span>
+          </button>
+        </div>
         </Row>
       </Container>
     </div>

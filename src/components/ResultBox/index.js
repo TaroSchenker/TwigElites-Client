@@ -68,8 +68,7 @@ const ResultBox = ({
   return (
     <div className="box">
       <p className="my-0 text-white time"> 
-      Short date
-      {/* <strong>Date found:</strong> {time}  */}
+      {time}
       </p>
       <p className="my-0 text-white votes">Votes: {votes}</p>
       <p className="my-0 text-white below">{user}</p>
@@ -82,10 +81,10 @@ const ResultBox = ({
       </p>
       {/* <p className="my-0"> <strong>Date found:</strong> {formatRelative(time, new Date())}</p> */}   
       
-      <div className="d-flex justify-content-around mt-1 buttons">
-        <button onClick={() => setGotoTwiglet(twiglet)} className="box-btn m-1"><i class="fa-solid fa-location-crosshairs"></i></button>
-        <button onClick={deleteTwiglet} className="box-btn m-1"><i class="fa-solid fa-trash"></i></button>
-        <button disabled={disable} onClick={addTwigletVote} className="box-btn m-1"><i class="fa-solid fa-thumbs-up"></i></button>
+      <div className="d-flex justify-content-around my-1 buttons">
+        <button onClick={() => setGotoTwiglet(twiglet)} className="draw m-1"><span><i class="fa-solid fa-location-crosshairs"></i></span></button>
+        <button onClick={deleteTwiglet} className="draw m-1"><span><i class="fa-solid fa-trash"></i></span></button>
+        <button disabled={disable} onClick={addTwigletVote} className="draw m-1"><span><i class="fa-solid fa-thumbs-up"></i></span></button>
       </div>
     </div>
     
