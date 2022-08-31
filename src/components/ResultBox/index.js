@@ -81,14 +81,14 @@ const ResultBox = ({
       {/* <p className="my-0"> <strong>Date found:</strong> {formatRelative(time, new Date())}</p> */}
       <p className="my-0 text-white">
         {" "}
-        <strong>Date found:</strong> {time}
+        <strong>Date found:</strong> {time}     
         <p>Votes: {votes}</p>
-        <Button disabled={disable} onClick={addTwigletVote}>
-          Up Vote
-        </Button>
-        <Button onClick={deleteTwiglet}>Delete</Button>
-        <Button onClick={() => setGotoTwiglet(twiglet)}>Goto</Button>
       </p>
+      <div className="d-flex justify-content-around mt-1">
+        <button onClick={() => setGotoTwiglet(twiglet)} className="box-btn m-1"><i class="fa-solid fa-location-crosshairs"></i></button>
+        <button onClick={deleteTwiglet} className="box-btn m-1"><i class="fa-solid fa-trash"></i></button>
+        <button disabled={disable} onClick={addTwigletVote} className="box-btn m-1"><i class="fa-solid fa-thumbs-up"></i></button>
+      </div>
     </div>
   );
 };

@@ -145,7 +145,7 @@ export default function App() {
   //   ]);
 
   return (
-    <div className="map-container mt-4">
+    <div className="map-container w-100">
       <Locate panTo={panTo} />
       <Search panTo={panTo} />
 
