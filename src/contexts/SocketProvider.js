@@ -14,7 +14,7 @@ export function SocketProvider({ children }) {
     JSON.parse(localStorage.getItem("twiglets-id"));
 
   useEffect(() => {
-    const SOCKET_URI = process.env.REACT_APP_SOCKET;
+    const SOCKET_URI = "ws://test-twiglets.herokuapp.com/";
     const newSocket = io(SOCKET_URI, { query: { id } });
 
     setSocket(newSocket);

@@ -9,11 +9,12 @@ export function useConversations() {
   return useContext(ConversationsContext);
 }
 
-export function ConversationsProvider({ id, children }) {
+export function ConversationsProvider({ children }) {
   const [conversations, setConversations] = useLocalStorage(
     "conversations",
     []
   );
+  const id = JSON.parse(localStorage.getItem("twiglets-id"));
   const [selectedConversationIndex, setSelectedConversationIndex] = useState(0);
   const { contacts } = useContacts();
   const socket = useSocket();
@@ -26,7 +27,7 @@ export function ConversationsProvider({ id, children }) {
 
   const addMessageToConversation = useCallback(
     ({ recipients, text, sender }) => {
-      console.log(recipients);
+      console.log(recipients); //this one is working
 
       setConversations((prevConversations) => {
         let madeChange = false;
@@ -63,7 +64,6 @@ export function ConversationsProvider({ id, children }) {
 
   function sendMessage(recipients, text) {
     socket.emit("send-message", { recipients, text });
-
     addMessageToConversation({ recipients, text, sender: id });
   }
 

@@ -16,6 +16,7 @@ const NewConversationModal = ({ closeModal }) => {
   };
 
   const handleCheckboxChange = (contactId) => {
+    console.log(contactId);
     setSelectedContactsIds((prevSelectedContactIds) => {
       if (prevSelectedContactIds.includes(contactId)) {
         return prevSelectedContactIds.filter((prevId) => {
@@ -33,13 +34,18 @@ const NewConversationModal = ({ closeModal }) => {
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
           {contacts.map((contact) => (
-            <Form.Group controlId={contact.id} key={contact.id}>
+            <Form.Group
+              controlId={contact.id}
+              key={contact.id}
+              className="text-black d-flex"
+            >
               <Form.Check
                 type="checkbox"
                 value={selectedContactsIds.includes(contact.id)}
                 label={contact.name}
                 onChange={() => handleCheckboxChange(contact.id)}
               ></Form.Check>
+              {contact.id}
             </Form.Group>
           ))}
           <Button type="submit">Create</Button>

@@ -22,13 +22,13 @@ const Signin = () => {
     };
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/auth/login",
+        "https://test-twiglets.herokuapp.com//auth/login",
         body
       );
       // saving token in sessionStorage - when user logs out this token needs to be removed
       setMessageForUser(data.access_token);
-        setToken(data.access_token.token);
-        setId(data.access_token.username);
+      setToken(data.access_token.token);
+      setId(data.access_token.username);
       // console.log(token, id);
     } catch (err) {
       console.error("Oops, there's been an error: ", err);
