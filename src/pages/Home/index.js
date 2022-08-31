@@ -83,8 +83,8 @@ const Home = () => {
 
             <Col lg={6} className="p-0 d-flex justify-content-center align-items-center">
 
-              {/* {!loading ? <Map /> : <h1 className="loader"> loading</h1>} */}
-              <Game />
+              {!loading ? <Map /> : <h1 className="loader"> loading</h1>}
+              {/* <Game /> */}
             </Col>
             <Col lg={3} className=" d-flex justify-content-center align-items-center">
             {/* <Sidebarnew sightings={sightings} menu={menu2}/> */}
