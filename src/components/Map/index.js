@@ -190,7 +190,7 @@ export default function App() {
               setSelected(null);
             }}
           >
-            <div>
+            <div className="map-box">
               <h5>
                 {selected.shop_name}
               </h5>
@@ -199,8 +199,8 @@ export default function App() {
               </p>
               <p>Address: {selected.address}</p>
               <p>Upvote Count: {selectedId.votes}</p>
-              <Button disabled={disable} onClick={addTwigletVote}>Up Vote</Button>
-              <Button onClick={deleteTwiglet}>Remove Twiglets</Button>
+              <button class="box-btn m-2" disabled={disable} onClick={addTwigletVote}><i class="fa-solid fa-thumbs-up"></i></button>
+              <button class="box-btn m-2" onClick={deleteTwiglet}><i class="fa-solid fa-trash"></i></button>
             </div>
           </InfoWindow>
         ) : null}
