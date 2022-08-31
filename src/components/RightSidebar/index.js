@@ -71,19 +71,38 @@ const RightSidebar = ({ menu }) => {
     }
   };
 
-  const sort = () => {
-    function compare( a, b ) {
-      if ( a.shop_name.length < b.shop_name.length ){
-        return -1;
-      }
-      if ( a.shop_name.length > b.shop_name.length ){
-        return 1;
-      }
-      return 0;
+  const sorted = (sort) => {
+    console.log("function is running");
+    switch (sort) {
+      case "toprated":
+        function compare( a, b ) {
+          if ( a.votes < b.votes ){
+            return 1;
+          }
+          if ( a.votes > b.votes ){
+            return -1;
+          }
+          return 0;
+        }
+        
+        let sorted = allTwiglets.sort( compare );
+        setAllTwiglets(sorted);
+        break;
+      case "recent":
+        console.log("recent")
+        break;
+      case "mytwiglets":
+        console.log("mine")
+        const fetch_my_twiglets = async () => {
+          const { data } = await axios.get(
+            "https://test-twiglets.herokuapp.com/twiglets/user/1"
+          );
+          setAllTwiglets([...data]);
+          // return data;
+        };
+        fetch_my_twiglets();
+        break
     }
-    
-    let sorted = allTwiglets.sort( compare );
-    setAllTwiglets(sorted);
     console.log(allTwiglets)
     setUpdate(!update);
   }
@@ -100,13 +119,13 @@ const RightSidebar = ({ menu }) => {
           currentPage={currentPage}
         /> */}
         <li className="base item s-link d-flex justify-content-evenly align-items-center">
-          <a className="filters" href="#">
-            <i class="fa-solid fa-circle-arrow-up" onClick={sort}></i>
+          <a className="filters" href="#" onClick={() => {sorted("toprated")}}>
+            <span><i class="fa-solid fa-circle-arrow-up"></i></span>
           </a>
-          <a className="filters" href="#">
+          <a className="filters" href="#" onClick={() => {sorted("mytwiglets")}}>
             <i class="fa-solid fa-street-view"></i>
           </a>
-          <a className="filters" href="#">
+          <a className="filters" href="#" onClick={() => {sorted("recent")}}>
             <i class="fa-solid fa-clock"></i>
           </a>
 

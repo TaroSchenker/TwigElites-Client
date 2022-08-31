@@ -114,18 +114,18 @@ const MainDisplay = () =>{
       <Row>
         <Col className="bg-dark-blue main p-0">
           <Row className="w-100 main m-0">
-            <Col lg={3} className="d-flex justify-content-center align-items-center">
+            <Col lg={3} md={4} className="d-flex justify-content-center align-items-center">
             {/* <Sidebarnew sightings={sightings} menu={menu1}/> */}
             {!loading ? <Sidebar /> : <h1 className="loader"> loading</h1>}
             </Col>
-            <Col lg={6} className="p-0 d-flex justify-content-center align-items-center">
+            <Col lg={6} md={8} className="p-0 d-flex justify-content-center align-items-center">
             {/* <MainDisplay /> */}
             {mainState !== 1 && !loading ? <Map /> : <h1 className="loader"> loading</h1>}
               {/* {!loading ? <Map /> : <h1 className="loader"> loading</h1>}  */}
               {/* <Game /> */}
             </Col>
 
-            <Col lg={3} className="d-flex justify-content-center align-items-center">
+            <Col lg={3} md={12} className="d-flex justify-content-center align-items-center">
 
             {/* <Sidebarnew sightings={sightings} menu={menu2}/> */}
             {!loading ? <RightSidebar menu={menu2}/> : <h1 className="loader"> loading</h1>}
