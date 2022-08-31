@@ -102,6 +102,8 @@ const RightSidebar = ({ menu }) => {
         };
         fetch_my_twiglets();
         break
+      default:
+        break;
     }
     console.log(allTwiglets)
     setUpdate(!update);
@@ -125,7 +127,7 @@ const RightSidebar = ({ menu }) => {
           <a className="filters" href="#" onClick={() => {sorted("mytwiglets")}}>
             <i class="fa-solid fa-street-view"></i>
           </a>
-          <a className="filters" href="#" onClick={() => {sorted("recent")}}>
+          <a className="filters" href   ="#" onClick={() => {sorted("recent")}}>
             <i class="fa-solid fa-clock"></i>
           </a>
 
