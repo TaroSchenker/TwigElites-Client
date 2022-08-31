@@ -16,6 +16,7 @@ const ResultBox = ({
 }) => {
   console.log('result box',twiglet)
   const [disable, setDisable] = useState(false);
+  const [voteCount, setVoteCount] = useState(votes);
 
   const removeDeletedItem = (id) => {
     setAllTwiglets((current) =>
@@ -41,6 +42,7 @@ const ResultBox = ({
     );
     setDisable(true);
     // updateVoteCountLocal(twiglet_id)
+    setVoteCount(current => current += 1)
     console.log(data);
   };
 
@@ -67,29 +69,27 @@ const ResultBox = ({
   ] = useContext(MapDataContext);
   return (
     <div className="box">
-      <p className="my-0 text-white">
-        <strong>Name:</strong>
+      <p className="my-0 text-white time"> 
+      {time}
+      </p>
+      <p className="my-0 text-white votes">Votes: {voteCount}</p>
+      <p className="my-0 text-white below">{user}</p>
+      <p className="my-0 text-white below">
+        {/* <strong>Name:</strong> */}
         {name}
       </p>
-      <p className="my-0 text-white">
-        <strong>Location:</strong>
+      <p className="my-0 text-white below">
         {address}
       </p>
-      <p className="my-0 text-white">
-        <strong>Found by:</strong> {user}{" "}
-      </p>
-      {/* <p className="my-0"> <strong>Date found:</strong> {formatRelative(time, new Date())}</p> */}
-      <p className="my-0 text-white">
-        {" "}
-        <strong>Date found:</strong> {time}     
-        <p>Votes: {votes}</p>
-      </p>
-      <div className="d-flex justify-content-around mt-1">
-        <button onClick={() => setGotoTwiglet(twiglet)} className="box-btn m-1"><i class="fa-solid fa-location-crosshairs"></i></button>
-        <button onClick={deleteTwiglet} className="box-btn m-1"><i class="fa-solid fa-trash"></i></button>
-        <button disabled={disable} onClick={addTwigletVote} className="box-btn m-1"><i class="fa-solid fa-thumbs-up"></i></button>
+      {/* <p className="my-0"> <strong>Date found:</strong> {formatRelative(time, new Date())}</p> */}   
+      
+      <div className="d-flex justify-content-around my-1 buttons">
+        <button onClick={() => setGotoTwiglet(twiglet)} className="draw m-1"><span><i class="fa-solid fa-location-crosshairs"></i></span></button>
+        <button onClick={deleteTwiglet} className="draw m-1"><span><i class="fa-solid fa-trash"></i></span></button>
+        <button disabled={disable} onClick={addTwigletVote} className="draw m-1"><span><i class="fa-solid fa-thumbs-up"></i></span></button>
       </div>
     </div>
+    
   );
 };
 

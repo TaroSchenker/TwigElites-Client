@@ -10,6 +10,7 @@ const RightSidebar = ({ menu }) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const[twigletsPerPage, setTwigletsPerPage] = useState(4);
+  const[update, setUpdate] = useState(true);
 
   const [isMenu, setIsMenu] = useState(menu[0]);
 
@@ -70,23 +71,70 @@ const RightSidebar = ({ menu }) => {
     }
   };
 
+  const sorted = (sort) => {
+    console.log("function is running");
+    switch (sort) {
+      case "toprated":
+        function compare( a, b ) {
+          if ( a.votes < b.votes ){
+            return 1;
+          }
+          if ( a.votes > b.votes ){
+            return -1;
+          }
+          return 0;
+        }
+        
+        let sorted = allTwiglets.sort( compare );
+        setAllTwiglets(sorted);
+        break;
+      case "recent":
+        console.log("recent")
+        break;
+      case "mytwiglets":
+        console.log("mine")
+        const fetch_my_twiglets = async () => {
+          const { data } = await axios.get(
+            "https://test-twiglets.herokuapp.com/twiglets/user/1"
+          );
+          setAllTwiglets([...data]);
+          // return data;
+        };
+        fetch_my_twiglets();
+        break
+      default:
+        break;
+    }
+    console.log(allTwiglets)
+    setUpdate(!update);
+  }
 
   return (
     <div className="sidebar">
       <ul className="list">
-        <Pagination
+        {/* <Pagination
           twigletsPerPage={twigletsPerPage}
           totalTwiglets={allTwiglets.length}
           paginate={paginate}
           inc={inc}
           dec={dec}
           currentPage={currentPage}
-        />
-        <li className="base item">
-          <a className="s-link link" href="#">
-            <i class="fa-solid fa-circle-chevron-down px-3"></i> {isMenu}
+        /> */}
+        <li className="base item s-link d-flex justify-content-evenly align-items-center">
+          <a className="filters" href="#" onClick={() => {sorted("toprated")}}>
+            <span><i class="fa-solid fa-circle-arrow-up"></i></span>
           </a>
-          <ul className="list">
+          <a className="filters" href="#" onClick={() => {sorted("mytwiglets")}}>
+            <i class="fa-solid fa-street-view"></i>
+          </a>
+          <a className="filters" href   ="#" onClick={() => {sorted("recent")}}>
+            <i class="fa-solid fa-clock"></i>
+          </a>
+
+          {/* <a className="s-link link" href="#">
+            <i class="fa-solid fa-circle-chevron-down px-3"></i> {isMenu}
+          </a> */}
+          {/* <ul className="list">
             {menu.map((item) => (
               <li className="sub item text-center">
                 <a className="link" href="#" onClick={(e) => handleClick(e)}>
@@ -94,9 +142,9 @@ const RightSidebar = ({ menu }) => {
                 </a>
               </li>
             ))}
-            {/* <li className="sub item"><a className="link" href="#">Top 5</a></li>
-            <li className="sub item"><a className="link" href="#">Closest</a></li> */}
-          </ul>
+            <li className="sub item"><a className="link" href="#">Top 5</a></li>
+            <li className="sub item"><a className="link" href="#">Closest</a></li>
+          </ul> */}
         </li>
       </ul>
 
@@ -125,6 +173,14 @@ const RightSidebar = ({ menu }) => {
             />
           </div>
         ))}
+        <Pagination
+          twigletsPerPage={twigletsPerPage}
+          totalTwiglets={allTwiglets.length}
+          paginate={paginate}
+          inc={inc}
+          dec={dec}
+          currentPage={currentPage}
+        />
       </div>
     </div>
   );

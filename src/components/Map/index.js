@@ -61,7 +61,9 @@ export default function App() {
     const { data } = await axios.patch(
       `https://test-twiglets.herokuapp.com/twiglets/${selectedId}/`);
         console.log(data)
-  
+
+
+
   };
 
   //funtion to remove the twiglet from the local array once it has been deleted from the database.
@@ -94,7 +96,7 @@ export default function App() {
     loading,
     setLoading,
     gotoTwiglet,
-    setGotoTwiglet,
+    setGotoTwiglet, mainState, setMainState, voteCount, setVoteCount
   ] = useContext(MapDataContext);
 
   // console.log("selected", selected);
@@ -190,7 +192,7 @@ export default function App() {
               setSelected(null);
             }}
           >
-            <div>
+            <div className="map-box">
               <h5>
                 {selected.shop_name}
               </h5>
@@ -199,8 +201,8 @@ export default function App() {
               </p>
               <p>Address: {selected.address}</p>
               <p>Upvote Count: {selectedId.votes}</p>
-              <Button disabled={disable} onClick={addTwigletVote}>Up Vote</Button>
-              <Button onClick={deleteTwiglet}>Remove Twiglets</Button>
+              <button class="box-btn m-2" disabled={disable} onClick={addTwigletVote}><i class="fa-solid fa-thumbs-up"></i></button>
+              <button class="box-btn m-2" onClick={deleteTwiglet}><i class="fa-solid fa-trash"></i></button>
             </div>
           </InfoWindow>
         ) : null}
@@ -274,6 +276,7 @@ function Search({ panTo }) {
           onChange={handleInput}
           disabled={!ready}
           placeholder="Search your location"
+          style={{backgroundColor: '#0289BA'}}
         />
         <ComboboxPopover>
           <ComboboxList>

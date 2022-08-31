@@ -8,8 +8,10 @@ const Header = () => {
   };
   return (
     <header className="w-100">
-      <img src="./static/media/mascot.png" className="mascot" />
-      <Link className="logout caveat" to="/registry" onClick={handleLogout}>
+
+      <img src="./static/media/mascot.png" className="mascot"/>
+      <Link className="logout special-btn caveat" to="/registry" onClick={() => sessionStorage.removeItem("token")}>
+
         Logout
       </Link>
     </header>

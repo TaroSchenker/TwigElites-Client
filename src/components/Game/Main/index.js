@@ -1,15 +1,18 @@
-import React from 'react'
-import imageArray from './Images'
-import './Game.css';
-import {useState} from "react";
-import {shuffle} from 'lodash';
+import React from "react";
+import imageArray from "./Images";
+import "./Game.css";
+import { useState } from "react";
+import { shuffle } from "lodash";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 
 function Game() {
-  const [cards,setCards] = useState( shuffle([...imageArray, ...imageArray]) );
-  const [clicks,setClicks] = useState(0);
-  const [won,setWon] = useState(false);
-  const [activeCards,setActiveCards] = useState([]);
-  const [foundPairs,setFoundPairs] = useState([]);
+  const [cards, setCards] = useState(shuffle([...imageArray, ...imageArray]));
+  const [clicks, setClicks] = useState(0);
+  const [won, setWon] = useState(false);
+  const [activeCards, setActiveCards] = useState([]);
+  const [foundPairs, setFoundPairs] = useState([]);
+  const [smShow, setSmShow] = useState(false);
 
   const flipCard = (index) => {
     if (won) {
@@ -27,9 +30,9 @@ function Game() {
       if (cards[firstIndex] === cards[secondsIndex]) {
         if (foundPairs.length + 2 === cards.length) {
           setWon(true);
-          
+          setSmShow(true);
         }
-        setFoundPairs( [...foundPairs, firstIndex, secondsIndex] );
+        setFoundPairs([...foundPairs, firstIndex, secondsIndex]);
       }
       setActiveCards([...activeCards, index]);
     }
@@ -37,19 +40,43 @@ function Game() {
       setActiveCards([index]);
     }
     setClicks(clicks + 1);
-  }
+  };
 
   return (
     <div>
+      <Modal
+        size="sm"
+        show={smShow}
+        onHide={() => setSmShow(false)}
+        aria-labelledby="example-modal-sizes-title-sm"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="example-modal-sizes-title-sm">
+            You won the game!
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Congratulations!
+          <br />
+          Click any card to play again.
+          <br />
+          <br />
+        </Modal.Body>
+      </Modal>
+
       <div className="board">
-        {cards.map((card,index) => {
-          const flippedToFront =  (activeCards.indexOf(index) !== -1) || foundPairs.indexOf(index) !== -1;
+        {cards.map((card, index) => {
+          const flippedToFront =
+            activeCards.indexOf(index) !== -1 ||
+            foundPairs.indexOf(index) !== -1;
           return (
-            <div className={"card-outer " + (flippedToFront ? 'flipped' : '')}
-                 onClick={() => flipCard(index)}>
+            <div
+              className={"card-outer " + (flippedToFront ? "flipped" : "")}
+              onClick={() => flipCard(index)}
+            >
               <div className="card">
                 <div className="front">
-                  <img src={card} alt=""/>
+                  <img src={card} alt="" />
                 </div>
                 <div className="back" />
               </div>
@@ -58,12 +85,7 @@ function Game() {
         })}
       </div>
       <div className="stats">
-        {won && (
-          <>You won the game! Congratulations!<br />
-            Click any card to play again.<br /><br />
-          </>
-        )}
-        Clicks: {clicks} &nbsp;&nbsp;&nbsp; Found pairs:{foundPairs.length/2}
+        Clicks: {clicks} &nbsp;&nbsp;&nbsp; Found pairs:{foundPairs.length / 2}
       </div>
     </div>
   );
