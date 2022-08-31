@@ -3,19 +3,20 @@ body{
 }
 .board{
     width: calc(100vh - 240px);
-    max-width: calc(100vw - 40px);
+    max-width: calc(100vw - 140px);
     display:grid;
     grid-gap:10px;
     margin: auto;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 }
 .card-outer{
     perspective:1000px;
-    height: calc((100vh - 290px) / 6);
-    max-height: calc((100vw - 90px) / 6);
+    height: calc((100vh - 290px) / 3);
+    max-height: calc((100vw - 90px) / 3);
 }
 .card{
     border-radius: 5px;
+     /* background-color: rgb(35, 9, 45); */
     position: relative;
     width: 100%;
     height: 100%;
@@ -34,7 +35,9 @@ body{
     max-width: 100%;
 }
 .card .back{
-    background-color: #468;
+    background-color: rgb(35, 9, 45);
+    background-image: url('..//img/mascot.png');
+    background-repeat: no-repeat;
     transform:rotateY(180deg);
 }
 .card-outer.flipped .card{
