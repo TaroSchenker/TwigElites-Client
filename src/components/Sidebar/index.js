@@ -16,6 +16,10 @@ import {
 } from "@reach/combobox";
 
 const Sidebar = ({handleClose}) => {
+  const getShopName = (name) => {
+    return name.split(',')[0]
+
+  }
   const [
     markers,
     setMarkers,
@@ -24,7 +28,7 @@ const Sidebar = ({handleClose}) => {
     twigletLocationToAdd,
     setTwigletLocationToAdd,
     allTwiglets,
-    setAllTwiglets,
+    setAllTwiglets, initialLocation, setInitialLocation, playGame, setPlayGame
   ] = useContext(MapDataContext);
 
   /* ------ ------------------------------------------------------------------
@@ -42,12 +46,12 @@ const Sidebar = ({handleClose}) => {
     setAllTwiglets((current) => [
       ...current,
       {
-        address: twigletLocationToAdd.address,
+        address: twigletLocationToAdd.formatted_address,
         latitude: twigletLocationToAdd.lat,
         longitude: twigletLocationToAdd.lng,
         // time: new Date(),
         shop_id: twigletLocationToAdd.place_id,
-        shop_name: "twigletLocationToAdd.place_id",
+        shop_name: getShopName(twigletLocationToAdd.address),
       },
     ]);
 
@@ -55,9 +59,9 @@ const Sidebar = ({handleClose}) => {
     const fake_data = {
        latitude :twigletLocationToAdd.lat,
       longitude: twigletLocationToAdd.lng,
-      shop_name: "twigletLocationToAdd.place_id",
+      shop_name: getShopName(twigletLocationToAdd.address),
       shop_id: twigletLocationToAdd.place_id,
-      address: twigletLocationToAdd.address,
+      address: twigletLocationToAdd.formatted_address,
     };
 
     try {
@@ -77,64 +81,138 @@ const Sidebar = ({handleClose}) => {
     }
   };
   return (
-    <Container>
-      <Row>
-        <Col className="mt-3">
-          <Search setTwigletLocationToAdd={setTwigletLocationToAdd} />
-        </Col>
-      </Row>
-      <Row>
-        <Col className="mt-3">
-          <form onSubmit={(e) => handleFormSubmit(e)}>
-            {twigletLocationToAdd != "" ? (
-              <Form.Group className="mb-3" style={{ width: "300px" }}>
-                <Form.Label>Location Address</Form.Label>
-                <Form.Control
-                  value={twigletLocationToAdd.address}
-                  placeholder="Use the above autocomplete"
-                  disabled
-                />
-                <Form.Control
-                  value={twigletLocationToAdd.address_components[0].long_name}
-                  placeholder="Use the above autocomplete"
-                  disabled
-                />
-                <Form.Control
-                  value={twigletLocationToAdd.address_components[1].long_name}
-                  placeholder="Use the above autocomplete"
-                  disabled
-                />
-                <Form.Control
-                  value={twigletLocationToAdd.address_components[2].long_name}
-                  placeholder="Use the above autocomplete"
-                  disabled
-                />
-                <Form.Control
-                  value={twigletLocationToAdd.address_components[3].long_name}
-                  placeholder="Use the above autocomplete"
-                  disabled
-                />
-                <Form.Control
-                  value={twigletLocationToAdd.address_components[4].long_name}
-                  placeholder="Use the above autocomplete"
-                  disabled
-                />
-              </Form.Group>
-            ) : (
-              <p> </p>
-            )}
-            <div>
 
-              {/* {twigletLocationToAdd != "" ? ( */}
-              <Button type="submit" onClick={handleClose}>Submit</Button>
-              {/* // ) : ( // <p></p> */}
-              {/* // )} */}
+    <div className="l-sidebar">
+      <Container className="p-0">
+        <Row>
+          <Col className="p-0">
+            <Search setTwigletLocationToAdd={setTwigletLocationToAdd} />
+          </Col>
+        </Row>
+        <Row>
+          <Col className="p-0 d-flex justify-content-center">
+            <form onSubmit={(e) => handleFormSubmit(e)}>
+              {twigletLocationToAdd != "" ? (
+                <Form.Group className="mb-3" style={{ width: "300px" }}>
+                  <Form.Label className="text-white caveat w-100 text-center">Location Address:</Form.Label>
+                  <Form.Control className="caveat rounded-0 text-center text-white border-0"
+                    style={{backgroundColor: "rgba(0, 0, 0, 0)"}}
+                    value={twigletLocationToAdd.address_components[0].long_name}
+                    placeholder="Use the above autocomplete"
+                    disabled
+                  />
+                  <Form.Control className="caveat rounded-0 text-center text-white border-0"
+                    style={{backgroundColor: "rgba(0, 0, 0, 0)"}}
+                    value={twigletLocationToAdd.address_components[1].long_name}
+                    placeholder="Use the above autocomplete"
+                    disabled
+                  />
+                  <Form.Control className="caveat rounded-0 text-center text-white border-0"
+                    style={{backgroundColor: "rgba(0, 0, 0, 0)"}}
+                    value={twigletLocationToAdd.address_components[2].long_name}
+                    placeholder="Use the above autocomplete"
+                    disabled
+                  />
+                  <Form.Control className="caveat rounded-0 text-center text-white border-0"
+                    style={{backgroundColor: "rgba(0, 0, 0, 0)"}}
+                    value={twigletLocationToAdd.address_components[3].long_name}
+                    placeholder="Use the above autocomplete"
+                    disabled
+                  />
+                  <Form.Control className="caveat rounded-0 text-center text-white border-0"
+                    style={{backgroundColor: "rgba(0, 0, 0, 0)"}}
+                    value={twigletLocationToAdd.address_components[4].long_name}
+                    placeholder="Use the above autocomplete"
+                    disabled
+                  />
+                </Form.Group>
+              ) : (
+                <p> </p>
+              )}
+              <div className="d-flex justify-content-center">
+                {/* {twigletLocationToAdd != "" ? ( */}
+                <button className="special-btn caveat" type="submit" onClick={handleClose}>Submit</button>
+                {/* // ) : ( // <p></p> */}
+                {/* // )} */}
 
-            </div>
-          </form>
-        </Col>
-      </Row>
-    </Container>
+              </div>
+            </form>
+          </Col>
+        </Row>
+      </Container>
+    </div>
+
+// COMMMENT OUT THE BELOW CODE
+// ***********
+    // <Container>
+    //   <Row>
+    //     <Col className="mt-3">
+    //       <Search setTwigletLocationToAdd={setTwigletLocationToAdd} initialLocation={initialLocation} />
+    //     </Col>
+    //   </Row>
+    //   <Row>
+    //     <Col className="mt-3">
+    //       <form onSubmit={(e) => handleFormSubmit(e)}>
+    //         {twigletLocationToAdd != "" ? (
+    //           <Form.Group className="mb-3" style={{ width: "300px" }}>
+    //             <Form.Label>Location Address</Form.Label>
+    //             <Form.Control
+    //               value={twigletLocationToAdd.address}
+    //               placeholder="Use the above autocomplete"
+    //               disabled
+    //             />
+    //             <Form.Control
+    //               value={twigletLocationToAdd.address_components[0].long_name}
+    //               placeholder="Use the above autocomplete"
+    //               disabled
+    //             />
+    //             <Form.Control
+    //               value={twigletLocationToAdd.address_components[1].long_name}
+    //               placeholder="Use the above autocomplete"
+    //               disabled
+    //             />
+    //             <Form.Control
+    //               value={twigletLocationToAdd.address_components[2].long_name}
+    //               placeholder="Use the above autocomplete"
+    //               disabled
+    //             />
+    //             <Form.Control
+    //               value={twigletLocationToAdd.address_components[3].long_name}
+    //               placeholder="Use the above autocomplete"
+    //               disabled
+    //             />
+    //             <Form.Control
+    //               value={twigletLocationToAdd.address_components[4].long_name}
+    //               placeholder="Use the above autocomplete"
+    //               disabled
+    //             />
+    //           </Form.Group>
+    //         ) : (
+    //           <p> </p>
+    //         )}
+    //         <div>
+
+    //           {/* {twigletLocationToAdd != "" ? ( */}
+    //           <Button type="submit" onClick={handleClose}>Submit</Button>
+    //           {/* // ) : ( // <p></p> */}
+    //           {/* // )} */}
+
+    //         </div>
+    //       </form>
+    //     </Col>
+    //   </Row>
+    //   <Row>
+    //     <Button onClick={()=>{
+    //       setPlayGame(true)
+    //     }}>
+    //       play a game!
+    //     </Button>
+    //   </Row>
+    // </Container>
+// ***********    
+//     COMMMENT OUT THE ABOVE CODE
+
+
   );
 };
 
@@ -144,7 +222,7 @@ export default Sidebar;
   !search bar function & handling
   ----------------------------------------------------------------*/
 
-function Search({ setTwigletLocationToAdd }) {
+function Search({ setTwigletLocationToAdd, initialLocation }) {
   const {
     ready,
     value,
@@ -153,7 +231,7 @@ function Search({ setTwigletLocationToAdd }) {
     clearSuggestions,
   } = usePlacesAutocomplete({
     requestOptions: {
-      location: { lat: () => 51.5072, lng: () => -0.1276 },
+      location: { lat: () => initialLocation.lat, lng: () => initialLocation.lng },
       radius: 100 * 100,
     },
   });
@@ -170,9 +248,9 @@ function Search({ setTwigletLocationToAdd }) {
     try {
       const results = await getGeocode({ address });
       // const place_info =  await getGeocode({ description });
-      console.log('results', results[0].formatted_address)
+      // console.log('results', results[0].formatted_address)
       // console.log('placeinfo', place_info)
-      console.log("results", results[0]);
+      // console.log("results", results[0]);
       const { lat, lng } = await getLatLng(results[0]);
       setTwigletLocationToAdd({
         ...results[0],
@@ -180,34 +258,30 @@ function Search({ setTwigletLocationToAdd }) {
         lat,
         lng,
       });
-      // setTwigletLocationToAdd({
-      //   ...results[0],
-      //   lat,
-      //   lng,
-      // });
     } catch (error) {
       console.log("😱 Error: ", error);
     }
   };
-
   return (
     <div className="sidebar-search">
 
-      <div className="p-3 text-center border border-dark">
-        <p className="my-1">Submit your twiglet location:</p>
+      <div className="p-3 text-center text-white">
         {/* {console.log(".....ready???", ready)} */}
         <Combobox onSelect={handleSelect}>
           <ComboboxInput
             value={value}
             onChange={handleInput}
             disabled={!ready}
-            placeholder="Search your location"
+            placeholder="Submit twiglet location"
+            type="text"
             style={{
               margin: 0,
+              padding: "0 5px",
               width: "100%",
-              color: "#454545",
+              color: "#ffffff",
             }}
           />
+         
           <ComboboxPopover>
             <ComboboxList>
               {status === "OK" &&
