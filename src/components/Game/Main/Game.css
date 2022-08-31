@@ -1,6 +1,9 @@
-body{
+/* body{
     background-color: #123;
-}
+
+    padding: 20px;
+} */
+
 .board{
     width: calc(100vh - 240px);
     max-width: calc(100vw - 140px);

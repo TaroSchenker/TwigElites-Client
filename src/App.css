@@ -236,6 +236,12 @@ header {
   rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 }
 
+.map-box {
+  color:#000000;
+  text-align: center;
+  border-radius: 15px;
+}
+
 input[type="text"], input[type="password"] {
   background-color: #0289BA;
   color: #fff;
@@ -263,6 +269,8 @@ input[type="text"]:focus, input[type="password"]:focus {
 .sidebar {
   width: 15rem;
   height: 40rem;
+  border-radius: 15px;
+  border: 1px solid white;
 }
 
 .l-sidebar {
@@ -282,6 +290,15 @@ input[type="text"]:focus, input[type="password"]:focus {
 
 .l-container {
   width: 15rem;
+}
+
+.filters {
+  color: #ffffff;
+  font-size: 1.5rem;
+}
+
+.filters:hover {
+  color:#DB2821;
 }
 
 .link, .link:visited {
@@ -328,28 +345,58 @@ input[type="text"]:focus, input[type="password"]:focus {
 
 .box {
   background-color: rgba(2, 137, 186, 1);
-
-  width: 90%;
-  height: 7rem;
-
-  margin: 15px 0;
+  width: 95%;
+  height: 8rem;
+  margin: 5px 0;
   border-radius: 5px;
   /* pointer-events: none; */
   font-size: 0.6rem;
   padding: 5px;
-
+  text-align: center;
+  line-height: 180%;
   box-shadow: rgba(131, 131, 240, 0.25) 0px 50px 100px -20px, 
   rgba(255, 255, 255, 0.3) 0px 30px 60px -30px, 
   rgba(38, 139, 240, 0.35) 0px -2px 6px 0px inset, 
   rgba(0, 0, 0, 0.4) 0px 2px 4px, 
   rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, 
   rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
-
-  transition: 1s;
+  transition: 0.5s;
+  position: relative;
 }
 
 .box:hover {
-  transform: scale(1.2);
+  transform: scale(1.1);
+}
+
+.class-link {
+  color:#ffffff;
+  font-size: 1.5rem;
+}
+
+.class-link:hover {
+  color: #DB2821;
+}
+
+.time {
+  float: right;
+  font-size: 0.8rem;
+}
+
+.votes {
+  float: left;
+  font-size: 0.8rem;
+}
+
+.below {
+  clear: both;
+  font-size: 0.8rem;
+}
+
+.buttons {
+  /* background-color: #fff; */
+  position: absolute;
+  bottom: 0;
+  width: calc(100% - 10px);
 }
 
 .box-btn {

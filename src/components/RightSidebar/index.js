@@ -10,6 +10,7 @@ const RightSidebar = ({ menu }) => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const[twigletsPerPage, setTwigletsPerPage] = useState(4);
+  const[update, setUpdate] = useState(true);
 
   const [isMenu, setIsMenu] = useState(menu[0]);
 
@@ -70,23 +71,49 @@ const RightSidebar = ({ menu }) => {
     }
   };
 
+  const sort = () => {
+    function compare( a, b ) {
+      if ( a.shop_name.length < b.shop_name.length ){
+        return -1;
+      }
+      if ( a.shop_name.length > b.shop_name.length ){
+        return 1;
+      }
+      return 0;
+    }
+    
+    let sorted = allTwiglets.sort( compare );
+    setAllTwiglets(sorted);
+    console.log(allTwiglets)
+    setUpdate(!update);
+  }
 
   return (
     <div className="sidebar">
       <ul className="list">
-        <Pagination
+        {/* <Pagination
           twigletsPerPage={twigletsPerPage}
           totalTwiglets={allTwiglets.length}
           paginate={paginate}
           inc={inc}
           dec={dec}
           currentPage={currentPage}
-        />
-        <li className="base item">
-          <a className="s-link link" href="#">
-            <i class="fa-solid fa-circle-chevron-down px-3"></i> {isMenu}
+        /> */}
+        <li className="base item s-link d-flex justify-content-evenly align-items-center">
+          <a className="filters" href="#">
+            <i class="fa-solid fa-circle-arrow-up" onClick={sort}></i>
           </a>
-          <ul className="list">
+          <a className="filters" href="#">
+            <i class="fa-solid fa-street-view"></i>
+          </a>
+          <a className="filters" href="#">
+            <i class="fa-solid fa-clock"></i>
+          </a>
+
+          {/* <a className="s-link link" href="#">
+            <i class="fa-solid fa-circle-chevron-down px-3"></i> {isMenu}
+          </a> */}
+          {/* <ul className="list">
             {menu.map((item) => (
               <li className="sub item text-center">
                 <a className="link" href="#" onClick={(e) => handleClick(e)}>
@@ -94,9 +121,9 @@ const RightSidebar = ({ menu }) => {
                 </a>
               </li>
             ))}
-            {/* <li className="sub item"><a className="link" href="#">Top 5</a></li>
-            <li className="sub item"><a className="link" href="#">Closest</a></li> */}
-          </ul>
+            <li className="sub item"><a className="link" href="#">Top 5</a></li>
+            <li className="sub item"><a className="link" href="#">Closest</a></li>
+          </ul> */}
         </li>
       </ul>
 
@@ -125,6 +152,14 @@ const RightSidebar = ({ menu }) => {
             />
           </div>
         ))}
+        <Pagination
+          twigletsPerPage={twigletsPerPage}
+          totalTwiglets={allTwiglets.length}
+          paginate={paginate}
+          inc={inc}
+          dec={dec}
+          currentPage={currentPage}
+        />
       </div>
     </div>
   );
