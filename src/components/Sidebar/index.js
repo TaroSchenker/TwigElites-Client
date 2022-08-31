@@ -81,6 +81,69 @@ const Sidebar = ({handleClose}) => {
     }
   };
   return (
+
+    <div className="l-sidebar">
+      <Container className="p-0">
+        <Row>
+          <Col className="p-0">
+            <Search setTwigletLocationToAdd={setTwigletLocationToAdd} />
+          </Col>
+        </Row>
+        <Row>
+          <Col className="p-0 d-flex justify-content-center">
+            <form onSubmit={(e) => handleFormSubmit(e)}>
+              {twigletLocationToAdd != "" ? (
+                <Form.Group className="mb-3" style={{ width: "300px" }}>
+                  <Form.Label className="text-white caveat w-100 text-center">Location Address:</Form.Label>
+                  <Form.Control className="caveat rounded-0 text-center text-white border-0"
+                    style={{backgroundColor: "rgba(0, 0, 0, 0)"}}
+                    value={twigletLocationToAdd.address_components[0].long_name}
+                    placeholder="Use the above autocomplete"
+                    disabled
+                  />
+                  <Form.Control className="caveat rounded-0 text-center text-white border-0"
+                    style={{backgroundColor: "rgba(0, 0, 0, 0)"}}
+                    value={twigletLocationToAdd.address_components[1].long_name}
+                    placeholder="Use the above autocomplete"
+                    disabled
+                  />
+                  <Form.Control className="caveat rounded-0 text-center text-white border-0"
+                    style={{backgroundColor: "rgba(0, 0, 0, 0)"}}
+                    value={twigletLocationToAdd.address_components[2].long_name}
+                    placeholder="Use the above autocomplete"
+                    disabled
+                  />
+                  <Form.Control className="caveat rounded-0 text-center text-white border-0"
+                    style={{backgroundColor: "rgba(0, 0, 0, 0)"}}
+                    value={twigletLocationToAdd.address_components[3].long_name}
+                    placeholder="Use the above autocomplete"
+                    disabled
+                  />
+                  <Form.Control className="caveat rounded-0 text-center text-white border-0"
+                    style={{backgroundColor: "rgba(0, 0, 0, 0)"}}
+                    value={twigletLocationToAdd.address_components[4].long_name}
+                    placeholder="Use the above autocomplete"
+                    disabled
+                  />
+                </Form.Group>
+              ) : (
+                <p> </p>
+              )}
+              <div className="d-flex justify-content-center">
+                {/* {twigletLocationToAdd != "" ? ( */}
+                <button className="special-btn caveat" type="submit" onClick={handleClose}>Submit</button>
+                {/* // ) : ( // <p></p> */}
+                {/* // )} */}
+
+              </div>
+            </form>
+          </Col>
+        </Row>
+      </Container>
+    </div>
+
+COMMMENT OUT THE BELOW CODE
+***********
     <Container>
       <Row>
         <Col className="mt-3">
@@ -146,6 +209,10 @@ const Sidebar = ({handleClose}) => {
         </Button>
       </Row>
     </Container>
+***********    
+    COMMMENT OUT THE ABOVE CODE
+
+
   );
 };
 
@@ -199,19 +266,20 @@ function Search({ setTwigletLocationToAdd, initialLocation }) {
   return (
     <div className="sidebar-search">
 
-      <div className="p-3 text-center border border-dark">
-        <p className="my-1">Submit your twiglet location:</p>
+      <div className="p-3 text-center text-white">
         {/* {console.log(".....ready???", ready)} */}
         <Combobox onSelect={handleSelect}>
           <ComboboxInput
             value={value}
             onChange={handleInput}
             disabled={!ready}
-            placeholder="Search your location"
+            placeholder="Submit twiglet location"
+            type="text"
             style={{
               margin: 0,
+              padding: "0 5px",
               width: "100%",
-              color: "#454545",
+              color: "#ffffff",
             }}
           />
           <ComboboxPopover>
