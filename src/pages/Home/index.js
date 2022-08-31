@@ -4,6 +4,7 @@ import { Map, RightSidebar, Sidebarnew } from "../../components";
 import Sidebar from "../../components/Sidebar";
 import { MapDataContext } from "../../MapDataContext";
 import axios from "axios";
+import Game from "../../components/Game/Main";
 
 
 const Home = () => {
@@ -17,40 +18,29 @@ const Home = () => {
     twigletLocationToAdd,
     setTwigletLocationToAdd,
     allTwiglets,
-    setAllTwiglets, loading, setLoading
+    setAllTwiglets, loading, setLoading, playGame
   ] = useContext(MapDataContext);
 
   // this fetch is fetching from a nasa API. it is just letft in as a  placeholder, can be ammended for our own requests.
   useEffect(() => {
-    // const fetchEvents = async () => {
-    //   console.log("i fetch events");
-    //   setLoading(true);
-    //   const res = await fetch("https://eonet.gsfc.nasa.gov/api/v2.1/events");
-    //   const { events } = await res.json();
-    //   setEventData(events);
-    //   // setLoading(false);
-    // };
-
+ setLoading(false);
     const fetch_all_twiglets = async () => {
       setLoading(true);
       const { data } = await axios.get(
-        "http://test-twiglets.herokuapp.com/twiglets"
+        "https://test-twiglets.herokuapp.com/twiglets"
       );
       setAllTwiglets([...data]);
       setMarkers([...data]);
-      console.log("this is the data")
-      console.log("this is the data")
-      console.log(...data)
-      console.log("this is the data")
-      console.log("this is the data")
-    
       setLoading(false);
       // return data;
     };
-
-
     fetch_all_twiglets();
-    // fetchEvents();
+
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log("Latitude is :", position.coords.latitude);
+      console.log("Longitude is :", position.coords.longitude);
+    });
+  
   }, []);
 
   console.log("These are the markers")
@@ -86,14 +76,17 @@ const Home = () => {
       <Row>
         <Col className="bg-dark-blue main p-0">
           <Row className="w-100 main m-0">
-            <Col lg={3} className="d-flex justify-content-center align-items-center">
+            <Col lg={3} className="justify-content-center align-items-center">
             {/* <Sidebarnew sightings={sightings} menu={menu1}/> */}
             {!loading ? <Sidebar /> : <h1 className="loader"> loading</h1>}
             </Col>
+
             <Col lg={6} className="p-0 d-flex justify-content-center align-items-center">
+
               {!loading ? <Map /> : <h1 className="loader"> loading</h1>}
+              {/* <Game /> */}
             </Col>
-            <Col lg={3} className="d-flex justify-content-center align-items-center">
+            <Col lg={3} className=" justify-content-center align-items-center">
             {/* <Sidebarnew sightings={sightings} menu={menu2}/> */}
             {!loading ? <RightSidebar menu={menu2}/> : <h1 className="loader"> loading</h1>}
             </Col>

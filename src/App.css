@@ -328,8 +328,10 @@ input[type="text"]:focus, input[type="password"]:focus {
 
 .box {
   background-color: rgba(2, 137, 186, 1);
+
   width: 90%;
   height: 7rem;
+
   margin: 15px 0;
   border-radius: 5px;
   /* pointer-events: none; */
