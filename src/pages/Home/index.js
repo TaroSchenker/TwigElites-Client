@@ -4,6 +4,7 @@ import { Map, RightSidebar, Sidebarnew } from "../../components";
 import Sidebar from "../../components/Sidebar";
 import { MapDataContext } from "../../MapDataContext";
 import axios from "axios";
+import Game from "../../components/Game/Main";
 
 
 const Home = () => {
@@ -17,7 +18,7 @@ const Home = () => {
     twigletLocationToAdd,
     setTwigletLocationToAdd,
     allTwiglets,
-    setAllTwiglets, loading, setLoading
+    setAllTwiglets, loading, setLoading, playGame
   ] = useContext(MapDataContext);
 
   // this fetch is fetching from a nasa API. it is just letft in as a  placeholder, can be ammended for our own requests.
@@ -80,7 +81,9 @@ const Home = () => {
             {!loading ? <Sidebar /> : <h1 className="loader"> loading</h1>}
             </Col>
             <Col lg={6} className="pt-5 p-0">
+            
               {!loading ? <Map /> : <h1 className="loader"> loading</h1>}
+              {/* <Game /> */}
             </Col>
             <Col lg={3} className=" justify-content-center align-items-center">
             {/* <Sidebarnew sightings={sightings} menu={menu2}/> */}

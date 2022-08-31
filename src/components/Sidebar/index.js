@@ -28,7 +28,7 @@ const Sidebar = ({handleClose}) => {
     twigletLocationToAdd,
     setTwigletLocationToAdd,
     allTwiglets,
-    setAllTwiglets, initialLocation, setInitialLocation
+    setAllTwiglets, initialLocation, setInitialLocation, playGame, setPlayGame
   ] = useContext(MapDataContext);
 
   /* ------ ------------------------------------------------------------------
@@ -137,6 +137,13 @@ const Sidebar = ({handleClose}) => {
             </div>
           </form>
         </Col>
+      </Row>
+      <Row>
+        <Button onClick={()=>{
+          setPlayGame(true)
+        }}>
+          play a game!
+        </Button>
       </Row>
     </Container>
   );
