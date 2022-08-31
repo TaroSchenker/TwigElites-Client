@@ -16,10 +16,14 @@ const ResultBox = ({
 }) => {
   console.log('result box',twiglet)
   const [disable, setDisable] = useState(false);
+
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [voteCount, setVoteCount] = useState(votes);
+
 
   const removeDeletedItem = (id) => {
     setAllTwiglets((current) =>
@@ -45,6 +49,7 @@ const ResultBox = ({
     );
     setDisable(true);
     // updateVoteCountLocal(twiglet_id)
+    setVoteCount(current => current += 1)
     console.log(data);
   };
 
@@ -74,7 +79,7 @@ const ResultBox = ({
       <p className="my-0 text-white time"> 
       {time}
       </p>
-      <p className="my-0 text-white votes">Votes: {votes}</p>
+      <p className="my-0 text-white votes">Votes: {voteCount}</p>
       <p className="my-0 text-white below">{user}</p>
       <p className="my-0 text-white below">
         {/* <strong>Name:</strong> */}
