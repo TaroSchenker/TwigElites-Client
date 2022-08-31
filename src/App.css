@@ -7,13 +7,13 @@
 }
 
 header {
-  height: 6rem;
-  background-color: #0289BA;
+  height: 4rem;
+  background-color: #04141D;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 0 2px 3px rgb(61, 61, 61);
-  border-bottom: 0.25em solid #0f5177;
+  /* box-shadow: 0 2px 3px rgb(61, 61, 61); */
+  border-bottom: 1px solid #868686; 
 }
 
 .logout {
@@ -42,7 +42,7 @@ header {
 }
 
 .mascot {
-  height: 5rem;
+  height: 1rem;
 }
 
 .main {
@@ -242,7 +242,7 @@ header {
   border-radius: 15px;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], .search input {
   background-color: #0289BA;
   color: #fff;
   text-align: center;
@@ -253,6 +253,10 @@ input[type="text"], input[type="password"] {
   position: relative;
   width: 10rem;
   height: 2rem;
+}
+
+.search input{
+  border-radius: 0em !important;
 }
 
 input::placeholder {

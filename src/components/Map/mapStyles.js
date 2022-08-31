@@ -1,108 +1,138 @@
 export default 
 
-
 [
     {
+        "featureType": "all",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "color": "#ffffff"
+            }
+        ]
+    },
+    {
+        "featureType": "all",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+            {
+                "color": "#000000"
+            },
+            {
+                "lightness": 13
+            }
+        ]
+    },
+    {
         "featureType": "administrative",
+        "elementType": "geometry.fill",
         "stylers": [
             {
-                "visibility": "off"
+                "color": "#000000"
             }
         ]
     },
     {
-        "featureType": "poi",
+        "featureType": "administrative",
+        "elementType": "geometry.stroke",
         "stylers": [
             {
-                "visibility": "simplified"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "labels",
-        "stylers": [
+                "color": "#144b53"
+            },
             {
-                "visibility": "simplified"
-            }
-        ]
-    },
-    {
-        "featureType": "water",
-        "stylers": [
+                "lightness": 14
+            },
             {
-                "visibility": "simplified"
-            }
-        ]
-    },
-    {
-        "featureType": "transit",
-        "stylers": [
-            {
-                "visibility": "simplified"
+                "weight": 1.4
             }
         ]
     },
     {
         "featureType": "landscape",
+        "elementType": "all",
         "stylers": [
             {
-                "visibility": "simplified"
+                "color": "#08304b"
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#0c4152"
+            },
+            {
+                "lightness": 5
             }
         ]
     },
     {
         "featureType": "road.highway",
+        "elementType": "geometry.fill",
         "stylers": [
             {
-                "visibility": "off"
+                "color": "#000000"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#0b434f"
+            },
+            {
+                "lightness": 25
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#000000"
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#0b3d51"
+            },
+            {
+                "lightness": 16
             }
         ]
     },
     {
         "featureType": "road.local",
+        "elementType": "geometry",
         "stylers": [
             {
-                "visibility": "on"
+                "color": "#000000"
             }
         ]
     },
     {
-        "featureType": "road.highway",
-        "elementType": "geometry",
+        "featureType": "transit",
+        "elementType": "all",
         "stylers": [
             {
-                "visibility": "on"
+                "color": "#146474"
             }
         ]
     },
     {
         "featureType": "water",
+        "elementType": "all",
         "stylers": [
             {
-                "color": "#84afa3"
-            },
-            {
-                "lightness": 52
-            }
-        ]
-    },
-    {
-        "stylers": [
-            {
-                "saturation": -17
-            },
-            {
-                "gamma": 0.36
-            }
-        ]
-    },
-    {
-        "featureType": "transit.line",
-        "elementType": "geometry",
-        "stylers": [
-            {
-                "color": "#3f518c"
+                "color": "#021019"
             }
         ]
     }

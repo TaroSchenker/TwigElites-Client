@@ -274,6 +274,7 @@ function Search({ panTo }) {
           onChange={handleInput}
           disabled={!ready}
           placeholder="Search your location"
+          style={{backgroundColor: '#0289BA'}}
         />
         <ComboboxPopover>
           <ComboboxList>
