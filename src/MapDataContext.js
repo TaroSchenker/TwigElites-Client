@@ -11,6 +11,7 @@ export default function MapDataProvider(props) {
   const [gotoTwiglet, setGotoTwiglet] = useState(null);
   const [initialLocation, setInitialLocation] = useState({ lat: 51.5072, lng: -0.1276 });
   const [mainState, setMainState] = useState('map');
+  const [voteCount, setVoteCount] = useState(null);
   return (
     <MapDataContext.Provider
       value={[
@@ -21,7 +22,7 @@ export default function MapDataProvider(props) {
         twigletLocationToAdd,
         setTwigletLocationToAdd,
         allTwiglets, 
-        setAllTwiglets, loading, setLoading, gotoTwiglet, setGotoTwiglet, initialLocation, setInitialLocation, mainState, setMainState
+        setAllTwiglets, loading, setLoading, gotoTwiglet, setGotoTwiglet, initialLocation, setInitialLocation, mainState, setMainState, voteCount, setVoteCount
       ]}
     >
       {props.children}
