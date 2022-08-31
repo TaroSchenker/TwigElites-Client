@@ -67,7 +67,7 @@ const RightSidebar = ({ menu }) => {
       setCurrentPage(currentPage - 1);
     } else {
       setCurrentPage(totalPages);
-
+    }
   };
 
 
