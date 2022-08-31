@@ -120,7 +120,8 @@ const MainDisplay = () =>{
             </Col>
             <Col lg={6} className="p-0 d-flex justify-content-center align-items-center">
             {/* <MainDisplay /> */}
-            {mainState !== 1 && !loading ? <Map /> : <h1 className="loader"> loading</h1>}
+            {!loading ? <Map /> : <h1 className="loader"> loading</h1>}
+            
               {/* {!loading ? <Map /> : <h1 className="loader"> loading</h1>}  */}
               {/* <Game /> */}
             </Col>
