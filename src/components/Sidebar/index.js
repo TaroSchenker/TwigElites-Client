@@ -15,11 +15,10 @@ import {
   ComboboxOption,
 } from "@reach/combobox";
 
-const Sidebar = ({handleClose}) => {
+const Sidebar = ({ handleClose }) => {
   const getShopName = (name) => {
-    return name.split(',')[0]
-
-  }
+    return name.split(",")[0];
+  };
   const [
     markers,
     setMarkers,
@@ -28,7 +27,10 @@ const Sidebar = ({handleClose}) => {
     twigletLocationToAdd,
     setTwigletLocationToAdd,
     allTwiglets,
-    setAllTwiglets, initialLocation, setInitialLocation, playGame, setPlayGame
+    setAllTwiglets,
+    initialLocation,
+    setInitialLocation,
+    mainState, setMainState, setGotoTwiglet
   ] = useContext(MapDataContext);
 
   /* ------ ------------------------------------------------------------------
@@ -57,7 +59,7 @@ const Sidebar = ({handleClose}) => {
 
     //! I need for your data to match this fake data as this is the way we receive it on the server
     const fake_data = {
-       latitude :twigletLocationToAdd.lat,
+      latitude: twigletLocationToAdd.lat,
       longitude: twigletLocationToAdd.lng,
       shop_name: getShopName(twigletLocationToAdd.address),
       shop_id: twigletLocationToAdd.place_id,
@@ -65,6 +67,7 @@ const Sidebar = ({handleClose}) => {
     };
 
     try {
+        setSelected(fake_data)
       // console.log("fake_data", fake_data);
       // const headers = {
       //   "Content-Type": "application/json",
@@ -76,51 +79,66 @@ const Sidebar = ({handleClose}) => {
         fake_data
         // { headers: headers }
       );
+    
+
     } catch (err) {
       console.error("Oops, there's been an error: ", err);
     }
   };
   return (
-
     <div className="l-sidebar">
       <Container className="p-0">
         <Row>
           <Col className="p-0">
-            <Search setTwigletLocationToAdd={setTwigletLocationToAdd} />
+            <Search setTwigletLocationToAdd={setTwigletLocationToAdd} initialLocation={initialLocation} />
           </Col>
         </Row>
         <Row>
           <Col className="p-0 d-flex justify-content-center">
             <form onSubmit={(e) => handleFormSubmit(e)}>
-              {twigletLocationToAdd != "" ? (
+                {twigletLocationToAdd != "" ? (
                 <Form.Group className="mb-3" style={{ width: "300px" }}>
-                  <Form.Label className="text-white caveat w-100 text-center">Location Address:</Form.Label>
-                  <Form.Control className="caveat rounded-0 text-center text-white border-0"
-                    style={{backgroundColor: "rgba(0, 0, 0, 0)"}}
+                  <Form.Label className="text-white  w-100 text-center">
+                   <strong> Location Address:</strong>
+                  </Form.Label>
+                  <Form.Control
+                    className=" rounded-0 text-center text-white border-0"
+                    style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
+                    value={getShopName(twigletLocationToAdd.address)}
+                    placeholder="Use the above autocomplete"
+                    disabled
+                  />
+                  <Form.Control
+                    className=" rounded-0 text-center text-white border-0"
+                    style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
                     value={twigletLocationToAdd.address_components[0].long_name}
                     placeholder="Use the above autocomplete"
                     disabled
                   />
-                  <Form.Control className="caveat rounded-0 text-center text-white border-0"
-                    style={{backgroundColor: "rgba(0, 0, 0, 0)"}}
+                  <Form.Control
+                    className=" rounded-0 text-center text-white border-0"
+                    style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
                     value={twigletLocationToAdd.address_components[1].long_name}
                     placeholder="Use the above autocomplete"
                     disabled
                   />
-                  <Form.Control className="caveat rounded-0 text-center text-white border-0"
-                    style={{backgroundColor: "rgba(0, 0, 0, 0)"}}
+                  <Form.Control
+                    className=" rounded-0 text-center text-white border-0"
+                    style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
                     value={twigletLocationToAdd.address_components[2].long_name}
                     placeholder="Use the above autocomplete"
                     disabled
                   />
-                  <Form.Control className="caveat rounded-0 text-center text-white border-0"
-                    style={{backgroundColor: "rgba(0, 0, 0, 0)"}}
+                  <Form.Control
+                    className=" rounded-0 text-center text-white border-0"
+                    style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
                     value={twigletLocationToAdd.address_components[3].long_name}
                     placeholder="Use the above autocomplete"
                     disabled
                   />
-                  <Form.Control className="caveat rounded-0 text-center text-white border-0"
-                    style={{backgroundColor: "rgba(0, 0, 0, 0)"}}
+                  <Form.Control
+                    className=" rounded-0 text-center text-white border-0"
+                    style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
                     value={twigletLocationToAdd.address_components[4].long_name}
                     placeholder="Use the above autocomplete"
                     disabled
@@ -131,88 +149,117 @@ const Sidebar = ({handleClose}) => {
               )}
               <div className="d-flex justify-content-center">
                 {/* {twigletLocationToAdd != "" ? ( */}
-                <button className="special-btn caveat" type="submit" onClick={handleClose}>Submit</button>
+                <button
+                  className="special-btn caveat"
+                  type="submit"
+                  onClick={handleClose}
+                >
+                  Submit
+                </button>
                 {/* // ) : ( // <p></p> */}
                 {/* // )} */}
-
               </div>
             </form>
           </Col>
         </Row>
+        <Row className="mt-5">
+          <Button
+            onClick={() => {
+
+              setMainState(1);
+            }}
+          >
+            Twiglocator map
+          </Button>
+          <Button
+            onClick={() => {
+
+              setMainState(2);
+            }}
+          >
+           Play a game!
+          </Button>
+          <Button
+            onClick={() => {
+   
+              setMainState(3);
+            }}
+          >
+           Talk to other Twiglets
+          </Button>
+        </Row>
       </Container>
     </div>
 
-// COMMMENT OUT THE BELOW CODE
-// ***********
-//     <Container>
-//       <Row>
-//         <Col className="mt-3">
-//           <Search setTwigletLocationToAdd={setTwigletLocationToAdd} initialLocation={initialLocation} />
-//         </Col>
-//       </Row>
-//       <Row>
-//         <Col className="mt-3">
-//           <form onSubmit={(e) => handleFormSubmit(e)}>
-//             {twigletLocationToAdd != "" ? (
-//               <Form.Group className="mb-3" style={{ width: "300px" }}>
-//                 <Form.Label>Location Address</Form.Label>
-//                 <Form.Control
-//                   value={twigletLocationToAdd.address}
-//                   placeholder="Use the above autocomplete"
-//                   disabled
-//                 />
-//                 <Form.Control
-//                   value={twigletLocationToAdd.address_components[0].long_name}
-//                   placeholder="Use the above autocomplete"
-//                   disabled
-//                 />
-//                 <Form.Control
-//                   value={twigletLocationToAdd.address_components[1].long_name}
-//                   placeholder="Use the above autocomplete"
-//                   disabled
-//                 />
-//                 <Form.Control
-//                   value={twigletLocationToAdd.address_components[2].long_name}
-//                   placeholder="Use the above autocomplete"
-//                   disabled
-//                 />
-//                 <Form.Control
-//                   value={twigletLocationToAdd.address_components[3].long_name}
-//                   placeholder="Use the above autocomplete"
-//                   disabled
-//                 />
-//                 <Form.Control
-//                   value={twigletLocationToAdd.address_components[4].long_name}
-//                   placeholder="Use the above autocomplete"
-//                   disabled
-//                 />
-//               </Form.Group>
-//             ) : (
-//               <p> </p>
-//             )}
-//             <div>
+    // COMMMENT OUT THE BELOW CODE
+    // ***********
+    // <Container>
+    //   <Row>
+    //     <Col className="mt-3">
+    //       <Search setTwigletLocationToAdd={setTwigletLocationToAdd} initialLocation={initialLocation} />
+    //     </Col>
+    //   </Row>
+    //   <Row>
+    //     <Col className="mt-3">
+    //       <form onSubmit={(e) => handleFormSubmit(e)}>
+    //         {twigletLocationToAdd != "" ? (
+    //           <Form.Group className="mb-3" style={{ width: "300px" }}>
+    //             <Form.Label>Location Address</Form.Label>
+    //             <Form.Control
+    //               value={twigletLocationToAdd.address}
+    //               placeholder="Use the above autocomplete"
+    //               disabled
+    //             />
+    //             <Form.Control
+    //               value={twigletLocationToAdd.address_components[0].long_name}
+    //               placeholder="Use the above autocomplete"
+    //               disabled
+    //             />
+    //             <Form.Control
+    //               value={twigletLocationToAdd.address_components[1].long_name}
+    //               placeholder="Use the above autocomplete"
+    //               disabled
+    //             />
+    //             <Form.Control
+    //               value={twigletLocationToAdd.address_components[2].long_name}
+    //               placeholder="Use the above autocomplete"
+    //               disabled
+    //             />
+    //             <Form.Control
+    //               value={twigletLocationToAdd.address_components[3].long_name}
+    //               placeholder="Use the above autocomplete"
+    //               disabled
+    //             />
+    //             <Form.Control
+    //               value={twigletLocationToAdd.address_components[4].long_name}
+    //               placeholder="Use the above autocomplete"
+    //               disabled
+    //             />
+    //           </Form.Group>
+    //         ) : (
+    //           <p> </p>
+    //         )}
+    //         <div>
 
-//               {/* {twigletLocationToAdd != "" ? ( */}
-//               <Button type="submit" onClick={handleClose}>Submit</Button>
-//               {/* // ) : ( // <p></p> */}
-//               {/* // )} */}
+    //           {/* {twigletLocationToAdd != "" ? ( */}
+    //           <Button type="submit" onClick={handleClose}>Submit</Button>
+    //           {/* // ) : ( // <p></p> */}
+    //           {/* // )} */}
 
-//             </div>
-//           </form>
-//         </Col>
-//       </Row>
-//       <Row>
-//         <Button onClick={()=>{
-//           setPlayGame(true)
-//         }}>
-//           play a game!
-//         </Button>
-//       </Row>
-//     </Container>
-// ***********    
-//     COMMMENT OUT THE ABOVE CODE
-
-
+    //         </div>
+    //       </form>
+    //     </Col>
+    //   </Row>
+    //   <Row>
+    //     <Button onClick={()=>{
+          
+    //     }}>
+    //       play a game!
+    //     </Button>
+    //   </Row>
+    // </Container>
+    // ***********
+    //     COMMMENT OUT THE ABOVE CODE
   );
 };
 
@@ -231,7 +278,10 @@ function Search({ setTwigletLocationToAdd, initialLocation }) {
     clearSuggestions,
   } = usePlacesAutocomplete({
     requestOptions: {
-      location: { lat: () => initialLocation.lat, lng: () => initialLocation.lng },
+      location: {
+        lat: () => initialLocation.lat,
+        lng: () => initialLocation.lng,
+      },
       radius: 100 * 100,
     },
   });
@@ -241,11 +291,13 @@ function Search({ setTwigletLocationToAdd, initialLocation }) {
   const handleInput = (e) => {
     setValue(e.target.value);
   };
-
+    console.log('ready', ready, data)
   const handleSelect = async (address) => {
     setValue(address, false);
     clearSuggestions();
+    
     try {
+    
       const results = await getGeocode({ address });
       // const place_info =  await getGeocode({ description });
       // console.log('results', results[0].formatted_address)
@@ -261,11 +313,10 @@ function Search({ setTwigletLocationToAdd, initialLocation }) {
     } catch (error) {
       console.log("😱 Error: ", error);
     }
+  
   };
-
   return (
     <div className="sidebar-search">
-
       <div className="p-3 text-center text-white">
         {/* {console.log(".....ready???", ready)} */}
         <Combobox onSelect={handleSelect}>
@@ -282,6 +333,7 @@ function Search({ setTwigletLocationToAdd, initialLocation }) {
               color: "#ffffff",
             }}
           />
+
           <ComboboxPopover>
             <ComboboxList>
               {status === "OK" &&

@@ -6,6 +6,7 @@ import { MapDataContext } from "../../MapDataContext";
 import axios from "axios";
 import Game from "../../components/Game/Main";
 
+const mainDisplay = ['map', 'game', 'chat']
 
 const Home = () => {
   const [eventData, setEventData] = useState([]);
@@ -18,10 +19,31 @@ const Home = () => {
     twigletLocationToAdd,
     setTwigletLocationToAdd,
     allTwiglets,
-    setAllTwiglets, loading, setLoading, playGame
+    setAllTwiglets, loading, setLoading, mainState, setMainState, initialLocation,
+    setInitialLocation,
   ] = useContext(MapDataContext);
 
   // this fetch is fetching from a nasa API. it is just letft in as a  placeholder, can be ammended for our own requests.
+  // const renderTwiglets = async () => {
+  //   setLoading(true);
+  //   const { data } = await axios.get(
+  //     "https://test-twiglets.herokuapp.com/twiglets"
+  //   );
+  //   setAllTwiglets([...data]);
+  //   setMarkers([...data]);
+  //   setLoading(false);
+  //   // return data;
+  // };
+  // const get_all_twiglets = async () => {
+  //   setLoading(true);
+  //   const { data } = await axios.get(
+  //     "https://test-twiglets.herokuapp.com/twiglets"
+  //   );
+  //   setAllTwiglets([...data]);
+  //   setMarkers([...data]);
+  //   setLoading(false);
+  //   // return data;
+  // };
   useEffect(() => {
  setLoading(false);
     const fetch_all_twiglets = async () => {
@@ -39,6 +61,7 @@ const Home = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       console.log("Latitude is :", position.coords.latitude);
       console.log("Longitude is :", position.coords.longitude);
+      setInitialLocation({lng: position.coords.longitude, lat: position.coords.latitude});
     });
   
   }, []);
@@ -55,6 +78,21 @@ const Home = () => {
   let menu1 = ["Top5", "Closest", "Verified"]
 
   let menu2 = ["Top5", "Closest", "Verified", "Recent", "Oldest"]
+
+const MainDisplay = () =>{
+  console.log('mainstate',mainState)
+  if(mainState === 1){
+    setLoading(true)
+      return  !loading ? <Map /> : <h1 className="loader"> loading</h1>
+  } else if(mainState === 2) {
+    return    <Game />
+  } else if(mainState === 3) {
+      return "seak therapy with twiglet chat"
+  } else {
+
+  }
+     
+}
 
   return (
     // <Container fluid="lg">
@@ -80,13 +118,15 @@ const Home = () => {
             {/* <Sidebarnew sightings={sightings} menu={menu1}/> */}
             {!loading ? <Sidebar /> : <h1 className="loader"> loading</h1>}
             </Col>
-
             <Col lg={6} className="p-0 d-flex justify-content-center align-items-center">
-
-              {!loading ? <Map /> : <h1 className="loader"> loading</h1>}
+            {/* <MainDisplay /> */}
+            {mainState !== 1 && !loading ? <Map /> : <h1 className="loader"> loading</h1>}
+              {/* {!loading ? <Map /> : <h1 className="loader"> loading</h1>}  */}
               {/* <Game /> */}
             </Col>
+
             <Col lg={3} className="d-flex justify-content-center align-items-center">
+
             {/* <Sidebarnew sightings={sightings} menu={menu2}/> */}
             {!loading ? <RightSidebar menu={menu2}/> : <h1 className="loader"> loading</h1>}
             </Col>

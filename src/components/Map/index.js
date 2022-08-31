@@ -94,7 +94,7 @@ export default function App() {
     loading,
     setLoading,
     gotoTwiglet,
-    setGotoTwiglet,
+    setGotoTwiglet, mainState, setMainState
   ] = useContext(MapDataContext);
 
   // console.log("selected", selected);
