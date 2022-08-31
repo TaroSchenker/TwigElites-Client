@@ -9,6 +9,7 @@ export default function MapDataProvider(props) {
   const [allTwiglets, setAllTwiglets] = useState([]);
   const [loading, setLoading] = useState(false);
   const [gotoTwiglet, setGotoTwiglet] = useState(null);
+  const [initialLocation, setInitialLocation] = useState({ lat: 51.5072, lng: -0.1276 });
   return (
     <MapDataContext.Provider
       value={[
@@ -19,7 +20,7 @@ export default function MapDataProvider(props) {
         twigletLocationToAdd,
         setTwigletLocationToAdd,
         allTwiglets, 
-        setAllTwiglets, loading, setLoading, gotoTwiglet, setGotoTwiglet
+        setAllTwiglets, loading, setLoading, gotoTwiglet, setGotoTwiglet, initialLocation, setInitialLocation
       ]}
     >
       {props.children}

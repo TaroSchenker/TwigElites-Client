@@ -191,13 +191,14 @@ export default function App() {
             }}
           >
             <div>
-              {/* <h2>
-                {selected.lng}
-              </h2> */}
+              <h5>
+                {selected.shop_name}
+              </h5>
               <p>
                 {/* Found Originals! {formatRelative(selected.time, new Date())} */}
               </p>
-              <p>Address:{selected.address}</p>
+              <p>Address: {selected.address}</p>
+              <p>Upvote Count: {selectedId.votes}</p>
               <Button disabled={disable} onClick={addTwigletVote}>Up Vote</Button>
               <Button onClick={deleteTwiglet}>Remove Twiglets</Button>
             </div>

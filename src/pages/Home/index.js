@@ -34,6 +34,12 @@ const Home = () => {
       // return data;
     };
     fetch_all_twiglets();
+
+    navigator.geolocation.getCurrentPosition((position) => {
+      console.log("Latitude is :", position.coords.latitude);
+      console.log("Longitude is :", position.coords.longitude);
+    });
+  
   }, []);
 
   console.log("These are the markers")

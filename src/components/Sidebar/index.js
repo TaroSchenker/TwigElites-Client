@@ -16,6 +16,10 @@ import {
 } from "@reach/combobox";
 
 const Sidebar = ({handleClose}) => {
+  const getShopName = (name) => {
+    return name.split(',')[0]
+
+  }
   const [
     markers,
     setMarkers,
@@ -24,7 +28,7 @@ const Sidebar = ({handleClose}) => {
     twigletLocationToAdd,
     setTwigletLocationToAdd,
     allTwiglets,
-    setAllTwiglets,
+    setAllTwiglets, initialLocation, setInitialLocation
   ] = useContext(MapDataContext);
 
   /* ------ ------------------------------------------------------------------
@@ -42,12 +46,12 @@ const Sidebar = ({handleClose}) => {
     setAllTwiglets((current) => [
       ...current,
       {
-        address: twigletLocationToAdd.address,
+        address: twigletLocationToAdd.formatted_address,
         latitude: twigletLocationToAdd.lat,
         longitude: twigletLocationToAdd.lng,
         // time: new Date(),
         shop_id: twigletLocationToAdd.place_id,
-        shop_name: "twigletLocationToAdd.place_id",
+        shop_name: getShopName(twigletLocationToAdd.address),
       },
     ]);
 
@@ -55,9 +59,9 @@ const Sidebar = ({handleClose}) => {
     const fake_data = {
        latitude :twigletLocationToAdd.lat,
       longitude: twigletLocationToAdd.lng,
-      shop_name: "twigletLocationToAdd.place_id",
+      shop_name: getShopName(twigletLocationToAdd.address),
       shop_id: twigletLocationToAdd.place_id,
-      address: twigletLocationToAdd.address,
+      address: twigletLocationToAdd.formatted_address,
     };
 
     try {
@@ -80,7 +84,7 @@ const Sidebar = ({handleClose}) => {
     <Container>
       <Row>
         <Col className="mt-3">
-          <Search setTwigletLocationToAdd={setTwigletLocationToAdd} />
+          <Search setTwigletLocationToAdd={setTwigletLocationToAdd} initialLocation={initialLocation} />
         </Col>
       </Row>
       <Row>
@@ -144,7 +148,7 @@ export default Sidebar;
   !search bar function & handling
   ----------------------------------------------------------------*/
 
-function Search({ setTwigletLocationToAdd }) {
+function Search({ setTwigletLocationToAdd, initialLocation }) {
   const {
     ready,
     value,
@@ -153,7 +157,7 @@ function Search({ setTwigletLocationToAdd }) {
     clearSuggestions,
   } = usePlacesAutocomplete({
     requestOptions: {
-      location: { lat: () => 51.5072, lng: () => -0.1276 },
+      location: { lat: () => initialLocation.lat, lng: () => initialLocation.lng },
       radius: 100 * 100,
     },
   });
@@ -170,9 +174,9 @@ function Search({ setTwigletLocationToAdd }) {
     try {
       const results = await getGeocode({ address });
       // const place_info =  await getGeocode({ description });
-      console.log('results', results[0].formatted_address)
+      // console.log('results', results[0].formatted_address)
       // console.log('placeinfo', place_info)
-      console.log("results", results[0]);
+      // console.log("results", results[0]);
       const { lat, lng } = await getLatLng(results[0]);
       setTwigletLocationToAdd({
         ...results[0],
@@ -180,11 +184,6 @@ function Search({ setTwigletLocationToAdd }) {
         lat,
         lng,
       });
-      // setTwigletLocationToAdd({
-      //   ...results[0],
-      //   lat,
-      //   lng,
-      // });
     } catch (error) {
       console.log("😱 Error: ", error);
     }
