@@ -177,7 +177,7 @@ const Sidebar = ({ handleClose, setPlayGame }) => {
             </form>
           </Col>
           <div className="info-te d-flex justify-content-center caveat flex-column align-items-center">
-            <p className="caveat text-white text-center">This is an application to locate the original twiglets. Click below to find out more</p>
+            <p className="caveat text-white text-center">This app helps Twiglet lovers find packets of Twilets with the original recipe!</p>
             <button className="draw" onClick={handleShow}><span className="medium">Info</span></button>
             <Modal
               show={show}
@@ -188,7 +188,18 @@ const Sidebar = ({ handleClose, setPlayGame }) => {
             >
               <div className="bg-dark-blue mod text-white text-center">
               <Modal.Body>
-                Hello, we are the TwigElites, where our passion for the original Twiglet recipe drove us to create an application dedicated to locating all the lost original Twiglets. The recipe was changed to be HFSS compliant. Our mission is to show that there is enough demand for the original recipe to show the producers of Twiglets, that we want our Twiglets back.
+                <h5>
+                  Hello!
+                </h5> 
+                <p>
+                  As you will know, our beloved Twiglet recipe has been ruined! This app will help us keep tabs which locations are still selling the original packets so we can all enjoy Twiglets while we can! 
+                </p>
+                <p>
+                  If you find original twiglets in your local shop please sign up and add the location to the map so we can help teh community enjoy Twiglets!
+                  </p>
+             
+                  <img src="/img/torigingame.png" alt="Original Twiglets" width="200" height="200" />
+                       <p> Make sure you are looking this original packaging!</p>
               </Modal.Body>
               <Modal.Footer className="d-flex justify-content-center align-items-center">
                 <button className="draw" onClick={handleClosing}>
