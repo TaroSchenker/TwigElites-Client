@@ -19,7 +19,7 @@ const Signup = () => {
     };
     try {
       const { data } = await axios.post(
-        "http://test-twiglets.herokuapp.com/auth/register/",
+        "https://test-twiglets.herokuapp.com/auth/register/",
         body
       );
       console.log("DATA", data);
