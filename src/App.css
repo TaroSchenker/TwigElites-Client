@@ -15,19 +15,24 @@ header {
   /* background-color: #04141D; */
   /* box-shadow: 0 2px 3px rgb(61, 61, 61);
   border-bottom: 1px solid #868686; */
-  box-shadow: 0 2px 0 #ffffff;
+  box-shadow: 0 2px 0 #ffffff,
+              -3px 5px 1px #04141D,
+              3px 5px 1px #04141D;
   transition: padding 0.1s, box-shadow 0.1s, top 0.1s; 
   padding-bottom: 0.4rem;
-  background: url("../public/static/media/scribble.gif");
+  background: url("../public/static/media/scribbleback.png");
   border-bottom: 1px solid #ffffff;
-  border-radius: 5px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  position: fixed;
+  z-index: 10;
 }
 
 header div {
   width: 100%;
   height: 3.6rem;
   padding: 2px 15px;
-  border:1px solid #ffffff;
+  border-bottom:1px solid #ffffff;
   background-color: rgba(4, 20, 29, 1);
   font-size: 0.8rem;
   border-bottom-left-radius: 5px;
@@ -35,6 +40,8 @@ header div {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  z-index: 10;
 }
 
 .header:hover {
@@ -48,29 +55,13 @@ header div {
   box-shadow: 0 1px 0 #ffffff;
 }
 
-.logout {
-  position: absolute;
-  right: 1.5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.logout {
-  text-decoration: none;
-}
-
-.logout:hover {
-  color:#DB2821;
-  background-color: #fff;
-}
-
 .mascot {
   height: 1rem;
 }
 
 .main {
-  min-height: calc(100vh - 4rem);
+  padding-top: 4rem;
+  min-height: 100vh;
   /* background: url('https://static.vecteezy.com/system/resources/thumbnails/001/948/673/small/black-metal-texture-background-vector.jpg') center center no-repeat;
   background-size: cover; */
 }
@@ -429,6 +420,16 @@ input[type="text"]:focus, input[type="password"]:focus {
   transition: padding 0.1s, box-shadow 0.1s, top 0.1s; 
 }
 
+.logout {
+  position: absolute;
+  right: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-size: 2rem !important;
+}
+
 .class-link {
   color:#ffffff;
   font-size: 1.5rem;
@@ -598,7 +599,7 @@ input[type="text"]:focus, input[type="password"]:focus {
 
 @media screen and (max-width: 767px) {
   .sidebar {
-    margin: 2rem 0;
+    margin: 1rem 0;
     width: 100%;
     height: 15rem;
   }
@@ -642,8 +643,7 @@ input[type="text"]:focus, input[type="password"]:focus {
     margin: 1rem 0;
   }
   .input-container {
-    height: 10rem;
+    height: 5rem;
     overflow: scroll;
-    background-color: aquamarine;
   }
 }

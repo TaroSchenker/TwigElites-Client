@@ -6,8 +6,8 @@ const Header = () => {
     <header className="w-100">
       <div>
         <img src="./static/media/mascot.png" className="mascot"/>
-        <Link className="logout special-btn caveat" to="/registry" onClick={() => sessionStorage.removeItem("token")}>
-          Logout
+        <Link className="logout draw caveat" to="/registry" onClick={() => sessionStorage.removeItem("token")}>
+          <span>Logout</span>
         </Link>
       </div>
     </header>
