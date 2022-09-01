@@ -86,7 +86,7 @@ const ResultBox = ({
       {time} days ago
       </p>
       <p className="my-0 text-white votes">Votes: {voteCount}</p>
-      <p className="my-0 text-white below">Found By: {user}</p>
+      {/* <p className="my-0 text-white below">Found By: {user}</p> */}
       <p className="my-0 text-white below">
         {/* <strong>Name:</strong> */}
         {name}
