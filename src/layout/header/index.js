@@ -10,12 +10,12 @@ const Header = () => {
 
   const handleLogout = () => {
     console.log("handle the log out")
-    console.log(localStorage.getItem("twiglets-token"))
+
     localStorage.removeItem("twiglets-id");
     localStorage.removeItem("twiglets-token");
     localStorage.clear()
   
-    console.log(localStorage.getItem("twiglets-token"))
+
     setTokenContext(token)
   };
 
@@ -30,10 +30,8 @@ const Header = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("twiglets-token");
-    console.log('in the suse effect', token);
-    if(token){
-      console.log('sing me a song', token, 'context', tokenContext)
-    }
+
+   
   }, [tokenContext]);
   return (
     <header className="w-100">
@@ -41,12 +39,12 @@ const Header = () => {
       <img src="./static/media/logo.png" className="mascot" />
         <Link
           className="logout draw short"
-          to={tokenContext == null ? "/login" : "/login"}
+          to={token == null ? "/login" : "/login"}
           // to= {token !== 'undefined' ?  "/Logout": "/Login"}
           onClick={handleLogout}
         >
           <span className="short">
-            {tokenContext == null ? "Login" : "Logout"}
+            {token == null ? "Login" : "Logout"}
             {/* {token !== 'undefined' ?  "Logout": "Login"} */}
           </span>
         </Link>

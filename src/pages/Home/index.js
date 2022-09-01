@@ -28,7 +28,7 @@ const Home = () => {
     mainState,
     setMainState,
     initialLocation,
-    setInitialLocation,tokenContext
+    setInitialLocation,
   ] = useContext(MapDataContext);
 
   // this fetch is fetching from a nasa API. it is just letft in as a  placeholder, can be ammended for our own requests.
@@ -123,7 +123,7 @@ const Home = () => {
               className="d-flex justify-content-center align-items-center"
             >
               {/* <Sidebarnew sightings={sightings} menu={menu1}/> */}
-              {tokenContext != null && tokenContext != undefined && tokenContext ? (
+              {token != null && token != undefined && token ? (
                 <Sidebar setPlayGame={setPlayGame} />
               ) : (
                 <Spinner animation="grow" variant="danger" />
