@@ -10,6 +10,7 @@ const mainDisplay = ["map", "game", "chat"];
 
 const Home = () => {
   const [eventData, setEventData] = useState([]);
+  const [playGame, setPlayGame] = useState(false);
   const token = localStorage.getItem("twiglets-token");
   const [
     markers,
@@ -126,7 +127,7 @@ const Home = () => {
             >
               {/* <Sidebarnew sightings={sightings} menu={menu1}/> */}
               {token != null && token != undefined && token ? (
-                <Sidebar />
+                <Sidebar setPlayGame={setPlayGame} />
               ) : (
                 <h1 className="loader"> loading</h1>
               )}
@@ -138,7 +139,7 @@ const Home = () => {
               className="p-0 d-flex justify-content-center align-items-center"
             >
               {/* <MainDisplay /> */}
-              {!loading ? <Map /> : <h1 className="loader"> loading</h1>}
+              {!loading && !playGame ? <Map /> : !loading && playGame ? <Game />  :  <h1 className="loader"> loading</h1>}
 
               {/* {!loading ? <Map /> : <h1 className="loader"> loading</h1>}  */}
               {/* <Game /> */}

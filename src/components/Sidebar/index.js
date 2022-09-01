@@ -16,7 +16,7 @@ import {
   ComboboxOption,
 } from "@reach/combobox";
 
-const Sidebar = ({ handleClose }) => {
+const Sidebar = ({ handleClose, setPlayGame }) => {
   const getShopName = (name) => {
     return name.split(",")[0];
   };
@@ -176,7 +176,7 @@ const Sidebar = ({ handleClose }) => {
             <button
               className="draw"
               onClick={() => {
-                setMainState(1);
+                setPlayGame(current => false)
               }}
             >
               <span>
@@ -186,7 +186,7 @@ const Sidebar = ({ handleClose }) => {
             <button
               className="draw"
               onClick={() => {
-                setMainState(2);
+            setPlayGame(current => true)
               }}
             >
               <span>
@@ -196,7 +196,7 @@ const Sidebar = ({ handleClose }) => {
             <button
               className="draw"
               onClick={() => {
-                setMainState(3);
+          
               }}
             >
               <span>
