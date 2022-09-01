@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Container, Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-
 const Signup = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -11,7 +10,6 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [messageForUser, setMessageForUser] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
-
   const handleRegister = async (e) => {
     e.preventDefault();
     const body = {
@@ -32,11 +30,13 @@ const Signup = () => {
       console.error("Oops, there's been an error: ", err);
     }
   };
-
   console.log(isRegistered);
-
   return (
-    <div className="packet">
+    <Container fluid>
+      <Row className="bg-warning" style={{ height: "80vh" }}>
+        <Col className="bg-dark-blue d-flex justify-content-center align-items-center flex-column main">
+          {/* {isShownLog ? <Signin /> : <Signup />} */}
+          <div className="packet">
       <form className="sign-up overlay">
         <h2 className="caveat fm-header">Join the TwigElites</h2>
         <input
@@ -70,21 +70,30 @@ const Signup = () => {
           onChange={(e) => setPasswordConfirmation(e.target.value)}
           value={passwordConfirmation}
         />
-        <p>{messageForUser}</p>
-
+        <p className="text-white caveat">{messageForUser}</p>
         <button
           className="draw caveat"
           type="submit"
           value="JOIN"
           onClick={(e) => handleRegister(e)}
-
         >
           <span className="medium">Join</span>
         </button>
-
       </form>
     </div>
+      <p className="caveat text-white">
+        Already a TwigElite? Login{" "}
+        <a className="txt-blue" href="/login"
+        // onClick={(e) => handleClick(e)}
+        >
+          here
+        </a>
+      </p>
+      {/* <button className="p-3" onClick={e => handleClick(e)}></button> */}
+      {/* {children} */}
+    </Col>
+  </Row>
+</Container>
   );
 };
-
 export default Signup;

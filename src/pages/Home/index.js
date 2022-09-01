@@ -12,6 +12,7 @@ const Home = () => {
   const [eventData, setEventData] = useState([]);
   const [playGame, setPlayGame] = useState(false);
   const token = localStorage.getItem("twiglets-token");
+  const userId = localStorage.getItem("twiglets-user_id");
   console.log('toke toke', token)
   const [
     markers,
@@ -145,7 +146,7 @@ const Home = () => {
             <Col lg={3} md={3} sm={12} className=" d-flex justify-content-center align-items-center">        
               {/* <Sidebarnew sightings={sightings} menu={menu2}/> */}
               {!loading ? (
-                <RightSidebar menu={menu2} />
+                <RightSidebar userId={userId} menu={menu2} />
               ) : (
                 <Spinner animation="grow" variant="danger" />
               )}

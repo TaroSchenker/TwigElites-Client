@@ -37,7 +37,7 @@ const ResultBox = ({
     return (str.length > n) ? str.slice(0, n-1) + '...' : str;
   };
 
-  let shortened = truncate(address, 20);
+  let shortened = truncate(address, 15);
 
   // const updateVoteCountLocal = (id) => {
   //   allTwiglets((current) =>
@@ -81,7 +81,7 @@ const ResultBox = ({
     setGotoTwiglet,
   ] = useContext(MapDataContext);
   return (
-    <div className="box">
+    <div className="box short">
       <p className="my-0 text-white time"> 
       {time} days ago
       </p>

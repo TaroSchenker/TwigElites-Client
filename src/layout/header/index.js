@@ -13,8 +13,8 @@ const Header = () => {
       <div>
         <img src="./static/media/logo.png" className="mascot"/>
         {/* <h1 className="text-white caveat name">TwigElites</h1> */}
-        <Link className="logout draw caveat" to="/registry" onClick={() => sessionStorage.removeItem("token")}>
-          <span className="medium">Logout</span>
+        <Link className="logout draw short" to="/registry" onClick={() => sessionStorage.removeItem("token")}>
+          <span className="medium short">Logout</span>
         </Link>
       </div>
 
@@ -24,11 +24,11 @@ const Header = () => {
       <div>
       <img src="./static/media/logo.png" className="mascot" />
         <Link
-          className="logout draw caveat"
+          className="logout draw short"
           to={token == undefined ? "/login" : "/login"}
           onClick={handleLogout}
         >
-          <span>
+          <span className="short">
             {token == undefined ? "Login" : "Logout"}
           </span>
         </Link>
