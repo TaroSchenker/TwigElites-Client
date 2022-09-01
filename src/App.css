@@ -447,7 +447,6 @@ input[type="text"]:focus, input[type="password"]:focus {
 }
 
 .draw:active {
-  top: 4px;
   padding-bottom: 0px;
   box-shadow: 0 1px 0 #ffffff;
 }
