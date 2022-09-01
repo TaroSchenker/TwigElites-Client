@@ -60,12 +60,11 @@ const Signin = () => {
           // to={token ? "/add-location" : null}
           to={token ? "/chat" : "/registry"}
         >
-          <input
-            className="special-btn caveat"
+          <button
+            className="draw caveat"
             type="submit"
-            value="LOGIN"
             onClick={(e) => handleLogin(e)}
-          />
+          ><span>Login</span></button>
         </Link>
       </form>
     </div>

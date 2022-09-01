@@ -9,11 +9,13 @@ const Header = () => {
   return (
     <header className="w-100">
 
-      <img src="./static/media/mascot.png" className="mascot"/>
-      <Link className="logout special-btn caveat" to="/registry" onClick={() => sessionStorage.removeItem("token")}>
+      <div>
+        <img src="./static/media/mascot.png" className="mascot"/>
+        <Link className="logout draw caveat" to="/registry" onClick={() => sessionStorage.removeItem("token")}>
+          <span>Logout</span>
+        </Link>
+      </div>
 
-        Logout
-      </Link>
     </header>
   );
 };

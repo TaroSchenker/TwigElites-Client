@@ -200,7 +200,7 @@ export default function App() {
                 {/* Found Originals! {formatRelative(selected.time, new Date())} */}
               </p>
               <p>Address: {selected.address}</p>
-              <p>Upvote Count: {selectedId.votes}</p>
+              <p className="text-black" >Upvote Count: {selectedId.votes}</p>
               <button class="box-btn m-2" disabled={disable} onClick={addTwigletVote}><i class="fa-solid fa-thumbs-up"></i></button>
               <button class="box-btn m-2" onClick={deleteTwiglet}><i class="fa-solid fa-trash"></i></button>
             </div>
