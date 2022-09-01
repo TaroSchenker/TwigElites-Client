@@ -7,3 +7,5 @@ export { default as Sidebarnew } from "./Sidebarnew";
 export { default as Pagination } from "./Pagination";
 export { default as Chat } from "./Chat";
 export { default as Signin } from "./Signin";
+export { default as Signup } from "./Signup";
+

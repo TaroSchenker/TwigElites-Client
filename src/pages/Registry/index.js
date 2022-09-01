@@ -4,9 +4,9 @@ import Sidebar from "../../components/Sidebar";
 import Signup from "../../components/Signup";
 import Signin from "../../components/Signin";
 import { useState } from "react";
-import Header from "../../layout/header"
+import Header from "../../layout/header";
 
-const Registry = () => {
+const Registry = ({ children }) => {
   const [isShownLog, setIsShownLog] = useState(true);
 
   const handleClick = (e) => {
@@ -31,11 +31,26 @@ const Registry = () => {
 
     <Container fluid>
       <Row className="bg-warning" style={{ height: "80vh" }}>
-          <Col className="bg-dark-blue d-flex justify-content-center align-items-center flex-column main">
-              { isShownLog ? <Signin /> : <Signup /> }
-              { isShownLog ? <p className="caveat text-white">Don't have an account? Signup <a className="txt-blue" href="#" onClick={e => handleClick(e)}>here</a></p> : <p className="caveat text-white">Already a TwigElite? Login <a className="txt-blue" href="#" onClick={e => handleClick(e)}>here</a></p> }
-              {/* <button className="p-3" onClick={e => handleClick(e)}></button> */}
-          </Col>
+        <Col className="bg-dark-blue d-flex justify-content-center align-items-center flex-column main">
+          {isShownLog ? <Signin /> : <Signup />}
+          {isShownLog ? (
+            <p className="caveat text-white">
+              Don't have an account? Signup{" "}
+              <a className="txt-blue" href="#" onClick={(e) => handleClick(e)}>
+                here
+              </a>
+            </p>
+          ) : (
+            <p className="caveat text-white">
+              Already a TwigElite? Login{" "}
+              <a className="txt-blue" href="#" onClick={(e) => handleClick(e)}>
+                here
+              </a>
+            </p>
+          )}
+          {/* <button className="p-3" onClick={e => handleClick(e)}></button> */}
+          {children}
+        </Col>
       </Row>
     </Container>
   );

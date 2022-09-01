@@ -16,9 +16,9 @@ header {
   /* box-shadow: 0 2px 3px rgb(61, 61, 61);
   border-bottom: 1px solid #868686; */
   box-shadow: 0 2px 0 #ffffff,
-              -3px 5px 1px #04141D,
-              3px 5px 1px #04141D;
-  transition: padding 0.1s, box-shadow 0.1s, top 0.1s; 
+    -3px 5px 1px #04141D,
+    3px 5px 1px #04141D;
+  transition: padding 0.1s, box-shadow 0.1s, top 0.1s;
   padding-bottom: 0.4rem;
   background: url("../public/static/media/scribbleback.png");
   border-bottom: 1px solid #ffffff;
@@ -33,15 +33,15 @@ header div {
   width: 100%;
   height: 3.6rem;
   padding: 2px 15px;
-  border-bottom:1px solid #ffffff;
+  border-bottom: 1px solid #ffffff;
   background-color: rgba(4, 20, 29, 1);
   font-size: 0.8rem;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
-  
- /* may need to remove   */
- 
+
+/* may need to remove   */
+
 .logout {
   position: absolute;
   right: 1.5rem;
@@ -54,8 +54,8 @@ header div {
   font-size: 1rem;
   border-radius: 15px;
   color: #ffffff;
-  
- /* may need to remove   */
+
+  /* may need to remove   */
 
   display: flex;
   justify-content: center;
@@ -75,14 +75,14 @@ header div {
   padding-bottom: 0px;
   box-shadow: 0 1px 0 #ffffff;
    */
- /* may need to remove   */
- 
+/* may need to remove   */
+
 .logout:hover {
   color: #DB2821;
   background-color: #fff;
-  
- /* may need to remove   */
- 
+
+  /* may need to remove   */
+
 }
 
 .mascot {
@@ -231,8 +231,8 @@ header div {
 .special-btn:hover,
 .special-btn:focus {
 
-    color: #ffffff;
-    /* text-shadow: 0 0 20px hsla(240,75%,75%,.5),
+  color: #ffffff;
+  /* text-shadow: 0 0 20px hsla(240,75%,75%,.5),
                  0 1px 1px hsla(0,0%,100%,.25),
                  0 -1px 1px hsla(0,0%,0%,.75); */
 
@@ -243,16 +243,16 @@ header div {
   border: none;
   border-radius: 50%;
 
-  box-shadow: inset 0 0 2px 2px hsla(2,74%,49%,.2),
-              inset 0 0 2px 4px hsla(2,74%,49%,.2),
-              inset 0 0 2px 6px hsla(2,74%,49%,.2),
-              inset 0 0 1px 8px hsla(2,74%,49%,.5),
-              inset 0 -4px 2px 4px hsla(2,74%,49%,.5),
-              inset 0 1px 1px 8px hsla(2,74%,100%,.25),
-              inset 0 -30px 30px hsla(2,74%,49%,.2),
-              0 -4px 8px 4px hsla(2,74%,49%,.5),
-              0 10px 10px hsla(2,74%,49%,.25),
-              0 0 2px 2px hsla(2,74%,49%,.2);
+  box-shadow: inset 0 0 2px 2px hsla(2, 74%, 49%, .2),
+    inset 0 0 2px 4px hsla(2, 74%, 49%, .2),
+    inset 0 0 2px 6px hsla(2, 74%, 49%, .2),
+    inset 0 0 1px 8px hsla(2, 74%, 49%, .5),
+    inset 0 -4px 2px 4px hsla(2, 74%, 49%, .5),
+    inset 0 1px 1px 8px hsla(2, 74%, 100%, .25),
+    inset 0 -30px 30px hsla(2, 74%, 49%, .2),
+    0 -4px 8px 4px hsla(2, 74%, 49%, .5),
+    0 10px 10px hsla(2, 74%, 49%, .25),
+    0 0 2px 2px hsla(2, 74%, 49%, .2);
 
 
   cursor: pointer;
@@ -300,12 +300,14 @@ header div {
 
 
 .map-box {
-  color:#000000;
+  color: #000000;
   text-align: center;
   border-radius: 15px;
 }
 
-input[type="text"], input[type="password"], .search input {
+input[type="text"],
+input[type="password"],
+.search input {
 
   background-color: #0289BA;
   color: #fff;
@@ -319,7 +321,7 @@ input[type="text"], input[type="password"], .search input {
   height: 2rem;
 }
 
-.search input{
+.search input {
   border-radius: 0em !important;
 }
 
@@ -368,10 +370,11 @@ input[type="password"]:focus {
 }
 
 .filters:hover {
-  color:#DB2821;
+  color: #DB2821;
 }
 
-.link, .link:visited {
+.link,
+.link:visited {
 
   color: white;
   text-decoration: none;
@@ -428,12 +431,12 @@ input[type="password"]:focus {
   text-align: center;
   line-height: 180%;
   border: 1px solid #ffffff;
-  box-shadow: rgba(131, 131, 240, 0.25) 0px 50px 100px -20px, 
-  rgba(255, 255, 255, 0.3) 0px 30px 60px -30px, 
-  rgba(38, 139, 240, 0.35) 0px -2px 6px 0px inset, 
-  rgba(0, 0, 0, 0.4) 0px 2px 4px, 
-  rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, 
-  rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+  box-shadow: rgba(131, 131, 240, 0.25) 0px 50px 100px -20px,
+    rgba(255, 255, 255, 0.3) 0px 30px 60px -30px,
+    rgba(38, 139, 240, 0.35) 0px -2px 6px 0px inset,
+    rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+    rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
   transition: 0.5s;
   position: relative;
 
@@ -455,7 +458,7 @@ input[type="password"]:focus {
 
 .draw:hover {
   box-shadow: 0 1px 0 #ffffff, 0 1px 0px 1px #ffffff;
-  color:#ffffff;
+  color: #ffffff;
 }
 
 .draw:active {
@@ -463,13 +466,14 @@ input[type="password"]:focus {
   padding-bottom: 0px;
   box-shadow: 0 1px 0 #ffffff;
 }
+
 .draw {
   color: #DB2821;
   text-decoration: none;
   padding-bottom: 3px;
   border-radius: 15px;
   box-shadow: 0 2px 0 #ffffff;
-  transition: padding 0.1s, box-shadow 0.1s, top 0.1s; 
+  transition: padding 0.1s, box-shadow 0.1s, top 0.1s;
 }
 
 .logout {
@@ -483,7 +487,7 @@ input[type="password"]:focus {
 }
 
 .class-link {
-  color:#ffffff;
+  color: #ffffff;
   font-size: 1.5rem;
 }
 
@@ -524,7 +528,7 @@ input[type="password"]:focus {
   font-size: 1rem;
   border-radius: 15px;
 
-  color:#DB2821;
+  color: #DB2821;
 
   position: relative;
   top: 0;
@@ -627,10 +631,10 @@ input[type="password"]:focus {
   border-radius: 15px;
 }
 
-.modal-content  {
+.modal-content {
   -webkit-border-radius: 0px !important;
   -moz-border-radius: 0px !important;
-  border-radius: 15px !important; 
+  border-radius: 15px !important;
 }
 
 .search input {
@@ -659,6 +663,7 @@ input[type="password"]:focus {
     width: 100%;
     height: 15rem;
   }
+
   .slider {
     display: flex;
     flex-direction: column;
@@ -666,11 +671,13 @@ input[type="password"]:focus {
     padding: 0;
     height: 12rem;
   }
+
   .parentSlider {
     width: 100%;
     height: 100%;
     overflow: hidden;
   }
+
   .subSlider {
     display: flex;
     flex-direction: row;
@@ -678,12 +685,15 @@ input[type="password"]:focus {
     width: 100%;
     height: 100%;
     overflow-x: scroll;
-    padding-bottom: 17px; /* Increase/decrease this value for cross-browser compatibility */
-    box-sizing: content-box; /* So the width will be 100% + 17px */
+    padding-bottom: 17px;
+    /* Increase/decrease this value for cross-browser compatibility */
+    box-sizing: content-box;
+    /* So the width will be 100% + 17px */
     /* border: 1px solid #ffffff; */
     /* border-radius: 15px; */
     overflow: scroll;
   }
+
   .box {
     width: 15rem;
     margin: 5px;
@@ -693,11 +703,22 @@ input[type="password"]:focus {
   .map-container {
     margin: auto 0.6rem;
   }
+
   .l-sidebar {
     width: 100%;
     height: 20rem;
     margin: 1rem 0;
   }
+
+  .blurred {
+    filter: blur(1.5rem);
+    background: "yellow";
+  }
+
+  .red {
+    background-color: "red"
+  }
+
   .input-container {
     height: 5rem;
     overflow: scroll;
