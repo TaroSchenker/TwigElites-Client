@@ -14,7 +14,7 @@ const ResultBox = ({
   votes,
   twiglet,
 }) => {
-  console.log('result box',twiglet)
+
   const [disable, setDisable] = useState(false);
 
   const [show, setShow] = useState(false);

@@ -21,7 +21,7 @@ const Signin = () => {
     };
     try {
       const { data } = await axios.post(
-        "https://test-twiglets.herokuapp.com/auth/login",
+        "http://test-twiglets.herokuapp.com/auth/login",
         body
       );
       // saving token in sessionStorage - when user logs out this token needs to be removed
