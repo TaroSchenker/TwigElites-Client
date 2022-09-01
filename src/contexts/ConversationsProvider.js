@@ -14,7 +14,9 @@ export function ConversationsProvider({ children }) {
     "conversations",
     []
   );
-  const id = JSON.parse(localStorage.getItem("twiglets-id"));
+  const id =
+    localStorage.getItem("twiglets-id") != "undefined" &&
+    JSON.parse(localStorage.getItem("twiglets-id"));
   const [selectedConversationIndex, setSelectedConversationIndex] = useState(0);
   const { contacts } = useContacts();
   const socket = useSocket();
@@ -27,11 +29,12 @@ export function ConversationsProvider({ children }) {
 
   const addMessageToConversation = useCallback(
     ({ recipients, text, sender }) => {
-      console.log(recipients); //this one is working
-
+      console.log(recipients, text, sender);
       setConversations((prevConversations) => {
         let madeChange = false;
         const newMessage = { sender, text };
+        console.log("RECIP conv prov line 32", recipients); //this one is working
+        console.log("NEW MESSAGE", newMessage);
         const newConversations = prevConversations.map((conversation) => {
           if (arrayEquality(conversation.recipients, recipients)) {
             madeChange = true;
@@ -58,11 +61,11 @@ export function ConversationsProvider({ children }) {
     if (socket == null) return;
 
     socket.on("receive-message", addMessageToConversation);
-
     return () => socket.off("receive-message");
   }, [socket, addMessageToConversation]);
 
   function sendMessage(recipients, text) {
+    console.log(recipients);
     socket.emit("send-message", { recipients, text });
     addMessageToConversation({ recipients, text, sender: id });
   }

@@ -3,6 +3,7 @@ import axios from "axios";
 import { Container, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import useLocalStorage from "../../hooks/useLocalStorage";
+import { useSocket } from "../../contexts/SocketProvider";
 
 const Signin = () => {
   const [username, setUsername] = useState("");
@@ -10,10 +11,8 @@ const Signin = () => {
   const [messageForUser, setMessageForUser] = useState("");
   const [token, setToken] = useLocalStorage("token");
   const [id, setId] = useLocalStorage("id");
+  const socket = useSocket();
 
-  // const token = sessionStorage.getItem("token");
-  // console.log("ID:", id);
-  // console.log("TOKEN:", token);
   const handleLogin = async (e) => {
     // e.preventDefault();
     const body = {
@@ -22,17 +21,19 @@ const Signin = () => {
     };
     try {
       const { data } = await axios.post(
-        "https://test-twiglets.herokuapp.com//auth/login",
+        "https://test-twiglets.herokuapp.com/auth/login",
         body
       );
       // saving token in sessionStorage - when user logs out this token needs to be removed
       setMessageForUser(data.access_token);
       setToken(data.access_token.token);
       setId(data.access_token.username);
+
       // console.log(token, id);
     } catch (err) {
       console.error("Oops, there's been an error: ", err);
     }
+    socket.emit("join-chat", id);
   };
   return (
     <div className="packet">

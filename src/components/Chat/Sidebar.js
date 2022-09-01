@@ -13,7 +13,6 @@ const Sidebar = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const conversationOpen = activeKey === CONVERSATIONS_KEY;
   const id = JSON.parse(localStorage.getItem("twiglets-id"));
-  console.log(id);
 
   const closeModal = () => {
     setModalOpen(false);

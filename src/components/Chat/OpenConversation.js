@@ -13,7 +13,7 @@ const OpenConversation = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    console.log(selectedConversation.recipients);
     sendMessage(
       selectedConversation.recipients.map((r) => r.id),
       text
@@ -33,12 +33,16 @@ const OpenConversation = () => {
                 ref={lastMessage ? setRef : null}
                 key={index}
                 className={`my-1 d-flex flex-column ${
-                  message.fromMe ? "align-self-end align-items-end" : "align-items-start"
+                  message.fromMe
+                    ? "align-self-end align-items-end"
+                    : "align-items-start"
                 }`}
               >
                 <div
                   className={`rounded px-2 py-1 ${
-                    message.fromMe ? "bg-primary text-white" : "border text-white"
+                    message.fromMe
+                      ? "bg-primary text-white"
+                      : "border text-white"
                   }`}
                 >
                   {message.text}

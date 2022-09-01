@@ -4,7 +4,6 @@ import { useContacts } from "../../contexts/ContactsProvider";
 
 const NewContactsModal = ({ closeModal }) => {
   const idRef = useRef();
-  const nameRef = useRef();
   const { createContact } = useContacts();
 
   const handleSubmit = (e) => {
