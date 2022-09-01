@@ -61,7 +61,9 @@ export default function App() {
     const { data } = await axios.patch(
       `https://test-twiglets.herokuapp.com/twiglets/${selectedId}/`);
         console.log(data)
-  
+
+
+
   };
 
   //funtion to remove the twiglet from the local array once it has been deleted from the database.
@@ -94,7 +96,7 @@ export default function App() {
     loading,
     setLoading,
     gotoTwiglet,
-    setGotoTwiglet, mainState, setMainState
+    setGotoTwiglet, mainState, setMainState, voteCount, setVoteCount
   ] = useContext(MapDataContext);
 
   // console.log("selected", selected);

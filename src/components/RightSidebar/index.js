@@ -85,6 +85,7 @@ const RightSidebar = ({ menu }) => {
     //       return 0;
     //     }
         
+
     //     let sortedByVotes = allTwiglets.sort( compare );
     //     setAllTwiglets(sortedByVotes);
     //     break;
@@ -117,6 +118,30 @@ const RightSidebar = ({ menu }) => {
     // }
     // console.log(allTwiglets)
     // setUpdate(!update);
+
+        let sorted = allTwiglets.sort( compare );
+        setAllTwiglets(sorted);
+        break;
+      case "recent":
+        console.log("recent")
+        break;
+      case "mytwiglets":
+        console.log("mine")
+        const fetch_my_twiglets = async () => {
+          const { data } = await axios.get(
+            "https://test-twiglets.herokuapp.com/twiglets/user/1"
+          );
+          setAllTwiglets([...data]);
+          // return data;
+        };
+        fetch_my_twiglets();
+        break
+      default:
+        break;
+    }
+    console.log(allTwiglets)
+    setUpdate(!update);
+
   }
 
   return (
@@ -137,7 +162,7 @@ const RightSidebar = ({ menu }) => {
           <a className="filters" href="#" onClick={() => {sorted("mytwiglets")}}>
             <i class="fa-solid fa-street-view"></i>
           </a>
-          <a className="filters" href="#" onClick={() => {sorted("recent")}}>
+          <a className="filters" href   ="#" onClick={() => {sorted("recent")}}>
             <i class="fa-solid fa-clock"></i>
           </a>
 

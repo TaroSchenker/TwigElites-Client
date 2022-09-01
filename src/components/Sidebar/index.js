@@ -168,7 +168,7 @@ const Sidebar = ({ handleClose }) => {
               setMainState(1);
             }}
           >
-            <span><i class="fa-solid fa-globe"></i></span>
+            <span><i className="fa-solid fa-globe"></i></span>
           </button>
           <button className="draw"
             onClick={() => {
@@ -176,7 +176,7 @@ const Sidebar = ({ handleClose }) => {
               setMainState(2);
             }}
           >
-           <span><i class="fa-solid fa-gamepad"></i></span>
+           <span><i className="fa-solid fa-gamepad"></i></span>
           </button>
           <button className="draw"
             onClick={() => {
@@ -184,7 +184,7 @@ const Sidebar = ({ handleClose }) => {
               setMainState(3);
             }}
           >
-           <span><i class="fa-solid fa-comment"></i></span>
+           <span><i className="fa-solid fa-comment"></i></span>
           </button>
         </div>
         </Row>
