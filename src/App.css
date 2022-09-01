@@ -79,14 +79,6 @@ header div {
 
 /* may need to remove   */
 
-.logout:hover {
-  color: #DB2821;
-  background-color: #fff;
-
-  /* may need to remove   */
-
-}
-
 .mascot {
   height: 3rem;
   position: absolute;
@@ -469,7 +461,7 @@ input[type="text"]:focus, input[type="password"]:focus {
   transition: padding 0.1s, box-shadow 0.1s, top 0.1s;
 }
 
-.logout {
+/* .logout {
   position: absolute;
   right: 1.5rem;
   display: flex;
@@ -477,7 +469,7 @@ input[type="text"]:focus, input[type="password"]:focus {
   align-items: center;
   text-decoration: none;
   font-size: 2rem !important;
-}
+} */
 
 .class-link {
   color: #ffffff;

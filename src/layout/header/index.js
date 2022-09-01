@@ -21,14 +21,18 @@ const Header = () => {
   useEffect(() => {}, [token]);
   return (
     <header className="w-100">
+      <div>
       <img src="./static/media/mascot.png" className="mascot" />
-      <Link
-        className="logout caveat"
-        to={token == undefined ? "/login" : "/login"}
-        onClick={handleLogout}
-      >
-        {token == undefined ? "Login" : "Logout"}
-      </Link>
+        <Link
+          className="logout draw caveat"
+          to={token == undefined ? "/login" : "/login"}
+          onClick={handleLogout}
+        >
+          <span>
+            {token == undefined ? "Login" : "Logout"}
+          </span>
+        </Link>
+      </div>
     </header>
   );
 };
