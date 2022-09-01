@@ -5,7 +5,7 @@ import Sidebar from "../../components/Sidebar";
 import { MapDataContext } from "../../MapDataContext";
 import axios from "axios";
 import Game from "../../components/Game/Main";
-
+import Spinner from 'react-bootstrap/Spinner';
 const mainDisplay = ["map", "game", "chat"];
 
 const Home = () => {
@@ -75,11 +75,6 @@ const Home = () => {
     });
   }, []);
 
-  console.log("These are the markers");
-  console.log("These are the markers");
-  console.log(markers);
-  console.log("These are the markers");
-  console.log("These are the markers");
 
   let sightings = [1, 2, 3, 4, 5];
 
@@ -130,7 +125,7 @@ const Home = () => {
               {token != null && token != undefined && token ? (
                 <Sidebar setPlayGame={setPlayGame} />
               ) : (
-                <h1 className="loader"> loading</h1>
+                <Spinner animation="grow" variant="danger" />
               )}
             </Col>
             <Col
@@ -140,7 +135,7 @@ const Home = () => {
               className="p-0 d-flex justify-content-center align-items-center"
             >
               {/* <MainDisplay /> */}
-              {!loading && !playGame ? <Map /> : !loading && playGame ? <Game />  :  <h1 className="loader"> loading</h1>}
+              {!loading && !playGame ? <Map /> : !loading && playGame ? <Game />  :     <Spinner animation="grow" variant="danger" />}
 
               {/* {!loading ? <Map /> : <h1 className="loader"> loading</h1>}  */}
               {/* <Game /> */}
@@ -152,7 +147,7 @@ const Home = () => {
               {!loading ? (
                 <RightSidebar menu={menu2} />
               ) : (
-                <h1 className="loader"> loading</h1>
+                <Spinner animation="grow" variant="danger" />
               )}
               </Col>
           </Row>
