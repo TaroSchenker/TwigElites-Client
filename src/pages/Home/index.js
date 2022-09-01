@@ -126,7 +126,7 @@ const MainDisplay = () =>{
               {/* <Game /> */}
             </Col>
 
-            <Col lg={3} className=" d-flex justify-content-center align-items-center">
+            <Col lg={3} md={3} sm={12} className=" d-flex justify-content-center align-items-center">
 
             {/* <Sidebarnew sightings={sightings} menu={menu2}/> */}
             {!loading ? <RightSidebar menu={menu2}/> : <h1 className="loader"> loading</h1>}

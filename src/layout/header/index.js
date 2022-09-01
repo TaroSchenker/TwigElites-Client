@@ -10,9 +10,10 @@ const Header = () => {
     <header className="w-100">
 
       <div>
-        <img src="./static/media/mascot.png" className="mascot"/>
+        <img src="./static/media/logo.png" className="mascot"/>
+        {/* <h1 className="text-white caveat name">TwigElites</h1> */}
         <Link className="logout draw caveat" to="/registry" onClick={() => sessionStorage.removeItem("token")}>
-          <span>Logout</span>
+          <span className="medium">Logout</span>
         </Link>
       </div>
 
