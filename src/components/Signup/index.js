@@ -38,7 +38,7 @@ const Signup = () => {
   return (
     <div className="packet">
       <form className="sign-up overlay">
-        <h2 className="caveat fm-header">Become a TwigElite</h2>
+        <h2 className="caveat fm-header">Join the TwigElites</h2>
         <input
           className="caveat"
           type="text"
@@ -77,9 +77,11 @@ const Signup = () => {
           type="submit"
           value="JOIN"
           onClick={(e) => handleRegister(e)}
+
         >
-          <span>Join</span>
+          <span className="medium">Join</span>
         </button>
+
       </form>
     </div>
   );

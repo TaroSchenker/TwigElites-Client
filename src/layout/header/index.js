@@ -9,7 +9,14 @@ const Header = () => {
     localStorage.removeItem("twiglets-token");
   };
 
-  console.log("*********~", token); // false
+
+      <div>
+        <img src="./static/media/logo.png" className="mascot"/>
+        {/* <h1 className="text-white caveat name">TwigElites</h1> */}
+        <Link className="logout draw caveat" to="/registry" onClick={() => sessionStorage.removeItem("token")}>
+          <span className="medium">Logout</span>
+        </Link>
+      </div>
 
   useEffect(() => {}, [token]);
   return (

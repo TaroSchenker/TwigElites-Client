@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
-import { Container, Col, Row, Card, Form, Button } from "react-bootstrap";
+import { Container, Col, Row, Card, Form, Button, Modal } from "react-bootstrap";
 import { MapDataContext } from "../../MapDataContext";
 import axios from "axios";
 import "../../App.css";
@@ -35,6 +35,10 @@ const Sidebar = ({ handleClose, setPlayGame }) => {
     setMainState,
     setGotoTwiglet,
   ] = useContext(MapDataContext);
+  const [show, setShow] = useState(false);
+
+  const handleClosing = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const token = localStorage.getItem("twiglets-token");
   // console.log("TOKE", token);
@@ -172,7 +176,32 @@ const Sidebar = ({ handleClose, setPlayGame }) => {
               </div>
             </form>
           </Col>
+          <div className="info-te d-flex justify-content-center caveat flex-column align-items-center">
+            <p className="caveat text-white text-center">This is an application to locate the original twiglets. Click below to find out more</p>
+            <button className="draw" onClick={handleShow}><span className="medium">Info</span></button>
+            <Modal
+              show={show}
+              onHide={handleClose}
+              backdrop="static"
+              keyboard={false}
+              centered
+            >
+              <div className="bg-dark-blue mod text-white text-center">
+              <Modal.Body>
+                Hello, we are the TwigElites, where our passion for the original Twiglet recipe drove us to create an application dedicated to locating all the lost original Twiglets. The recipe was changed to be HFSS compliant. Our mission is to show that there is enough demand for the original recipe to show the producers of Twiglets, that we want our Twiglets back.
+              </Modal.Body>
+              <Modal.Footer className="d-flex justify-content-center align-items-center">
+                <button className="draw" onClick={handleClosing}>
+                  <span>
+                  Close
+                  </span>
+                </button>
+              </Modal.Footer>
+              </div>
+            </Modal>
+          </div>
           <div className="mt-5 d-flex justify-content-evenly controls">
+
             <button
               className="draw"
               onClick={() => {
@@ -204,6 +233,36 @@ const Sidebar = ({ handleClose, setPlayGame }) => {
               </span>
             </button>
           </div>
+/*
+          <button className="draw"
+            onClick={() => {
+
+  setPlayGame(current => false)
+            }}
+            data-toggle="tooltip" data-placement="top" title="View twiglocator"
+          >
+            <span data-toggle="tooltip" data-placement="top" title="View twiglocator"><i className="fa-solid fa-globe"></i></span>
+          </button>
+          <button className="draw"
+            onClick={() => {
+
+                setPlayGame(current => true)
+            }}
+            data-toggle="tooltip" data-placement="top" title="Play twigame"
+          >
+           <span data-toggle="tooltip" data-placement="top" title="Play twigame"><i className="fa-solid fa-gamepad"></i></span>
+          </button>
+          <button className="draw"
+            onClick={() => {
+   
+              setMainState(3);
+            }}
+            data-toggle="tooltip" data-placement="top" title="Start twiglegram"
+          >
+           <span data-toggle="tooltip" data-placement="top" title="Start twiglegram"><i className="fa-solid fa-comment"></i></span>
+          </button>
+        </div>
+ */
         </Row>
       </Container>
     </div>

@@ -156,13 +156,13 @@ const RightSidebar = ({ menu }) => {
           currentPage={currentPage}
         /> */}
         <li className="base item s-link d-flex justify-content-evenly align-items-center">
-          <a className="filters" href="#" onClick={() => {sorted("toprated")}}>
+          <a className="filters" href="#" onClick={() => {sorted("toprated")}} data-toggle="tooltip" data-placement="top" title="filter by upvotes">
             <span><i class="fa-solid fa-circle-arrow-up"></i></span>
           </a>
-          <a className="filters" href="#" onClick={() => {sorted("mytwiglets")}}>
+          <a className="filters" href="#" onClick={() => {sorted("mytwiglets")}} data-toggle="tooltip" data-placement="top" title="filter my twiglets">
             <i class="fa-solid fa-street-view"></i>
           </a>
-          <a className="filters" href   ="#" onClick={() => {sorted("recent")}}>
+          <a className="filters" href   ="#" onClick={() => {sorted("recent")}} data-toggle="tooltip" data-placement="top" title="filter by most recent">
             <i class="fa-solid fa-clock"></i>
           </a>
 
