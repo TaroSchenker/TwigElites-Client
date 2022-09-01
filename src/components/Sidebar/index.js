@@ -233,8 +233,8 @@ const Sidebar = ({ handleClose, setPlayGame }) => {
               </span>
             </button>
           </div>
-/*
-          <button className="draw"
+
+          {/* <button className="draw"
             onClick={() => {
 
   setPlayGame(current => false)
@@ -261,8 +261,8 @@ const Sidebar = ({ handleClose, setPlayGame }) => {
           >
            <span data-toggle="tooltip" data-placement="top" title="Start twiglegram"><i className="fa-solid fa-comment"></i></span>
           </button>
-        </div>
- */
+        </div> */}
+
         </Row>
       </Container>
     </div>
