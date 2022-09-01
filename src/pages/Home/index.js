@@ -163,7 +163,7 @@ const Home = () => {
             >
               {/* <Sidebarnew sightings={sightings} menu={menu2}/> */}
               {!loading ? (
-                <RightSidebar menu={menu2} />
+                <RightSidebar menu={menu2} userId={userId} />
               ) : (
                 <h1 className="loader"> loading</h1>
               )}

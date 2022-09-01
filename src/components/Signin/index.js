@@ -35,12 +35,44 @@ const Signin = () => {
       console.error("Oops, there's been an error: ", err);
     }
   };
+
+
+
+
+
+
+
+  // const [isShownLog, setIsShownLog] = useState(true);
+
+  // const handleClick = (e) => {
+  //   e.preventDefault();
+  //   // setIsShownLog((current) => !current);
+  // };
+
   return (
-    <div className="packet">
-      <form className="sign-up overlay">
-        <h2 className="caveat fm-header">Fellow TwigElites</h2>
-        <br />
-        <input
+    // <Container>
+    //   <Row>
+    //     <Col s={12} className=" bg-warning">
+    //       nav bar here
+    //     </Col>
+    //   </Row>
+    //   <Row className="bg-warning mt-4" style={{ height: "80vh" }}>
+    //     <Col className="bg-primary d-flex justify-content-center align-items-center">
+    //       {isShownLog ? <Signin /> : <Signup />}
+    //       <button onClick={(e) => handleClick(e)}></button>
+    //     </Col>
+    //   </Row>
+    // </Container>
+
+    <Container fluid>
+      <Row className="bg-warning" style={{ height: "80vh" }}>
+        <Col className="bg-dark-blue d-flex justify-content-center align-items-center flex-column main">
+          {/* {isShownLog ? <Signin /> : <Signup />} */}
+          <div className="packet">
+       <form className="sign-up overlay">
+         <h2 className="caveat fm-header">Fellow TwigElites</h2>
+         <br />
+         <input
           className="caveat"
           type="text"
           placeholder="NAME"
@@ -70,6 +102,64 @@ const Signin = () => {
         </Link>
       </form>
     </div>
+      <p className="caveat text-white">
+        Don't have an account? Signup{" "}
+        <a className="txt-blue" href="/register" 
+        // onClick={(e) => handleClick(e)}
+        >
+          here
+        </a>
+      </p>
+          {/* <button className="p-3" onClick={e => handleClick(e)}></button> */}
+          {/* {children} */}
+        </Col>
+      </Row>
+    </Container>
+
+
+
+
+
+
+
+
+
+
+  // return (
+  //   <div className="packet">
+  //     <form className="sign-up overlay">
+  //       <h2 className="caveat fm-header">Fellow TwigElites</h2>
+  //       <br />
+  //       <input
+  //         className="caveat"
+  //         type="text"
+  //         placeholder="NAME"
+  //         onChange={(e) => setUsername(e.target.value)}
+  //         value={username}
+  //       />
+  //       <br />
+  //       <input
+  //         className="caveat"
+  //         type="password"
+  //         placeholder="PASSWORD 1"
+  //         onChange={(e) => setPassword(e.target.value)}
+  //         value={password}
+  //       />
+  //       <br />
+  //       <Link
+  //         onClick={(e) => (token === "undefined" ? e.preventDefault() : null)}
+  //         to={token ? "/" : "/login"}
+  //       >
+  //         <button
+  //           className="draw caveat"
+  //           type="submit"
+  //           onClick={(e) => handleLogin(e)}
+  //         >
+  //           <span className="medium">Login</span>
+  //         </button>
+  //       </Link>
+  //     </form>
+  //   </div>
   );
 };
 
