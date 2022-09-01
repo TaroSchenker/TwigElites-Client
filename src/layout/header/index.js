@@ -1,12 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
+import { MapDataContext } from "../../MapDataContext";
 import { Link } from "react-router-dom";
 
 const Header = () => {
+  const [
+  tokenContext, setTokenContext
+  ] = useContext(MapDataContext);
   const token = localStorage.getItem("twiglets-token");
 
   const handleLogout = () => {
+    console.log("handle the log out")
+    console.log(localStorage.getItem("twiglets-token"))
     localStorage.removeItem("twiglets-id");
     localStorage.removeItem("twiglets-token");
+    localStorage.clear()
+  
+    console.log(localStorage.getItem("twiglets-token"))
+    setTokenContext(token)
   };
 
 
@@ -18,18 +28,26 @@ const Header = () => {
         </Link>
       </div>
 
-  useEffect(() => {}, [token]);
+  useEffect(() => {
+    const token = localStorage.getItem("twiglets-token");
+    console.log('in the suse effect', token);
+    if(token){
+      console.log('sing me a song', token, 'context', tokenContext)
+    }
+  }, [tokenContext]);
   return (
     <header className="w-100">
       <div>
       <img src="./static/media/logo.png" className="mascot" />
         <Link
           className="logout draw short"
-          to={token == undefined ? "/login" : "/login"}
+          to={tokenContext == null ? "/login" : "/login"}
+          // to= {token !== 'undefined' ?  "/Logout": "/Login"}
           onClick={handleLogout}
         >
           <span className="short">
-            {token == undefined ? "Login" : "Logout"}
+            {tokenContext == null ? "Login" : "Logout"}
+            {/* {token !== 'undefined' ?  "Logout": "Login"} */}
           </span>
         </Link>
       </div>

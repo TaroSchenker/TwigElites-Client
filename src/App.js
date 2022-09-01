@@ -16,6 +16,7 @@ function App() {
         <Route path="/chat" element={<Chat />} />
         <Route path="/login" element={<Signin />} />
         <Route path="/register" element={<Signup />} />
+        <Route path="/logout" element={<Signin />} />
       </Route>
     </Routes>
   );
