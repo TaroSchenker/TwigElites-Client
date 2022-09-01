@@ -169,20 +169,24 @@ const RightSidebar = ({ menu }) => {
           />
         </Row>
       ))} */}
+      <di className="parentSlider">
+        <div className="subSlider">
         {currentTwiglets.map((twiglet) => (
-          <div className="d-flex justify-content-center" key={twiglet.id}>
-            <ResultBox
-              key={twiglet.shop_id}
-              name={twiglet.shop_name}
-              user={twiglet.found_by_user}
-              time={twiglet.date_last_confirmed}
-              twiglet={twiglet}
-              votes={twiglet.votes}
-              twiglet_id={twiglet.twiglet_id}
-              address={twiglet.address}
-            />
-          </div>
-        ))}
+            <div className="d-flex justify-content-center" key={twiglet.id}>
+              <ResultBox
+                key={twiglet.shop_id}
+                name={twiglet.shop_name}
+                user={twiglet.found_by_user}
+                time={twiglet.date_last_confirmed}
+                twiglet={twiglet}
+                votes={twiglet.votes}
+                twiglet_id={twiglet.twiglet_id}
+                address={twiglet.address}
+              />
+            </div>
+          ))}
+        </div>
+      </di>
         <Pagination
           twigletsPerPage={twigletsPerPage}
           totalTwiglets={allTwiglets.length}

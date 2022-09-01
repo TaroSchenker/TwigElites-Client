@@ -64,12 +64,12 @@ const Signup = () => {
           value={passwordConfirmation}
         />
         <br />
-        <input
-          className="special-btn caveat"
+        <button
+          className="draw caveat"
           type="submit"
           value="JOIN"
           onClick={(e) => handleRegister(e)}
-        />
+        ><span>Join</span></button>
       </form>
     </div>
   );

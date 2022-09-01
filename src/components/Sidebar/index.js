@@ -97,47 +97,47 @@ const Sidebar = ({ handleClose }) => {
           <Col className="p-0 d-flex justify-content-center">
             <form onSubmit={(e) => handleFormSubmit(e)}>
                 {twigletLocationToAdd != "" ? (
-                <Form.Group className="mb-3" style={{ width: "300px" }}>
-                  <Form.Label className="text-white  w-100 text-center">
+                <Form.Group className="mb-3 input-container" style={{ width: "300px" }}>
+                  <Form.Label className="text-white  w-100 text-center input-address">
                    <strong> Location Address:</strong>
                   </Form.Label>
                   <Form.Control
-                    className=" rounded-0 text-center text-white border-0"
+                    className=" rounded-0 text-center text-white border-0 input-address"
                     style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
                     value={getShopName(twigletLocationToAdd.address)}
                     placeholder="Use the above autocomplete"
                     disabled
                   />
                   <Form.Control
-                    className=" rounded-0 text-center text-white border-0"
+                    className=" rounded-0 text-center text-white border-0 input-address"
                     style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
                     value={twigletLocationToAdd.address_components[0].long_name}
                     placeholder="Use the above autocomplete"
                     disabled
                   />
                   <Form.Control
-                    className=" rounded-0 text-center text-white border-0"
+                    className=" rounded-0 text-center text-white border-0 input-address"
                     style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
                     value={twigletLocationToAdd.address_components[1].long_name}
                     placeholder="Use the above autocomplete"
                     disabled
                   />
                   <Form.Control
-                    className=" rounded-0 text-center text-white border-0"
+                    className=" rounded-0 text-center text-white border-0 input-address"
                     style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
                     value={twigletLocationToAdd.address_components[2].long_name}
                     placeholder="Use the above autocomplete"
                     disabled
                   />
                   <Form.Control
-                    className=" rounded-0 text-center text-white border-0"
+                    className=" rounded-0 text-center text-white border-0 input-address"
                     style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
                     value={twigletLocationToAdd.address_components[3].long_name}
                     placeholder="Use the above autocomplete"
                     disabled
                   />
                   <Form.Control
-                    className=" rounded-0 text-center text-white border-0"
+                    className=" rounded-0 text-center text-white border-0 input-address"
                     style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
                     value={twigletLocationToAdd.address_components[4].long_name}
                     placeholder="Use the above autocomplete"

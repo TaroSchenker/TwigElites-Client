@@ -72,7 +72,7 @@ const ResultBox = ({
   return (
     <div className="box">
       <p className="my-0 text-white time"> 
-      {time}
+      {time} days ago
       </p>
       <p className="my-0 text-white votes">Votes: {votes}</p>
       <p className="my-0 text-white below">{user}</p>

@@ -8,8 +8,8 @@ const Pagination = ({ twigletsPerPage, totalTwiglets, paginate, inc, dec, curren
     }
 
     return (
-        <div>
-            <ul className="d-flex flex-row-reverse justify-content-around align-items-center p-0 text-white list-unstyled ">
+        <div className="paginate" >
+            <ul className="d-flex flex-row-reverse justify-content-around align-items-center p-0 text-white list-unstyled mb-0">
                 {/* {pageNumbers.map(number => (
                     <li key={number} >
                         <a href="#" onClick={() => paginate(number)} className="class-link">
