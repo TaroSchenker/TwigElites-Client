@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { Container, Col, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
-  const [messageForUser, setMessageForUser] = useState("");
+  const [isRegistered, setIsRegistered] = useState(false);
   const [password, setPassword] = useState("");
+  const [messageForUser, setMessageForUser] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
   const handleRegister = async (e) => {
@@ -18,15 +21,19 @@ const Signup = () => {
     };
     try {
       const { data } = await axios.post(
-        "https://test-twiglets.herokuapp.com/auth/register",
+        "http://test-twiglets.herokuapp.com/auth/register/",
         body
       );
+      console.log("DATA", data);
+      setIsRegistered(true);
       setMessageForUser(data);
-      console.log(messageForUser);
+      data !== "Username already exists!" && navigate("/login");
     } catch (err) {
       console.error("Oops, there's been an error: ", err);
     }
   };
+
+  console.log(isRegistered);
 
   return (
     <div className="packet">
@@ -63,13 +70,18 @@ const Signup = () => {
           onChange={(e) => setPasswordConfirmation(e.target.value)}
           value={passwordConfirmation}
         />
-        <br />
+        <p>{messageForUser}</p>
+
         <button
           className="draw caveat"
           type="submit"
           value="JOIN"
           onClick={(e) => handleRegister(e)}
-        ><span className="medium">Join</span></button>
+
+        >
+          <span className="medium">Join</span>
+        </button>
+
       </form>
     </div>
   );

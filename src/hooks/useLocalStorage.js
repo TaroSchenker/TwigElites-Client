@@ -13,7 +13,7 @@ export default function useLocalStorage(key, initialValue) {
     if (typeof initialValue === "function") {
       return initialValue();
     } else {
-      return initialValue;
+      return typeof initialValue == "string" && initialValue;
     }
   });
 

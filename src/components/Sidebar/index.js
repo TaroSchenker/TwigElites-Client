@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { Container, Col, Row, Card, Form, Button, Modal } from "react-bootstrap";
 import { MapDataContext } from "../../MapDataContext";
 import axios from "axios";
+import "../../App.css";
 
 import usePlacesAutocomplete, {
   getGeocode,
@@ -15,7 +16,7 @@ import {
   ComboboxOption,
 } from "@reach/combobox";
 
-const Sidebar = ({ handleClose }) => {
+const Sidebar = ({ handleClose, setPlayGame }) => {
   const getShopName = (name) => {
     return name.split(",")[0];
   };
@@ -30,13 +31,17 @@ const Sidebar = ({ handleClose }) => {
     setAllTwiglets,
     initialLocation,
     setInitialLocation,
-    mainState, setMainState, setGotoTwiglet
+    mainState,
+    setMainState,
+    setGotoTwiglet,
   ] = useContext(MapDataContext);
   const [show, setShow] = useState(false);
 
   const handleClosing = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const token = localStorage.getItem("twiglets-token");
+  // console.log("TOKE", token);
   /* ------ ------------------------------------------------------------------
   !handles the submit in column one ! 
   ----------------------------------------------------------------*/
@@ -71,7 +76,7 @@ const Sidebar = ({ handleClose }) => {
     };
 
     try {
-        setSelected(fake_data)
+      setSelected(fake_data);
       // console.log("fake_data", fake_data);
       // const headers = {
       //   "Content-Type": "application/json",
@@ -83,27 +88,33 @@ const Sidebar = ({ handleClose }) => {
         fake_data
         // { headers: headers }
       );
-    
-
     } catch (err) {
       console.error("Oops, there's been an error: ", err);
     }
   };
   return (
+    // <div className={"l-sidebar " + token != "undefined" ? "red" : "blurred"}>
+    
     <div className="l-sidebar">
-      <Container className="p-0 d-flex flex-column h-100 justify-content-between pb-3">
+      <Container className="p-0 d-flex flex-column h-100 justify-content-between pb-3 red">
         <Row className="">
           <Col className="p-0">
-            <Search setTwigletLocationToAdd={setTwigletLocationToAdd} initialLocation={initialLocation} />
+            <Search
+              setTwigletLocationToAdd={setTwigletLocationToAdd}
+              initialLocation={initialLocation}
+            />
           </Col>
         </Row>
         <Row className="h-100 d-flex flex-column">
           <Col className="p-0 d-flex justify-content-center">
             <form onSubmit={(e) => handleFormSubmit(e)}>
-                {twigletLocationToAdd != "" ? (
-                <Form.Group className="mb-3 input-container" style={{ width: "300px" }}>
+              {twigletLocationToAdd != "" ? (
+                <Form.Group
+                  className="mb-3 input-container"
+                  style={{ width: "300px" }}
+                >
                   <Form.Label className="text-white  w-100 text-center input-address">
-                   <strong> Location Address:</strong>
+                    <strong> Location Address:</strong>
                   </Form.Label>
                   <Form.Control
                     className=" rounded-0 text-center text-white border-0 input-address"
@@ -190,10 +201,43 @@ const Sidebar = ({ handleClose }) => {
             </Modal>
           </div>
           <div className="mt-5 d-flex justify-content-evenly controls">
+
+            <button
+              className="draw"
+              onClick={() => {
+                setPlayGame(current => false)
+              }}
+            >
+              <span>
+                <i className="fa-solid fa-globe"></i>
+              </span>
+            </button>
+            <button
+              className="draw"
+              onClick={() => {
+            setPlayGame(current => true)
+              }}
+            >
+              <span>
+                <i className="fa-solid fa-gamepad"></i>
+              </span>
+            </button>
+            <button
+              className="draw"
+              onClick={() => {
+          
+              }}
+            >
+              <span>
+                <i className="fa-solid fa-comment"></i>
+              </span>
+            </button>
+          </div>
+/*
           <button className="draw"
             onClick={() => {
 
-              setMainState(1);
+  setPlayGame(current => false)
             }}
             data-toggle="tooltip" data-placement="top" title="View twiglocator"
           >
@@ -202,7 +246,7 @@ const Sidebar = ({ handleClose }) => {
           <button className="draw"
             onClick={() => {
 
-              setMainState(2);
+                setPlayGame(current => true)
             }}
             data-toggle="tooltip" data-placement="top" title="Play twigame"
           >
@@ -218,6 +262,7 @@ const Sidebar = ({ handleClose }) => {
            <span data-toggle="tooltip" data-placement="top" title="Start twiglegram"><i className="fa-solid fa-comment"></i></span>
           </button>
         </div>
+ */
         </Row>
       </Container>
     </div>
@@ -283,7 +328,7 @@ const Sidebar = ({ handleClose }) => {
     //   </Row>
     //   <Row>
     //     <Button onClick={()=>{
-          
+
     //     }}>
     //       play a game!
     //     </Button>
@@ -322,13 +367,12 @@ function Search({ setTwigletLocationToAdd, initialLocation }) {
   const handleInput = (e) => {
     setValue(e.target.value);
   };
-    console.log('ready', ready, data)
+  console.log("ready", ready, data);
   const handleSelect = async (address) => {
     setValue(address, false);
     clearSuggestions();
-    
+
     try {
-    
       const results = await getGeocode({ address });
       // const place_info =  await getGeocode({ description });
       // console.log('results', results[0].formatted_address)
@@ -344,7 +388,6 @@ function Search({ setTwigletLocationToAdd, initialLocation }) {
     } catch (error) {
       console.log("😱 Error: ", error);
     }
-  
   };
   return (
     <div className="sidebar-search">

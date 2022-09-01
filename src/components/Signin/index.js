@@ -8,8 +8,8 @@ const Signin = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [messageForUser, setMessageForUser] = useState("");
-  const [token, setToken] = useLocalStorage("token");
-  const [id, setId] = useLocalStorage("id");
+  const [token, setToken] = useLocalStorage("token", "");
+  const [id, setId] = useLocalStorage("id", "");
 
   // const token = sessionStorage.getItem("token");
   // console.log("ID:", id);
@@ -22,13 +22,13 @@ const Signin = () => {
     };
     try {
       const { data } = await axios.post(
-        "http://localhost:5000/auth/login",
+        "http://test-twiglets.herokuapp.com/auth/login",
         body
       );
       // saving token in sessionStorage - when user logs out this token needs to be removed
       setMessageForUser(data.access_token);
-        setToken(data.access_token.token);
-        setId(data.access_token.username);
+      setToken(data.access_token.token);
+      setId(data.access_token.username);
       // console.log(token, id);
     } catch (err) {
       console.error("Oops, there's been an error: ", err);
@@ -57,14 +57,16 @@ const Signin = () => {
         <br />
         <Link
           onClick={(e) => (token === "undefined" ? e.preventDefault() : null)}
-          // to={token ? "/add-location" : null}
-          to={token ? "/chat" : "/registry"}
+          to={token ? "/" : "/login"}
         >
           <button
             className="draw caveat"
             type="submit"
             onClick={(e) => handleLogin(e)}
-          ><span className="medium">Login</span></button>
+          >
+            <span className="medium">Login</span>
+          </button>
+
         </Link>
       </form>
     </div>
