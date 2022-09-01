@@ -86,7 +86,7 @@ const ResultBox = ({
       {time} days ago
       </p>
       <p className="my-0 text-white votes">Votes: {voteCount}</p>
-      <p className="my-0 text-white below">{user}</p>
+      <p className="my-0 text-white below">Found By: {user}</p>
       <p className="my-0 text-white below">
         {/* <strong>Name:</strong> */}
         {name}
@@ -98,9 +98,9 @@ const ResultBox = ({
       {/* <p className="my-0"> <strong>Date found:</strong> {formatRelative(time, new Date())}</p> */}   
       
       <div className="d-flex justify-content-around my-1 buttons">
-        <button onClick={() => setGotoTwiglet(twiglet)} className="draw m-1" data-toggle="tooltip" data-placement="top" title="locate twiglet"><span><i class="fa-solid fa-location-crosshairs"></i></span></button>
-        <button onClick={deleteTwiglet} onClick={handleShow} className="draw m-1" data-toggle="tooltip" data-placement="top" title="delete twiglet location"><span><i class="fa-solid fa-trash"></i></span></button>
-        <button disabled={disable} onClick={addTwigletVote} className="draw m-1" data-toggle="tooltip" data-placement="top" title="upvote twiglet"><span><i class="fa-solid fa-thumbs-up"></i></span></button>
+        <button onClick={() => setGotoTwiglet(twiglet)} className="draw m-1" data-toggle="tooltip" data-placement="top" title="Locate Twiglet"><span><i class="fa-solid fa-location-crosshairs"></i></span></button>
+        <button onClick={deleteTwiglet} onClick={handleShow} className="draw m-1" data-toggle="tooltip" data-placement="top" title="Delete Twiglet Location"><span><i class="fa-solid fa-trash"></i></span></button>
+        <button disabled={disable} onClick={addTwigletVote} className="draw m-1" data-toggle="tooltip" data-placement="top" title="Upvote tTiglet"><span><i class="fa-solid fa-thumbs-up"></i></span></button>
       </div>
       <Modal
         show={show}
