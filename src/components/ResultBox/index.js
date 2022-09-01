@@ -98,9 +98,9 @@ const ResultBox = ({
       {/* <p className="my-0"> <strong>Date found:</strong> {formatRelative(time, new Date())}</p> */}   
       
       <div className="d-flex justify-content-around my-1 buttons">
-        <button onClick={() => setGotoTwiglet(twiglet)} className="draw m-1"><span><i class="fa-solid fa-location-crosshairs"></i></span></button>
-        <button onClick={deleteTwiglet} onClick={handleShow} className="draw m-1"><span><i class="fa-solid fa-trash"></i></span></button>
-        <button disabled={disable} onClick={addTwigletVote} className="draw m-1"><span><i class="fa-solid fa-thumbs-up"></i></span></button>
+        <button onClick={() => setGotoTwiglet(twiglet)} className="draw m-1" data-toggle="tooltip" data-placement="top" title="locate twiglet"><span><i class="fa-solid fa-location-crosshairs"></i></span></button>
+        <button onClick={deleteTwiglet} onClick={handleShow} className="draw m-1" data-toggle="tooltip" data-placement="top" title="delete twiglet location"><span><i class="fa-solid fa-trash"></i></span></button>
+        <button disabled={disable} onClick={addTwigletVote} className="draw m-1" data-toggle="tooltip" data-placement="top" title="upvote twiglet"><span><i class="fa-solid fa-thumbs-up"></i></span></button>
       </div>
       <Modal
         show={show}

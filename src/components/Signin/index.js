@@ -37,7 +37,7 @@ const Signin = () => {
   return (
     <div className="packet">
       <form className="sign-up overlay">
-        <h2 className="caveat fm-header">Fellow TwigElite</h2>
+        <h2 className="caveat fm-header">Fellow TwigElites</h2>
         <br />
         <input
           className="caveat"
@@ -64,7 +64,7 @@ const Signin = () => {
             className="draw caveat"
             type="submit"
             onClick={(e) => handleLogin(e)}
-          ><span>Login</span></button>
+          ><span className="medium">Login</span></button>
         </Link>
       </form>
     </div>
