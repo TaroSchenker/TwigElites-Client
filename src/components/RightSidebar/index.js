@@ -119,30 +119,30 @@ const RightSidebar = ({ menu }) => {
     // console.log(allTwiglets)
     // setUpdate(!update);
 
-        let sorted = allTwiglets.sort( compare );
-        setAllTwiglets(sorted);
-        break;
-      case "recent":
-        console.log("recent")
-        break;
-      case "mytwiglets":
-        console.log("mine")
-        const fetch_my_twiglets = async () => {
-          const { data } = await axios.get(
-            "https://test-twiglets.herokuapp.com/twiglets/user/1"
-          );
-          setAllTwiglets([...data]);
-          // return data;
-        };
-        fetch_my_twiglets();
-        break
-      default:
-        break;
-    }
-    console.log(allTwiglets)
-    setUpdate(!update);
+  //       let sorted = allTwiglets.sort( compare );
+  //       setAllTwiglets(sorted);
+  //       break;
+  //     case "recent":
+  //       console.log("recent")
+  //       break;
+  //     case "mytwiglets":
+  //       console.log("mine")
+  //       const fetch_my_twiglets = async () => {
+  //         const { data } = await axios.get(
+  //           "https://test-twiglets.herokuapp.com/twiglets/user/1"
+  //         );
+  //         setAllTwiglets([...data]);
+  //         // return data;
+  //       };
+  //       fetch_my_twiglets();
+  //       break
+  //     default:
+  //       break;
+  //   }
+  //   console.log(allTwiglets)
+  //   setUpdate(!update);
 
-  }
+   }
 
   return (
     <div className="sidebar">
@@ -194,7 +194,7 @@ const RightSidebar = ({ menu }) => {
           />
         </Row>
       ))} */}
-      <di className="parentSlider">
+      <div className="parentSlider">
         <div className="subSlider">
         {currentTwiglets.map((twiglet) => (
             <div className="d-flex justify-content-center" key={twiglet.id}>
@@ -211,7 +211,7 @@ const RightSidebar = ({ menu }) => {
             </div>
           ))}
         </div>
-      </di>
+      </div>
         <Pagination
           twigletsPerPage={twigletsPerPage}
           totalTwiglets={allTwiglets.length}

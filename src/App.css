@@ -38,6 +38,7 @@ header div {
   font-size: 0.8rem;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+}
   
  /* may need to remove   */
  
@@ -63,7 +64,7 @@ header div {
   z-index: 10;
 }
 
-.header:hover {
+/* .header:hover {
   box-shadow: 0 1px 0 #ffffff, 0 1px 0px 1px #ffffff;
   color:#ffffff;
 }
@@ -73,7 +74,7 @@ header div {
   top: 4px;
   padding-bottom: 0px;
   box-shadow: 0 1px 0 #ffffff;
-  
+   */
  /* may need to remove   */
  
 .logout:hover {
