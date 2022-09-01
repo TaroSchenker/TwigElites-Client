@@ -73,6 +73,7 @@ const Sidebar = ({ handleClose, setPlayGame }) => {
       shop_name: getShopName(twigletLocationToAdd.address),
       shop_id: twigletLocationToAdd.place_id,
       address: twigletLocationToAdd.formatted_address,
+      votes: 0
     };
 
     try {
