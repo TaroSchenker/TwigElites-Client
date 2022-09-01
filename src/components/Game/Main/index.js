@@ -85,7 +85,7 @@ function Game() {
         })}
       </div>
       <div className="stats">
-        Clicks: {clicks} &nbsp;&nbsp;&nbsp; Found pairs:{foundPairs.length / 2}
+        Found pairs: &nbsp;{foundPairs.length / 2}
       </div>
     </div>
   );

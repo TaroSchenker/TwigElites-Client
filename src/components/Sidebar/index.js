@@ -177,9 +177,9 @@ const Sidebar = ({ handleClose, setPlayGame }) => {
               </div>
             </form>
           </Col>
-          <div className="info-te d-flex justify-content-center caveat flex-column align-items-center">
-            <p className="caveat text-white text-center">This app helps Twiglet lovers find packets of Twilets with the original recipe!</p>
-            <button className="draw" onClick={handleShow}><span className="medium">Info</span></button>
+          <div className="info-te d-flex justify-content-center  flex-column align-items-center">
+            <p className="text-white text-center">This app helps Twiglet lovers find packets of Twilets with the original recipe!</p>
+            <button className="draw" onClick={handleShow} style={{fontFamily:'caveat'}}><span className="medium">Info</span></button>
             <Modal
               show={show}
               onHide={handleClose}
