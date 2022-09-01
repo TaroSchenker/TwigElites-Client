@@ -178,8 +178,8 @@ const Sidebar = ({ handleClose, setPlayGame }) => {
             </form>
           </Col>
           <div className="info-te d-flex justify-content-center  flex-column align-items-center">
-            <p className="text-white text-center">This app helps Twiglet lovers find packets of Twilets with the original recipe!</p>
-            <button className="draw" onClick={handleShow} style={{fontFamily:'caveat'}}><span className="medium">Info</span></button>
+            <p className="short text-white text-center">This app helps Twiglet lovers find packets of Twiglets with the original recipe!</p>
+            <button className="draw short" onClick={handleShow} ><span className="medium">Info</span></button>
             <Modal
               show={show}
               onHide={handleClose}
@@ -402,7 +402,7 @@ function Search({ setTwigletLocationToAdd, initialLocation }) {
     }
   };
   return (
-    <div className="sidebar-search">
+    <div className="sidebar-search short">
       <div className="p-3 text-center text-white">
         {/* {console.log(".....ready???", ready)} */}
         <Combobox onSelect={handleSelect}>
@@ -410,7 +410,7 @@ function Search({ setTwigletLocationToAdd, initialLocation }) {
             value={value}
             onChange={handleInput}
             disabled={!ready}
-            placeholder="Submit twiglet location"
+            placeholder="Twiglet Location"
             type="text"
             style={{
               margin: 0,

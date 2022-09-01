@@ -5,7 +5,7 @@ import ResultBox from "../ResultBox";
 import Pagination from "../Pagination";
 import axios from "axios";
 
-const RightSidebar = ({ menu }) => {
+const RightSidebar = ({ menu, userId }) => {
   // const [allTwiglets, setAllTwiglets] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -72,76 +72,70 @@ const RightSidebar = ({ menu }) => {
   };
 
   const sorted = (sort) => {
-    console.log("Must uncomment function to run!");
-    // switch (sort) {
-    //   case "toprated":
-    //     function compare( a, b ) {
-    //       if ( a.votes < b.votes ){
-    //         return 1;
-    //       }
-    //       if ( a.votes > b.votes ){
-    //         return -1;
-    //       }
-    //       return 0;
-    //     }
-        
-
-    //     let sortedByVotes = allTwiglets.sort( compare );
-    //     setAllTwiglets(sortedByVotes);
-    //     break;
-    //   case "recent":
-    //     console.log(allTwiglets[0].date_found)
-    //     function modify( a, b ) {
-    //       if ( a.date_found < b.date_found ){
-    //         return 1;
-    //       }
-    //       if ( a.date_found > b.date_found ){
-    //         return -1;
-    //       }
-    //       return 0;
-    //     }
-        
-    //     let sortedByTime = allTwiglets.sort( modify );
-    //     setAllTwiglets(sortedByTime);
-    //     break;
-    //   case "mytwiglets":
-    //     console.log("mine")
-    //     const fetch_my_twiglets = async () => {
-    //       const { data } = await axios.get(
-    //         "https://test-twiglets.herokuapp.com/twiglets/user/1"
-    //       );
-    //       setAllTwiglets([...data]);
-    //       // return data;
-    //     };
-    //     fetch_my_twiglets();
-    //     break
-    // }
+    // console.log("Must uncomment function to run!");
+    switch (sort) {
+      case "toprated":
+        function compare( a, b ) {
+          if ( a.votes < b.votes ){
+            return 1;
+          }
+          if ( a.votes > b.votes ){
+            return -1;
+          }
+          return 0;
+        }
+        let sortedByVotes = allTwiglets.sort( compare );
+        setAllTwiglets(sortedByVotes);
+        console.log("Toprated")
+        break;
+      case "recent":
+        console.log("This is the recent function")
+        function modify( a, b ) {
+          if ( a.date_found < b.date_found ){
+            return 1;
+          }
+          if ( a.date_found > b.date_found ){
+            return -1;
+          }
+          return 0;
+        }
+        let sortedByTime = allTwiglets.sort( modify );
+        setAllTwiglets(sortedByTime);
+        break;
+      case "mytwiglets":
+        const fetch_my_twiglets = async (id) => {
+          const { data } = await axios.get(
+            `https://test-twiglets.herokuapp.com/twiglets/user/${id}`
+          );
+          setAllTwiglets([...data]);
+        };
+        fetch_my_twiglets(userId);
+        break
+      default:
+        break;
+    }
+    setUpdate(!update);
+      //   let sorted = allTwiglets.sort( compare );
+      //   setAllTwiglets(sorted);
+      //   break;
+      // case "recent":
+      //   console.log("recent")
+      //   break;
+      // case "mytwiglets":
+      //   console.log("mine")
+      //   const fetch_my_twiglets = async () => {
+      //     const { data } = await axios.get(
+      //       "https://test-twiglets.herokuapp.com/twiglets/user/1"
+      //     );
+      //     setAllTwiglets([...data]);
+      //     // return data;
+      //   };
+      //   fetch_my_twiglets();
+      //   break
+      // default:
+      //   break;
     // console.log(allTwiglets)
     // setUpdate(!update);
-
-  //       let sorted = allTwiglets.sort( compare );
-  //       setAllTwiglets(sorted);
-  //       break;
-  //     case "recent":
-  //       console.log("recent")
-  //       break;
-  //     case "mytwiglets":
-  //       console.log("mine")
-  //       const fetch_my_twiglets = async () => {
-  //         const { data } = await axios.get(
-  //           "https://test-twiglets.herokuapp.com/twiglets/user/1"
-  //         );
-  //         setAllTwiglets([...data]);
-  //         // return data;
-  //       };
-  //       fetch_my_twiglets();
-  //       break
-  //     default:
-  //       break;
-  //   }
-  //   console.log(allTwiglets)
-  //   setUpdate(!update);
-
    }
 
   return (

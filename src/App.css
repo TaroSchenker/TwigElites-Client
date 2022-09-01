@@ -4,6 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Short Stack', cursive;
 }
 
 body {
@@ -148,8 +149,8 @@ header div {
 }
 
 .packet {
-  height: 25.5rem;
-  width: 19.5rem;
+  height: 28.5rem;
+  width: 22.5rem;
   background: url(../public/static/media/packet.png) no-repeat center center;
   background-size: cover;
   display: flex;
@@ -605,7 +606,7 @@ input[type="text"]:focus, input[type="password"]:focus {
   /* padding: 5px; */
   /* border: 1px solid #999; */
   text-align: center;
-  font-family: 'Roboto','sans-serif';
+  /* font-family: 'Roboto','sans-serif'; */
   /* line-height: 30px; */
   /* padding-left: 10px; */
 }
@@ -709,5 +710,22 @@ input[type="text"]:focus, input[type="password"]:focus {
   .input-container {
     height: 5rem;
     overflow: scroll;
+  }
+
+  .packet {
+    height: 25.5rem;
+    width: 19.5rem;
+  }
+
+}
+
+@media screen and (max-width: 312px) {
+  .packet {
+    height: 23.5rem;
+    width: 17.5rem;
+  }
+  .overlay {
+    height: 22rem;
+    width: 15rem;
   }
 }

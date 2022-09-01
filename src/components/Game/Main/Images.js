@@ -1,8 +1,8 @@
 import img1 from '../img/tnewgame.png'
 import img2 from '../img/torigingame.png'
-import img3 from '../img/mascot.png'
+import img3 from '../img/teigkinggame.png'
 import img4 from '../img/twiglets-logo-png-transparent.png'
-import img5 from '../img/twigking.png'
+import img5 from '../img/crown.png'
 import img6 from '../img/twigqueen.png'
 
 

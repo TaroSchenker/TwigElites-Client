@@ -269,7 +269,7 @@ function Search({ panTo }) {
   };
 
   return (
-    <div className="search">
+    <div className="search short">
       <Combobox onSelect={handleSelect}>
         <ComboboxInput
           value={value}
