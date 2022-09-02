@@ -20,6 +20,9 @@ const Sidebar = ({ handleClose, setPlayGame }) => {
   const getShopName = (name) => {
     return name.split(",")[0];
   };
+  const getFirstWord = (name) => {
+    return name.split(" ")[0];
+  };
   const [
     markers,
     setMarkers,
@@ -120,7 +123,7 @@ const Sidebar = ({ handleClose, setPlayGame }) => {
                   <Form.Control
                     className=" rounded-0 text-center text-white border-0 input-address"
                     style={{ backgroundColor: "rgba(0, 0, 0, 0)" }}
-                    value={getShopName(twigletLocationToAdd.address)}
+                    value={getFirstWord(twigletLocationToAdd.address)}
                     placeholder="Use the above autocomplete"
                     disabled
                   />
