@@ -199,7 +199,7 @@ const Sidebar = ({ handleClose, setPlayGame }) => {
                   As you will know, our beloved Twiglet recipe has been ruined! This app will help us keep tabs which locations are still selling the original packets so we can all enjoy Twiglets while we can! 
                 </p>
                 <p>
-                  If you find original twiglets in your local shop please sign up and add the location to the map so we can help teh community enjoy Twiglets!
+                  If you find original twiglets in your local shop please sign up and add the location to the map so we can help the community enjoy Twiglets!
                   </p>
              
                   <img src="/img/torigingame.png" alt="Original Twiglets" width="200" height="200" />
